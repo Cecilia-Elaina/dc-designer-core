@@ -80,6 +80,7 @@ def normalize_source(source: dict, *, snapshot_id: str = "") -> dict:
     item.setdefault("copyright_scope", "official_public_reference")
     item.setdefault("use_scope", ["content_reference"])
     item.setdefault("stage", [])
+    item.setdefault("grade_levels", [])
     item.setdefault("subject", "信息科技")
     item.setdefault("source_url", "")
     item.setdefault("retrieved_at", "")
@@ -91,6 +92,17 @@ def normalize_source(source: dict, *, snapshot_id: str = "") -> dict:
     )
     item.setdefault("source_record_sha256", "")
     item["source_version"] = item.get("version", "")
+    if not item.get("grade_levels"):
+        stage_grades = {
+            "primary": ["小学1—6年级"],
+            "junior_secondary": ["初中7—9年级"],
+            "senior_secondary": ["高中10—12年级"],
+        }
+        item["grade_levels"] = [
+            label
+            for stage in (item.get("stage") or [])
+            for label in stage_grades.get(stage, [])
+        ]
     item["snapshot_id"] = snapshot_id
     clauses = []
     for clause in item.get("clauses", []) or []:
@@ -102,6 +114,7 @@ def normalize_source(source: dict, *, snapshot_id: str = "") -> dict:
         c.setdefault("keywords", [])
         c.setdefault("applicable_topics", ["all"])
         c.setdefault("supports_modules", ["content_reference"])
+        c.setdefault("evidence_status", "clause_candidate")
         c["clause_text"] = c.get("clause_text") or c.get("normalized_summary", "")
         c["source_id"] = item.get("source_id", "")
         c["source_version"] = item.get("source_version", "")

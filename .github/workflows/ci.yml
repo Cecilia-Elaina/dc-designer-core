@@ -16,6 +16,7 @@ jobs:
       - run: python -m compileall -q mcp-server scripts
       - run: node --check web/app.js
       - run: python scripts/release_check.py
+      - run: python scripts/web_smoke.py
       - run: python -m pytest -q
       - run: python scripts/package_release.py --output-dir artifacts/dist
       - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.0.zip --timeout 360

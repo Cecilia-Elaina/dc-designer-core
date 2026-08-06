@@ -2,8 +2,8 @@
 """Verify that a release archive works after extraction to a clean directory.
 
 The smoke test deliberately keeps the teacher workspace outside the extracted
-package. It exercises the release audit, offline evidence search, and one real
-design/export run without relying on the developer checkout.
+package. It exercises the release audit, offline evidence search, design,
+review, revise, and document export without relying on the developer checkout.
 """
 
 from __future__ import annotations
@@ -73,14 +73,40 @@ def run_smoke(archive: str | Path, *, keep_temp: bool = False, timeout: int = 36
         visual = design.get("project", {}).get("quality", {}).get("visual_status", "")
         if design.get("status") in {"unsupported_scope", "error"}:
             raise RuntimeError(f"clean package design failed: {design.get('status')}")
+        project_path = Path(str(design.get("project_json", ""))).expanduser()
+        if not project_path.is_file():
+            raise RuntimeError("clean package design did not expose a project JSON")
         if not export_result or any(not Path(str(path)).is_file() for path in export_result.values() if isinstance(path, str) and path.lower().endswith((".docx", ".xlsx"))):
             raise RuntimeError("clean package design did not produce document exports")
+        review_dir = Path(temp_context.name) / "review-exports"
+        review = _json_output(_run([
+            sys.executable, "scripts/dc_info_tech.py", "review",
+            "--project", str(project_path),
+            "--output-dir", str(review_dir),
+            "--workspace", str(workspace),
+        ], cwd=root, timeout=timeout))
+        if review.get("status") in {"unsupported_scope", "error"} or not isinstance(review.get("findings"), list):
+            raise RuntimeError("clean package review did not return actionable findings")
+        revise_dir = Path(temp_context.name) / "revise-exports"
+        revise = _json_output(_run([
+            sys.executable, "scripts/dc_info_tech.py", "revise",
+            "--project", str(project_path),
+            "--feedback-json", json.dumps({"items": [{"module": "instructional_strategy", "description": "请教师确认分组反馈安排"}]}, ensure_ascii=False),
+            "--output-dir", str(revise_dir),
+            "--workspace", str(workspace),
+        ], cwd=root, timeout=timeout))
+        if revise.get("status") in {"unsupported_scope", "error"} or not revise.get("revision_record"):
+            raise RuntimeError("clean package revise did not return a revision record")
         return {
             "status": "pass",
             "archive": str(archive_path),
             "audit_status": audit.get("status"),
             "official_match_count": len(official.get("matches", [])),
             "design_status": design.get("status"),
+            "review_status": review.get("status"),
+            "review_findings": len(review.get("findings", [])),
+            "revise_status": revise.get("status"),
+            "revision_action_status": revise.get("revision_record", {}).get("action_status", ""),
             "export_status": design.get("export_status", design.get("export_result", {}).get("export_status", "success")),
             "visual_status": visual or "verified_by_visual_qa_in_export",
             "workspace_is_external": root not in workspace.parents and workspace != root,

@@ -4,6 +4,9 @@ const stages = [
   ["analysis", "教学分析与技能图"], ["learner_context", "学习者与环境"],
   ["objectives_assessment", "目标与评价"], ["strategy_materials", "策略与材料"], ["quality_export", "检查与导出"]
 ];
+const sourceLevelLabels = { A1: "国家级正式依据", B1: "地方教育依据", C1: "教师私有资料", D1: "AI推断或建议" };
+const evidenceLabels = { candidate: "候选（待教师确认）", clause_candidate: "条款候选（待教师核对）", teacher_confirmed: "教师已确认", final_verified: "最终已验证" };
+const statusLabels = { current: "现行记录", teacher_confirmed: "教师已确认", superseded: "历史替代版本" };
 
 async function api(path, options = {}) {
   const response = await fetch(`/api/${path}`, { headers: { "Content-Type": "application/json" }, ...options });
@@ -90,7 +93,10 @@ async function loadSources() {
       const isLocal = source.snapshot_id === "local-update";
       const action = isLocal ? `<button class="text-button" data-delete-source="${escapeHtml(source.source_id)}">删除本机来源</button>` : "";
       const clause = (source.clauses || [])[0] || {};
-      return `<article class="source"><div class="source-title"><strong>${escapeHtml(source.title)}</strong>${action}</div><p>${escapeHtml(source.issuer)} · ${escapeHtml(source.version)} · ${escapeHtml(source.status)}</p><p>适用范围：${escapeHtml((source.stage || []).join("、"))}；证据状态：${escapeHtml(source.provenance?.verification_status || "待教师核对")}</p><p>条款：${escapeHtml(clause.clause_id || "未提供")}；定位：${escapeHtml(clause.page_number || clause.anchor || "待补充")}</p><p>${escapeHtml(clause.normalized_summary || clause.clause_text || "暂无条款摘要")}</p><a href="${escapeHtml(source.source_url)}" target="_blank" rel="noreferrer">查看官方链接</a></article>`;
+      const section = (clause.section_path || []).join(" / ") || "章节待补充";
+      const grades = (source.grade_levels || []).join("、") || "年级待确认";
+      const evidence = evidenceLabels[clause.evidence_status] || evidenceLabels[source.provenance?.verification_status] || "待教师核对";
+      return `<article class="source"><div class="source-title"><strong>${escapeHtml(source.title)}</strong>${action}</div><p>${escapeHtml(source.issuer || "发布机构待核对")} · ${escapeHtml(source.version || "版本待核对")} · ${escapeHtml(statusLabels[source.status] || "待确认")}</p><p>来源等级：${escapeHtml(sourceLevelLabels[source.source_level] || "待分类")}；适用范围：${escapeHtml((source.stage || []).join("、"))}；适用年级：${escapeHtml(grades)}</p><p>证据状态：${escapeHtml(evidence)}；发布日期：${escapeHtml(source.publication_date || "待核对")}；生效日期：${escapeHtml(source.effective_date || "待核对")}</p><p>条款：${escapeHtml(clause.clause_id || "未提供")}；章节：${escapeHtml(section)}；定位：${escapeHtml(clause.page_number || clause.anchor || "待补充")}</p><p>短引文：${escapeHtml(clause.excerpt || "暂无短引文")}</p><p>条款摘要：${escapeHtml(clause.normalized_summary || clause.clause_text || "暂无条款摘要")}</p><a href="${escapeHtml(source.source_url)}" target="_blank" rel="noreferrer">查看官方链接</a></article>`;
     }).join("");
     const pending = (data.pending_updates || []).filter(item => item.status === "pending_review").map(item => `<article class="source pending"><strong>待审核更新：${escapeHtml(item.update_id)}</strong><p>${escapeHtml(item.url)} · SHA256 ${escapeHtml(item.sha256 || "未记录")}</p><button class="text-button" data-approve-update="${escapeHtml(item.update_id)}">填写元数据并审核</button></article>`).join("");
     const history = (data.source_history || []).slice(-8).map(item => `<article class="source history"><strong>历史版本：${escapeHtml(item.title || item.source_id)}</strong><p>${escapeHtml(item.version || "未提供")} · 已被替换：${escapeHtml(item.superseded_at || "未记录")}</p></article>`).join("");

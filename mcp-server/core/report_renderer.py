@@ -24,6 +24,10 @@ _STATUS_LABELS = {
     "unknown_candidate": "尚未分类",
 }
 _VALUE_LABELS = {
+    "A1": "国家级正式依据",
+    "B1": "地方教育依据",
+    "C1": "教师私有资料",
+    "D1": "AI推断或建议",
     "official_authority": "官方依据",
     "teacher_private": "教师私有资料",
     "OFFICIAL_STANDARD": "官方课程标准",
@@ -31,6 +35,14 @@ _VALUE_LABELS = {
     "AI_INFERENCE": "AI推断（待教师验证）",
     "AI_SUGGESTION": "AI建议（待教师确认）",
     "authentic_programming_task": "真实编程任务",
+    "highest": "最高可信度",
+    "high": "较高可信度",
+    "limited": "有限支持",
+    "yes": "可以作为目标依据",
+    "no": "不能直接作为目标依据",
+    "current": "现行记录",
+    "metadata_snapshot_only": "内置元数据快照（未下载全文）",
+    "retrieved": "已获取并记录文件校验值",
 }
 
 
@@ -46,6 +58,21 @@ def _label(value: object, default: str = "未提供") -> str:
         return "；".join(_label(item, "") for item in value if item) or default
     text = str(value)
     return _STATUS_LABELS.get(text, _VALUE_LABELS.get(text, text))
+
+
+def _teacher_text(value: object, default: str = "未提供") -> str:
+    """Render nested model values as readable teacher-facing text."""
+    if value is None or value == "":
+        return default
+    if isinstance(value, dict):
+        for key in ("description", "summary", "text", "value", "name", "difficulty", "details", "grouping", "implication", "activity"):
+            if value.get(key):
+                return _teacher_text(value[key], default)
+        return default
+    if isinstance(value, list):
+        rendered = [_teacher_text(item, "") for item in value]
+        return "；".join(item for item in rendered if item) or default
+    return _label(value, default)
 
 
 def _learning_type(value: object) -> str:
@@ -122,15 +149,27 @@ def render_source_trace(sources: list) -> str:
     lines = ["| 来源名称 | 发布信息 | 等级 | 来源类别/状态 | 作为目标依据 | 条款位置与摘要 |"]
     lines.append("|---------|---------|------|--------------|------------|----------------|")
     for s in sources:
-        name = s.get("source_name", "未知")
-        level = s.get("source_level", "?")
-        cred = s.get("credibility", "?")
+        name = s.get("source_name", s.get("title", "未知"))
+        level = _label(s.get("source_level"), "等级待确认")
+        cred = _label(s.get("credibility"), "可信度待确认")
         status = _label(s.get("evidence_status", s.get("retrieval_status", "?")), "待确认")
         basis = _label(s.get("can_be_goal_basis", "?"), "待确认")
         category = _label(s.get("source_category", ""), "待分类")
-        info = f"{_label(s.get('issuer'), '发布机构待核对')}；{s.get('source_version', s.get('version', '版本待核对'))}；{s.get('publication_date', '日期待核对')}"
+        info = (
+            f"{_label(s.get('issuer'), '发布机构待核对')}；"
+            f"版本：{s.get('source_version', s.get('version', '版本待核对'))}；"
+            f"发布日期：{s.get('publication_date', '日期待核对')}；"
+            f"生效日期：{s.get('effective_date', '待核对')}"
+        )
         clauses = s.get("specific_clauses", s.get("clauses", [])) or []
-        citation = "；".join(f"{c.get('page_number', c.get('anchor', '位置待补充'))}：{c.get('normalized_summary', c.get('clause_text', ''))}" for c in clauses[:3]) or "尚未定位具体条款"
+        citation_parts = []
+        for clause in clauses[:3]:
+            section = " / ".join(str(item) for item in clause.get("section_path", []) if item) or "章节待补充"
+            location = clause.get("page_number") or clause.get("anchor") or "位置待补充"
+            excerpt = clause.get("excerpt") or clause.get("clause_text", "")
+            summary = clause.get("normalized_summary") or clause.get("clause_text", "")
+            citation_parts.append(f"{section}；{location}；引文：{excerpt}；摘要：{summary}")
+        citation = "；".join(citation_parts) or "尚未定位具体条款"
         lines.append(f"| {name} | {info} | {level}（{cred}） | {category}；{status} | {basis} | {citation} |")
     return "\n".join(lines)
 
@@ -224,7 +263,7 @@ def _render_curriculum_alignment(project: dict) -> str:
     exam_sources = []
 
     for s in sources:
-        name = s.get("source_name", "")
+        name = s.get("source_name", s.get("title", ""))
         level = s.get("source_level", "")
         category = s.get("source_category", "")
 
@@ -258,10 +297,10 @@ def _render_curriculum_alignment(project: dict) -> str:
                 match_level = "文件级"
                 basis_label = "📋 文件级来源：待条款确认"
 
-            grades = ', '.join(s.get('applicable_grades', s.get('applicable_scenes', ['?'])))
+            grades = ', '.join(s.get('applicable_grades', s.get('grade_levels', s.get('applicable_scenes', ['待确认']))))
             lines.append(
-                f"| {s.get('source_name', '?')} "
-                f"| {s.get('source_level', '?')} "
+                f"| {s.get('source_name', s.get('title', '?'))} "
+                f"| {_label(s.get('source_level'), '待确认')} "
                 f"| {match_level} "
                 f"| {grades} "
                 f"| {basis_label} |"
@@ -454,19 +493,17 @@ def _render_section_learner_context(project: dict) -> str:
             entry = entry.get("items", entry.get("level", []))
         if entry:
             if isinstance(entry, list):
-                lines.append(f"\n**入门技能：** {', '.join(str(e) for e in entry)}")
+                lines.append(f"\n**入门技能：** {_teacher_text(entry)}")
             else:
-                lines.append(f"\n**入门技能：** {entry}")
+                lines.append(f"\n**入门技能：** {_teacher_text(entry)}")
 
         pk = learner.get("prior_knowledge", "")
-        if isinstance(pk, dict):
-            pk = pk.get("description", "")
+        pk = _teacher_text(pk, "")
         if pk:
             lines.append(f"**先前知识：** {pk}")
 
         mot = learner.get("motivation", "")
-        if isinstance(mot, dict):
-            mot = mot.get("description", mot.get("level", ""))
+        mot = _teacher_text(mot, "")
         if mot:
             lines.append(f"**学习动机：** {mot}")
 
@@ -474,7 +511,7 @@ def _render_section_learner_context(project: dict) -> str:
         if isinstance(prefs, dict):
             prefs = prefs.get("preferences", [])
         if prefs:
-            lines.append(f"**学习偏好：** {', '.join(str(p) for p in prefs)}")
+            lines.append(f"**学习偏好：** {_teacher_text(prefs)}")
 
         diffs = learner.get("common_difficulties", [])
         if diffs:
@@ -488,8 +525,7 @@ def _render_section_learner_context(project: dict) -> str:
         gc = learner.get("group_characteristics", "")
         if isinstance(gc, dict):
             gc = gc.get("details", gc.get("grouping", ""))
-            if isinstance(gc, dict):
-                gc = json.dumps(gc, ensure_ascii=False)
+        gc = _teacher_text(gc, "")
         if gc:
             lines.append(f"**群体特征：** {gc}")
 
@@ -980,9 +1016,9 @@ def _render_section_11_assessment(project: dict) -> str:
         for e in evidence:
             lines.append(
                 f"| {e.get('linked_objective_id', '?')} "
-                f"| {e.get('evidence_type_name', e.get('evidence_type', '?'))} "
+                f"| {_label(e.get('evidence_type_name', e.get('evidence_type')), '评价任务证据')} "
                 f"| {e.get('task_prompt', e.get('description', '?'))[:40]}... "
-                f"| {e.get('status', '?')} |"
+                f"| {_label(e.get('status'), '待确认')} |"
             )
     else:
         lines.append("\n暂无评价证据对应关系。")

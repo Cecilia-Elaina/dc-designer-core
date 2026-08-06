@@ -1,301 +1,644 @@
 {
-  "snapshot_id": "k12-info-tech-official-2026-08",
-  "snapshot_version": "2026.08",
-  "generated_at": "2026-08-06",
-  "content_hash_policy": "内置包只保存官方来源元数据与条款候选；下载内容的 SHA-256 仅在教师发起在线更新并经确认后记录",
-  "source_record_fields": ["source_id", "title", "issuer", "document_type", "publication_date", "effective_date", "version", "source_url", "stage", "subject", "source_level", "source_category", "copyright_scope", "use_scope", "clauses", "content_hash_status", "content_sha256", "source_record_sha256"],
-  "description": "中国 K12 信息科技/信息技术教学系统设计使用的官方来源快照。仅保存来源元数据和短引文/规范化摘要，不复制完整文件。",
-  "sources": [
-    {
-      "source_id": "moe-edu-law-2021",
-      "title": "中华人民共和国教育法（2021年修正）",
-      "issuer": "全国人民代表大会常务委员会",
-      "document_type": "law",
-      "publication_date": "2021",
-      "effective_date": "2021",
-      "version": "2021年修正",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/jyb_sjzl/sjzl_zcfg/zcfg_jyfl/202107/t20210730_547843.html",
-      "stage": ["primary", "junior_secondary", "senior_secondary"],
-      "subject": "通用",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "limited",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["content_reference", "strategy_design"],
-      "clauses": [
-        {
-          "clause_id": "EDU-LAW-2021-DIRECTION",
-          "section_path": ["教育方针与教育目的"],
-          "page_number": "网页正文",
-          "anchor": "教育目的与教育方针",
-          "excerpt": "用于约束教育活动方向",
-          "normalized_summary": "提供宏观教育法治依据，不能替代信息科技课程标准生成单节课教学目标。",
-          "keywords": ["教育方针", "教育目的", "宏观依据"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["needs_analysis", "instructional_goal", "quality_ethics"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-education-power-2024-2035",
-      "title": "教育强国建设规划纲要（2024—2035年）",
-      "issuer": "中共中央、国务院",
-      "document_type": "national_policy",
-      "publication_date": "2025-01-19",
-      "effective_date": "2024—2035",
-      "version": "2024—2035",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1778/202501/t20250119_1176193.html",
-      "stage": ["primary", "junior_secondary", "senior_secondary"],
-      "subject": "通用",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "limited",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["needs_analysis", "strategy_design", "quality_ethics"],
-      "clauses": [
-        {
-          "clause_id": "EDU-POWER-2024-DIRECTION",
-          "section_path": ["总体要求"],
-          "page_number": "网页正文",
-          "anchor": "总体要求",
-          "excerpt": "加快建设教育强国",
-          "normalized_summary": "用于检查课程设计的育人方向与高质量发展取向，不直接生成课题级绩效目标。",
-          "keywords": ["教育强国", "高质量发展", "育人方向"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["needs_analysis", "strategy_design", "quality_ethics"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-compulsory-plan-2022",
-      "title": "义务教育课程方案（2022年版）",
-      "issuer": "中华人民共和国教育部",
-      "document_type": "curriculum_plan",
-      "publication_date": "2022-03-25",
-      "effective_date": "2022年秋季学期",
-      "version": "2022",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html",
-      "stage": ["primary", "junior_secondary"],
-      "subject": "信息科技",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "yes",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["goal_basis", "content_reference", "strategy_design"],
-      "clauses": [
-        {
-          "clause_id": "COMPULSORY-PLAN-2022-IT",
-          "section_path": ["课程设置", "信息科技"],
-          "page_number": "附件/课程设置",
-          "anchor": "义务教育课程方案和课程标准（2022年版）",
-          "excerpt": "于2022年秋季学期开始执行",
-          "normalized_summary": "确定义务教育阶段课程定位、实施范围和课程安排；课题级目标仍需结合信息科技课标和教材确认。",
-          "keywords": ["义务教育", "课程方案", "信息科技", "课程设置"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["instructional_goal", "learner_context", "strategy_design"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-compulsory-it-standard-2022",
-      "title": "义务教育信息科技课程标准（2022年版）",
-      "issuer": "中华人民共和国教育部",
-      "document_type": "curriculum_standard",
-      "publication_date": "2022-03-25",
-      "effective_date": "2022年秋季学期",
-      "version": "2022",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
-      "stage": ["primary", "junior_secondary"],
-      "subject": "信息科技",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "yes",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"],
-      "core_competencies": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任"],
-      "clauses": [
-        {
-          "clause_id": "COMPULSORY-IT-2022-COMPETENCIES",
-          "section_path": ["课程性质与课程理念", "核心素养"],
-          "page_number": "课标正文/核心素养",
-          "anchor": "信息科技课程核心素养",
-          "excerpt": "信息意识、计算思维、数字化学习与创新、信息社会责任",
-          "normalized_summary": "信息科技课程围绕四项核心素养组织学习，教学目标应说明课题行为与核心素养的关系。",
-          "keywords": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["instructional_goal", "objectives", "assessment"]
-        },
-        {
-          "clause_id": "COMPULSORY-IT-2022-ALGORITHM",
-          "section_path": ["课程内容", "算法与程序设计"],
-          "page_number": "课标正文/课程内容",
-          "anchor": "算法与程序设计",
-          "excerpt": "分析问题、抽象建模、设计解决方案并用适切方式表达和验证",
-          "normalized_summary": "算法与程序设计课题应包含问题分析、抽象建模、方案实现、表达和验证等可观察活动。",
-          "keywords": ["算法", "程序设计", "问题解决", "抽象", "建模", "验证"],
-          "applicable_topics": ["algorithm", "branch", "loop", "data"],
-          "supports_modules": ["instructional_goal", "skill_analysis", "objectives", "assessment", "materials"]
-        },
-        {
-          "clause_id": "COMPULSORY-IT-2022-QUALITY",
-          "section_path": ["学业质量"],
-          "page_number": "课标正文/学业质量",
-          "anchor": "学业质量表现",
-          "excerpt": "在真实或模拟情境中运用信息科技知识与技能解决问题",
-          "normalized_summary": "评价应关注学习者在任务情境中运用知识技能解决问题的表现，不能只用脱离任务的记忆题替代。",
-          "keywords": ["学业质量", "真实情境", "解决问题", "表现"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["assessment", "strategy_design", "formative_evaluation"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-senior-plan-2017-2020",
-      "title": "普通高中课程方案（2017年版2020年修订）",
-      "issuer": "中华人民共和国教育部",
-      "document_type": "curriculum_plan",
-      "publication_date": "2020-05-11",
-      "effective_date": "2020",
-      "version": "2017年版2020年修订",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
-      "stage": ["senior_secondary"],
-      "subject": "信息技术",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "yes",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["goal_basis", "content_reference", "strategy_design"],
-      "clauses": [
-        {
-          "clause_id": "SENIOR-PLAN-2017-2020-IT",
-          "section_path": ["课程设置", "信息技术"],
-          "page_number": "通知及附件",
-          "anchor": "普通高中课程方案",
-          "excerpt": "普通高中课程方案和课程标准（2017年版2020年修订）",
-          "normalized_summary": "确定普通高中课程定位和实施框架，具体课题目标应结合高中信息技术课程标准、教材版本和单元位置确认。",
-          "keywords": ["普通高中", "课程方案", "信息技术"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["instructional_goal", "learner_context", "strategy_design"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-senior-it-standard-2017-2020",
-      "title": "普通高中信息技术课程标准（2017年版2020年修订）",
-      "issuer": "中华人民共和国教育部",
-      "document_type": "curriculum_standard",
-      "publication_date": "2020-05-11",
-      "effective_date": "2020",
-      "version": "2017年版2020年修订",
-      "status": "current",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
-      "stage": ["senior_secondary"],
-      "subject": "信息技术",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "yes",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"],
-      "core_competencies": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任"],
-      "clauses": [
-        {
-          "clause_id": "SENIOR-IT-2017-2020-COMPETENCIES",
-          "section_path": ["学科核心素养"],
-          "page_number": "课标正文/学科核心素养",
-          "anchor": "信息技术学科核心素养",
-          "excerpt": "信息意识、计算思维、数字化学习与创新、信息社会责任",
-          "normalized_summary": "高中信息技术课程以四项学科核心素养组织课程目标，课题设计需明确行为证据。",
-          "keywords": ["高中", "信息技术", "核心素养", "计算思维"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["instructional_goal", "objectives", "assessment"]
-        },
-        {
-          "clause_id": "SENIOR-IT-2017-2020-COMPUTING",
-          "section_path": ["课程内容", "数据与计算"],
-          "page_number": "课标正文/数据与计算",
-          "anchor": "数据与计算",
-          "excerpt": "分析问题、设计算法、编程实现、调试验证和解释结果",
-          "normalized_summary": "数据与计算内容应让学习者经历分析、设计算法、编程实现、调试验证和解释结果等活动。",
-          "keywords": ["数据与计算", "算法", "编程", "调试", "验证", "解释"],
-          "applicable_topics": ["algorithm", "branch", "loop", "data"],
-          "supports_modules": ["skill_analysis", "objectives", "assessment", "strategy_design", "materials"]
-        }
-      ]
-    },
-    {
-      "source_id": "moe-ai-education-action-2026",
-      "title": "教育部等五部门关于印发《人工智能+教育》行动计划的通知",
-      "issuer": "教育部等五部门",
-      "document_type": "education_digital_policy",
-      "publication_date": "2026-04-02",
-      "effective_date": "2026",
-      "version": "教科信〔2026〕1号",
-      "status": "current",
-      "source_url": "https://hudong.moe.gov.cn/srcsite/A16/s3342/202604/t20260410_1433240.html",
-      "stage": ["primary", "junior_secondary", "senior_secondary"],
-      "subject": "通用",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "highest",
-      "can_be_goal_basis": "limited",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["strategy_design", "quality_ethics"],
-      "clauses": [
-        {
-          "clause_id": "AI-EDU-ACTION-2026-PRINCIPLE",
-          "section_path": ["总体要求"],
-          "page_number": "网页正文",
-          "anchor": "总体要求",
-          "excerpt": "坚持育人为本、素养为先、应用导向、智能向善",
-          "normalized_summary": "约束插件的 AI 使用方式，要求以育人为本、素养为先、应用导向和智能向善，不能替代教师专业判断。",
-          "keywords": ["人工智能+教育", "育人为本", "智能向善", "教育数字化"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["strategy_design", "quality_ethics", "teacher_confirmation"]
-        }
-      ]
-    },
-    {
-      "source_id": "world-digital-education-ai-system-2026",
-      "title": "《人工智能教育应用系统》参考框架发布信息",
-      "issuer": "世界数字教育联盟（教育部政府门户网报道）",
-      "document_type": "ai_education_framework",
-      "publication_date": "2026-05-12",
-      "effective_date": "2026",
-      "version": "2026参考框架",
-      "status": "current_reference",
-      "source_url": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2026/2026_zt05/cgfb/202605/t20260514_1436515.html",
-      "stage": ["primary", "junior_secondary", "senior_secondary"],
-      "subject": "通用",
-      "source_level": "A1",
-      "source_category": "official_authority",
-      "credibility": "high",
-      "can_be_goal_basis": "no",
-      "copyright_scope": "official_public_reference",
-      "use_scope": ["quality_ethics"],
-      "clauses": [
-        {
-          "clause_id": "AI-EDU-SYSTEM-2026-GOVERNANCE",
-          "section_path": ["参考框架", "安全与伦理"],
-          "page_number": "网页报道",
-          "anchor": "人工智能教育应用系统",
-          "excerpt": "以人为本、教育引领、技术可信",
-          "normalized_summary": "用于约束插件的隐私、安全、伦理和人机协作设计，不得作为具体学科教学目标依据。",
-          "keywords": ["人工智能教育应用系统", "安全伦理", "技术可信"],
-          "applicable_topics": ["all"],
-          "supports_modules": ["quality_ethics", "privacy", "teacher_confirmation"]
-        }
-      ]
-    }
-  ]
+    "snapshot_id":  "k12-info-tech-official-2026-08",
+    "snapshot_version":  "2026.08",
+    "generated_at":  "2026-08-06",
+    "content_hash_policy":  "内置包只保存官方来源元数据与条款候选；下载内容的 SHA-256 仅在教师发起在线更新并经确认后记录",
+    "source_record_fields":  [
+                                 "source_id",
+                                 "title",
+                                 "issuer",
+                                 "document_type",
+                                 "publication_date",
+                                 "effective_date",
+                                 "version",
+                                 "source_url",
+                                 "stage",
+                                 "subject",
+                                 "source_level",
+                                 "source_category",
+                                 "copyright_scope",
+                                 "use_scope",
+                                 "clauses",
+                                 "content_hash_status",
+                                 "content_sha256",
+                                 "source_record_sha256",
+                                 "grade_levels",
+                                 "retrieved_at",
+                                 "metadata_snapshot_at"
+                             ],
+    "description":  "中国 K12 信息科技/信息技术教学系统设计使用的官方来源快照。仅保存来源元数据和短引文/规范化摘要，不复制完整文件。",
+    "sources":  [
+                    {
+                        "source_id":  "moe-edu-law-2021",
+                        "title":  "中华人民共和国教育法（2021年修正）",
+                        "issuer":  "全国人民代表大会常务委员会",
+                        "document_type":  "law",
+                        "publication_date":  "2021",
+                        "effective_date":  "2021",
+                        "version":  "2021年修正",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/jyb_sjzl/sjzl_zcfg/zcfg_jyfl/202107/t20210730_547843.html",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary",
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "通用",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "limited",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "content_reference",
+                                          "strategy_design"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "EDU-LAW-2021-DIRECTION",
+                                            "section_path":  [
+                                                                 "教育方针与教育目的"
+                                                             ],
+                                            "page_number":  "网页正文",
+                                            "anchor":  "教育目的与教育方针",
+                                            "excerpt":  "用于约束教育活动方向",
+                                            "normalized_summary":  "提供宏观教育法治依据，不能替代信息科技课程标准生成单节课教学目标。",
+                                            "keywords":  [
+                                                             "教育方针",
+                                                             "教育目的",
+                                                             "宏观依据"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "needs_analysis",
+                                                                     "instructional_goal",
+                                                                     "quality_ethics"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2021年修正"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级",
+                                             "高中10—12年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-education-power-2024-2035",
+                        "title":  "教育强国建设规划纲要（2024—2035年）",
+                        "issuer":  "中共中央、国务院",
+                        "document_type":  "national_policy",
+                        "publication_date":  "2025-01-19",
+                        "effective_date":  "2024—2035",
+                        "version":  "2024—2035",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1778/202501/t20250119_1176193.html",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary",
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "通用",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "limited",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "needs_analysis",
+                                          "strategy_design",
+                                          "quality_ethics"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "EDU-POWER-2024-DIRECTION",
+                                            "section_path":  [
+                                                                 "总体要求"
+                                                             ],
+                                            "page_number":  "网页正文",
+                                            "anchor":  "总体要求",
+                                            "excerpt":  "加快建设教育强国",
+                                            "normalized_summary":  "用于检查课程设计的育人方向与高质量发展取向，不直接生成课题级绩效目标。",
+                                            "keywords":  [
+                                                             "教育强国",
+                                                             "高质量发展",
+                                                             "育人方向"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "needs_analysis",
+                                                                     "strategy_design",
+                                                                     "quality_ethics"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2024—2035"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级",
+                                             "高中10—12年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-compulsory-plan-2022",
+                        "title":  "义务教育课程方案（2022年版）",
+                        "issuer":  "中华人民共和国教育部",
+                        "document_type":  "curriculum_plan",
+                        "publication_date":  "2022-03-25",
+                        "effective_date":  "2022年秋季学期",
+                        "version":  "2022",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary"
+                                  ],
+                        "subject":  "信息科技",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "yes",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "goal_basis",
+                                          "content_reference",
+                                          "strategy_design"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "COMPULSORY-PLAN-2022-IT",
+                                            "section_path":  [
+                                                                 "课程设置",
+                                                                 "信息科技"
+                                                             ],
+                                            "page_number":  "附件/课程设置",
+                                            "anchor":  "义务教育课程方案和课程标准（2022年版）",
+                                            "excerpt":  "于2022年秋季学期开始执行",
+                                            "normalized_summary":  "确定义务教育阶段课程定位、实施范围和课程安排；课题级目标仍需结合信息科技课标和教材确认。",
+                                            "keywords":  [
+                                                             "义务教育",
+                                                             "课程方案",
+                                                             "信息科技",
+                                                             "课程设置"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "instructional_goal",
+                                                                     "learner_context",
+                                                                     "strategy_design"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2022"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-compulsory-it-standard-2022",
+                        "title":  "义务教育信息科技课程标准（2022年版）",
+                        "issuer":  "中华人民共和国教育部",
+                        "document_type":  "curriculum_standard",
+                        "publication_date":  "2022-03-25",
+                        "effective_date":  "2022年秋季学期",
+                        "version":  "2022",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary"
+                                  ],
+                        "subject":  "信息科技",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "yes",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "goal_basis",
+                                          "content_reference",
+                                          "assessment_generation",
+                                          "strategy_design"
+                                      ],
+                        "core_competencies":  [
+                                                  "信息意识",
+                                                  "计算思维",
+                                                  "数字化学习与创新",
+                                                  "信息社会责任"
+                                              ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "COMPULSORY-IT-2022-COMPETENCIES",
+                                            "section_path":  [
+                                                                 "课程性质与课程理念",
+                                                                 "核心素养"
+                                                             ],
+                                            "page_number":  "课标正文/核心素养",
+                                            "anchor":  "信息科技课程核心素养",
+                                            "excerpt":  "信息意识、计算思维、数字化学习与创新、信息社会责任",
+                                            "normalized_summary":  "信息科技课程围绕四项核心素养组织学习，教学目标应说明课题行为与核心素养的关系。",
+                                            "keywords":  [
+                                                             "信息意识",
+                                                             "计算思维",
+                                                             "数字化学习与创新",
+                                                             "信息社会责任"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "instructional_goal",
+                                                                     "objectives",
+                                                                     "assessment"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2022"
+                                        },
+                                        {
+                                            "clause_id":  "COMPULSORY-IT-2022-ALGORITHM",
+                                            "section_path":  [
+                                                                 "课程内容",
+                                                                 "算法与程序设计"
+                                                             ],
+                                            "page_number":  "课标正文/课程内容",
+                                            "anchor":  "算法与程序设计",
+                                            "excerpt":  "分析问题、抽象建模、设计解决方案并用适切方式表达和验证",
+                                            "normalized_summary":  "算法与程序设计课题应包含问题分析、抽象建模、方案实现、表达和验证等可观察活动。",
+                                            "keywords":  [
+                                                             "算法",
+                                                             "程序设计",
+                                                             "问题解决",
+                                                             "抽象",
+                                                             "建模",
+                                                             "验证"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "algorithm",
+                                                                      "branch",
+                                                                      "loop",
+                                                                      "data"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "instructional_goal",
+                                                                     "skill_analysis",
+                                                                     "objectives",
+                                                                     "assessment",
+                                                                     "materials"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2022"
+                                        },
+                                        {
+                                            "clause_id":  "COMPULSORY-IT-2022-QUALITY",
+                                            "section_path":  [
+                                                                 "学业质量"
+                                                             ],
+                                            "page_number":  "课标正文/学业质量",
+                                            "anchor":  "学业质量表现",
+                                            "excerpt":  "在真实或模拟情境中运用信息科技知识与技能解决问题",
+                                            "normalized_summary":  "评价应关注学习者在任务情境中运用知识技能解决问题的表现，不能只用脱离任务的记忆题替代。",
+                                            "keywords":  [
+                                                             "学业质量",
+                                                             "真实情境",
+                                                             "解决问题",
+                                                             "表现"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "assessment",
+                                                                     "strategy_design",
+                                                                     "formative_evaluation"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2022"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-senior-plan-2017-2020",
+                        "title":  "普通高中课程方案（2017年版2020年修订）",
+                        "issuer":  "中华人民共和国教育部",
+                        "document_type":  "curriculum_plan",
+                        "publication_date":  "2020-05-11",
+                        "effective_date":  "2020",
+                        "version":  "2017年版2020年修订",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
+                        "stage":  [
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "信息技术",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "yes",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "goal_basis",
+                                          "content_reference",
+                                          "strategy_design"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "SENIOR-PLAN-2017-2020-IT",
+                                            "section_path":  [
+                                                                 "课程设置",
+                                                                 "信息技术"
+                                                             ],
+                                            "page_number":  "通知及附件",
+                                            "anchor":  "普通高中课程方案",
+                                            "excerpt":  "普通高中课程方案和课程标准（2017年版2020年修订）",
+                                            "normalized_summary":  "确定普通高中课程定位和实施框架，具体课题目标应结合高中信息技术课程标准、教材版本和单元位置确认。",
+                                            "keywords":  [
+                                                             "普通高中",
+                                                             "课程方案",
+                                                             "信息技术"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "instructional_goal",
+                                                                     "learner_context",
+                                                                     "strategy_design"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2017年版2020年修订"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "高中10—12年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-senior-it-standard-2017-2020",
+                        "title":  "普通高中信息技术课程标准（2017年版2020年修订）",
+                        "issuer":  "中华人民共和国教育部",
+                        "document_type":  "curriculum_standard",
+                        "publication_date":  "2020-05-11",
+                        "effective_date":  "2020",
+                        "version":  "2017年版2020年修订",
+                        "status":  "current",
+                        "source_url":  "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
+                        "stage":  [
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "信息技术",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "yes",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "goal_basis",
+                                          "content_reference",
+                                          "assessment_generation",
+                                          "strategy_design"
+                                      ],
+                        "core_competencies":  [
+                                                  "信息意识",
+                                                  "计算思维",
+                                                  "数字化学习与创新",
+                                                  "信息社会责任"
+                                              ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "SENIOR-IT-2017-2020-COMPETENCIES",
+                                            "section_path":  [
+                                                                 "学科核心素养"
+                                                             ],
+                                            "page_number":  "课标正文/学科核心素养",
+                                            "anchor":  "信息技术学科核心素养",
+                                            "excerpt":  "信息意识、计算思维、数字化学习与创新、信息社会责任",
+                                            "normalized_summary":  "高中信息技术课程以四项学科核心素养组织课程目标，课题设计需明确行为证据。",
+                                            "keywords":  [
+                                                             "高中",
+                                                             "信息技术",
+                                                             "核心素养",
+                                                             "计算思维"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "instructional_goal",
+                                                                     "objectives",
+                                                                     "assessment"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2017年版2020年修订"
+                                        },
+                                        {
+                                            "clause_id":  "SENIOR-IT-2017-2020-COMPUTING",
+                                            "section_path":  [
+                                                                 "课程内容",
+                                                                 "数据与计算"
+                                                             ],
+                                            "page_number":  "课标正文/数据与计算",
+                                            "anchor":  "数据与计算",
+                                            "excerpt":  "分析问题、设计算法、编程实现、调试验证和解释结果",
+                                            "normalized_summary":  "数据与计算内容应让学习者经历分析、设计算法、编程实现、调试验证和解释结果等活动。",
+                                            "keywords":  [
+                                                             "数据与计算",
+                                                             "算法",
+                                                             "编程",
+                                                             "调试",
+                                                             "验证",
+                                                             "解释"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "algorithm",
+                                                                      "branch",
+                                                                      "loop",
+                                                                      "data"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "skill_analysis",
+                                                                     "objectives",
+                                                                     "assessment",
+                                                                     "strategy_design",
+                                                                     "materials"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2017年版2020年修订"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "高中10—12年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "moe-ai-education-action-2026",
+                        "title":  "教育部等五部门关于印发《人工智能+教育》行动计划的通知",
+                        "issuer":  "教育部等五部门",
+                        "document_type":  "education_digital_policy",
+                        "publication_date":  "2026-04-02",
+                        "effective_date":  "2026",
+                        "version":  "教科信〔2026〕1号",
+                        "status":  "current",
+                        "source_url":  "https://hudong.moe.gov.cn/srcsite/A16/s3342/202604/t20260410_1433240.html",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary",
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "通用",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "highest",
+                        "can_be_goal_basis":  "limited",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "strategy_design",
+                                          "quality_ethics"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "AI-EDU-ACTION-2026-PRINCIPLE",
+                                            "section_path":  [
+                                                                 "总体要求"
+                                                             ],
+                                            "page_number":  "网页正文",
+                                            "anchor":  "总体要求",
+                                            "excerpt":  "坚持育人为本、素养为先、应用导向、智能向善",
+                                            "normalized_summary":  "约束插件的 AI 使用方式，要求以育人为本、素养为先、应用导向和智能向善，不能替代教师专业判断。",
+                                            "keywords":  [
+                                                             "人工智能+教育",
+                                                             "育人为本",
+                                                             "智能向善",
+                                                             "教育数字化"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "strategy_design",
+                                                                     "quality_ethics",
+                                                                     "teacher_confirmation"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "教科信〔2026〕1号"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级",
+                                             "高中10—12年级"
+                                         ]
+                    },
+                    {
+                        "source_id":  "world-digital-education-ai-system-2026",
+                        "title":  "《人工智能教育应用系统》参考框架发布信息",
+                        "issuer":  "世界数字教育联盟（教育部政府门户网报道）",
+                        "document_type":  "ai_education_framework",
+                        "publication_date":  "2026-05-12",
+                        "effective_date":  "2026",
+                        "version":  "2026参考框架",
+                        "status":  "current_reference",
+                        "source_url":  "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2026/2026_zt05/cgfb/202605/t20260514_1436515.html",
+                        "stage":  [
+                                      "primary",
+                                      "junior_secondary",
+                                      "senior_secondary"
+                                  ],
+                        "subject":  "通用",
+                        "source_level":  "A1",
+                        "source_category":  "official_authority",
+                        "credibility":  "high",
+                        "can_be_goal_basis":  "no",
+                        "copyright_scope":  "official_public_reference",
+                        "use_scope":  [
+                                          "quality_ethics"
+                                      ],
+                        "clauses":  [
+                                        {
+                                            "clause_id":  "AI-EDU-SYSTEM-2026-GOVERNANCE",
+                                            "section_path":  [
+                                                                 "参考框架",
+                                                                 "安全与伦理"
+                                                             ],
+                                            "page_number":  "网页报道",
+                                            "anchor":  "人工智能教育应用系统",
+                                            "excerpt":  "以人为本、教育引领、技术可信",
+                                            "normalized_summary":  "用于约束插件的隐私、安全、伦理和人机协作设计，不得作为具体学科教学目标依据。",
+                                            "keywords":  [
+                                                             "人工智能教育应用系统",
+                                                             "安全伦理",
+                                                             "技术可信"
+                                                         ],
+                                            "applicable_topics":  [
+                                                                      "all"
+                                                                  ],
+                                            "supports_modules":  [
+                                                                     "quality_ethics",
+                                                                     "privacy",
+                                                                     "teacher_confirmation"
+                                                                 ],
+                                            "evidence_status":  "clause_candidate",
+                                            "source_version":  "2026参考框架"
+                                        }
+                                    ],
+                        "retrieved_at":  "2026-08-06",
+                        "metadata_snapshot_at":  "2026-08-06",
+                        "content_hash_status":  "metadata_snapshot_only",
+                        "content_sha256":  "",
+                        "source_record_sha256":  "",
+                        "grade_levels":  [
+                                             "小学1—6年级",
+                                             "初中7—9年级",
+                                             "高中10—12年级"
+                                         ]
+                    }
+                ]
 }

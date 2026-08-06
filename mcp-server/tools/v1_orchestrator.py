@@ -591,6 +591,80 @@ def _write_json(path: Path, payload: Any) -> str:
     return str(path)
 
 
+_TEACHER_ENUM_LABELS = {
+    "candidate": "候选（待教师确认）",
+    "clause_candidate": "条款候选（待教师核对）",
+    "teacher_confirmed": "教师已确认",
+    "final_verified": "最终已验证",
+    "cognitive_strategy": "认知策略",
+    "authentic_programming_task": "真实编程任务",
+    "teacher_private": "教师私有资料",
+    "AI_INFERENCE": "AI推断（待教师验证）",
+    "AI_SUGGESTION": "AI建议（待教师确认）",
+    "TEACHER_INPUT": "教师提供",
+    "system_recorded": "系统记录",
+    "pass": "通过",
+    "warning": "存在警告",
+}
+
+
+def _teacher_value(value: Any, default: str = "未提供") -> str:
+    """Flatten quality metadata into teacher-readable text without raw dicts."""
+    if value is None or value == "":
+        return default
+    if isinstance(value, dict):
+        for key in ("description", "summary", "evidence", "suggested_fix", "decision", "reason", "status", "text", "name"):
+            if value.get(key):
+                return _teacher_value(value[key], default)
+        return default
+    if isinstance(value, list):
+        rendered = [_teacher_value(item, "") for item in value]
+        return "；".join(item for item in rendered if item) or default
+    text = str(value)
+    return _TEACHER_ENUM_LABELS.get(text, text)
+
+
+def _render_teacher_alignment(report: dict) -> str:
+    report = report if isinstance(report, dict) else {}
+    status = _teacher_value(report.get("overall_status"), "未评估")
+    visual_status = report.get("visual_status", "未执行")
+    visual_label = {"pass": "通过", "fail": "未通过", "unverified": "未完成"}.get(visual_status, _teacher_value(visual_status, "未执行"))
+    lines = ["# 一致性检查报告", "", f"- 总体状态：{status}", f"- 质量分数：{report.get('score', '未评估')}", f"- 视觉检查：{visual_label}", f"- 是否允许最终导出：{'是' if report.get('can_export_as_final') else '否'}", ""]
+    blocking = report.get("blocking_reasons", []) or []
+    if blocking:
+        lines.extend(["## 当前阻断原因", ""])
+        lines.extend(f"- {_teacher_value(item)}" for item in blocking)
+        lines.append("")
+    issues = (report.get("critical_issues", []) or []) + (report.get("warnings", []) or [])
+    lines.extend(["## 需要教师关注的事项", ""])
+    if issues:
+        lines.extend(
+            f"- {_teacher_value(item.get('description', item))}；建议：{_teacher_value(item.get('suggested_fix'), '请结合课堂情境核对')}"
+            if isinstance(item, dict) else f"- {_teacher_value(item)}"
+            for item in issues
+        )
+    else:
+        lines.append("- 当前没有新增的结构性问题。")
+    lines.extend(["", "## 目标—技能—评价—材料对应关系", "", "| 目标 | 技能节点 | 评价证据 | 材料是否关联 | 状态 |", "|---|---|---|---|---|"])
+    for row in report.get("alignment_matrix", []) or []:
+        lines.append(
+            f"| {row.get('objective_id', '待提供')} | {row.get('skill_id', '待提供')} | {row.get('evidence_id', '待提供')} | {'是' if row.get('material_linked') else '否'} | {_teacher_value(row.get('status'), '待确认')} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+def _render_teacher_decisions(decisions: list) -> str:
+    lines = ["# 设计决策记录", "", "| 记录编号 | 时间 | 决策或说明 | 状态 | 来源 |", "|---|---|---|---|---|"]
+    for item in decisions or []:
+        if not isinstance(item, dict):
+            lines.append(f"| - | - | {_teacher_value(item)} | - | - |")
+            continue
+        lines.append(
+            f"| {item.get('decision_id', '待提供')} | {item.get('timestamp', '未记录')} | {_teacher_value(item.get('decision', item.get('feedback', item.get('type'))))} | {_teacher_value(item.get('status', item.get('action_status')), '待确认')} | {_teacher_value(item.get('source'), '未说明')} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def _export_v1(project: dict, output_dir: str | None, workspace: str | None) -> dict:
     from tools.document_exporter import export_all
     from tools.drawio_exporter import export_skill_graph_view, export_skill_graph_workbook
@@ -658,19 +732,39 @@ def _export_v1(project: dict, output_dir: str | None, workspace: str | None) -> 
         "final_verified": "最终已验证",
         "no_source": "未找到依据",
     }
+    source_level_labels = {
+        "A1": "国家级正式依据",
+        "B1": "地方教育依据",
+        "C1": "教师私有资料",
+        "D1": "AI推断或建议",
+    }
+    source_hash_labels = {
+        "metadata_snapshot_only": "内置元数据快照（未下载全文）",
+        "retrieved": "已获取并记录文件校验值",
+        "not_recorded": "尚未记录文件校验值",
+    }
     for source in project.get("sources", []):
         source_lines.append(f"## {source.get('source_name', source.get('title', '未命名来源'))}")
-        source_lines.append(f"- 来源等级：{source.get('source_level', '')}")
+        source_lines.append(f"- 发布机构：{source.get('issuer', '待核对')}")
+        source_lines.append(f"- 来源等级：{source_level_labels.get(source.get('source_level', ''), '待分类')}")
         source_lines.append(f"- 来源类别：{source_category_labels.get(source.get('source_category', ''), '待分类')}")
         source_lines.append(f"- 版本：{source.get('source_version', '')}")
         source_lines.append(f"- 发布日期：{source.get('publication_date', source.get('source_date', '未提供'))}")
+        source_lines.append(f"- 生效日期：{source.get('effective_date', '待核对')}")
+        source_lines.append(f"- 适用学段：{'、'.join(source.get('stage', []) or []) or '待确认'}")
+        source_lines.append(f"- 适用年级：{'、'.join(source.get('grade_levels', source.get('applicable_grades', [])) or []) or '待确认'}")
+        source_lines.append(f"- 适用学科：{source.get('subject', '待确认')}")
         source_lines.append(f"- 链接：{source.get('source_url', '本地教师资料，不公开分发')}")
+        source_lines.append(f"- 来源状态：{'教师已确认' if source.get('verified_by_teacher') else '条款候选（待教师核对）'}")
+        source_lines.append(f"- 文件校验：{source_hash_labels.get(source.get('content_hash_status', ''), '待记录')}")
         for clause in source.get("specific_clauses", []):
             location = clause.get("page_number") or clause.get("anchor") or "位置待补充"
+            section = " / ".join(str(item) for item in clause.get("section_path", []) if item) or "章节待补充"
             excerpt = clause.get("excerpt") or clause.get("clause_text", "")
             summary = clause.get("normalized_summary") or clause.get("clause_text", "")
             status = evidence_status_labels.get(clause.get("evidence_status", "clause_candidate"), "条款候选（待教师核对）")
             source_lines.append(f"- 条款编号：{clause.get('clause_id', '')}")
+            source_lines.append(f"- 章节路径：{section}")
             source_lines.append(f"- 条款位置：{location}")
             source_lines.append(f"- 短引文：{excerpt}")
             source_lines.append(f"- 条款摘要：{summary}")
@@ -678,9 +772,9 @@ def _export_v1(project: dict, output_dir: str | None, workspace: str | None) -> 
         source_lines.append("")
     source_md.write_text("\n".join(source_lines), encoding="utf-8")
     align_md = destination / "一致性检查报告.md"
-    align_md.write_text(json.dumps(project.get("alignment_report", {}), ensure_ascii=False, indent=2), encoding="utf-8")
+    align_md.write_text(_render_teacher_alignment(project.get("alignment_report", {})), encoding="utf-8")
     decision_md = destination / "设计决策记录.md"
-    decision_md.write_text(json.dumps(project.get("decision_log", []), ensure_ascii=False, indent=2), encoding="utf-8")
+    decision_md.write_text(_render_teacher_decisions(project.get("decision_log", [])), encoding="utf-8")
     file_paths = {
         key: value.get("path", "")
         for key, value in legacy_files.items()
@@ -713,6 +807,18 @@ def _export_v1(project: dict, output_dir: str | None, workspace: str | None) -> 
     visual_qa = run_visual_qa(visual_files, destination / "visual_qa")
     file_paths["visual_qa_report"] = visual_qa.get("report_path", "")
     project.setdefault("quality", {})["visual_check"] = visual_qa
+    alignment_report = project.setdefault("alignment_report", {})
+    alignment_report["visual_status"] = visual_qa.get("status", "unverified")
+    alignment_report["visual_gate"] = "pass" if visual_qa.get("status") == "pass" else "fail"
+    if visual_qa.get("status") == "pass":
+        for key in ("critical_issues", "warnings", "blocking_reasons", "recommendations"):
+            values = alignment_report.get(key, [])
+            if isinstance(values, list):
+                alignment_report[key] = [
+                    value for value in values
+                    if "视觉" not in str(value) and "Word/Draw.io" not in str(value)
+                ]
+    align_md.write_text(_render_teacher_alignment(alignment_report), encoding="utf-8")
     index = {
         "schema_version": "1.0.0",
         "export_status": "pending_validation",

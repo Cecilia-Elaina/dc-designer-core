@@ -84,6 +84,9 @@ def inspect_docx_structure(path: str | Path) -> dict:
                 raise ValueError("不是有效的 Word 文档")
             xml_bytes = archive.read("word/document.xml")
             xml = xml_bytes.decode("utf-8", errors="ignore")
+            styles_xml = ""
+            used_style_xml = ""
+            used_style_sizes: list[int] = []
             document_root = ET.fromstring(xml_bytes)
             result["drawings"] = xml.count("w:drawing")
             result["tables"] = xml.count("<w:tbl")
@@ -118,6 +121,33 @@ def inspect_docx_structure(path: str | Path) -> dict:
                 for key, value in fonts.attrib.items():
                     if key.rsplit("}", 1)[-1] in {"ascii", "hAnsi", "eastAsia", "cs"} and value:
                         font_families.add(value)
+            # Word may define the Chinese font on Normal/Heading styles
+            # instead of repeating it on every paragraph run.
+            if "word/styles.xml" in names:
+                styles_xml = archive.read("word/styles.xml").decode("utf-8", errors="ignore")
+                styles_root = ET.fromstring(styles_xml.encode("utf-8"))
+                used_style_ids = {"Normal"}
+                for style_ref in document_root.findall(".//w:pStyle", DOCX_NS):
+                    style_id = style_ref.get("{%s}val" % DOCX_NS["w"])
+                    if style_id:
+                        used_style_ids.add(style_id)
+                for style_ref in document_root.findall(".//w:rStyle", DOCX_NS):
+                    style_id = style_ref.get("{%s}val" % DOCX_NS["w"])
+                    if style_id:
+                        used_style_ids.add(style_id)
+                for style in styles_root.findall("w:style", DOCX_NS):
+                    style_id = style.get("{%s}styleId" % DOCX_NS["w"])
+                    is_default = style.get("{%s}default" % DOCX_NS["w"]) == "1"
+                    if style_id in used_style_ids or is_default:
+                        used_style_xml += ET.tostring(style, encoding="unicode")
+                        for size in style.findall(".//w:sz", DOCX_NS):
+                            value = size.get("{%s}val" % DOCX_NS["w"])
+                            if value and value.isdigit():
+                                used_style_sizes.append(int(value))
+                for fonts in styles_root.findall(".//w:rFonts", DOCX_NS):
+                    for key, value in fonts.attrib.items():
+                        if key.rsplit("}", 1)[-1] in {"ascii", "hAnsi", "eastAsia", "cs"} and value:
+                            font_families.add(value)
             result["font_families"] = sorted(font_families)
             if not any(any(hint.lower() in family.lower() for hint in CHINESE_FONT_HINTS) for family in font_families):
                 result["warnings"].append("未检测到明确的中文字体族，需检查 Word 默认字体")
@@ -159,7 +189,7 @@ def inspect_docx_structure(path: str | Path) -> dict:
                 result["warnings"].append("缺少 Pillow，无法检查嵌入图片分辨率")
             if result["pagination_risks"]:
                 result["warnings"].append("发现长表格或宽表格分页风险，需结合逐页 PNG 检查")
-            font_values = [int(value) for value in FONT_SIZE_RE.findall(xml)]
+            font_values = [int(value) for value in FONT_SIZE_RE.findall(xml)] + used_style_sizes
             if font_values:
                 result["min_font_half_points"] = min(font_values)
                 if min(font_values) < 18:

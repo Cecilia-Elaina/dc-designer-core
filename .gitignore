@@ -14,12 +14,15 @@ dist/
 /*.pdf
 /*.pptx
 qa/reference/
+qa/v1_smoke6_report/
+qa/visual_qa_report.json
 .claude/
 .codex/
 legacy-skills/
 .test-export-new/
 .test-visual-new/
 .test-visual-qa/
+.test-visual-*/
 
 # Teacher-private knowledge base runtime data must never enter the repository.
 data/knowledge_base/documents/*

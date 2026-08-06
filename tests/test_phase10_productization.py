@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "mcp-server"))
 
 from core.runtime_paths import ensure_workspace
 from core.session_service import compare_session_versions, delete_session
+from core.evidence_store import search_official_evidence
 from core.standards_catalog import (
     approve_update,
     catalog_paths,
@@ -38,9 +39,14 @@ class TestOfficialSnapshotProductContract(unittest.TestCase):
             self.assertTrue(source.get("issuer"))
             self.assertTrue(source.get("publication_date"))
             self.assertTrue(source.get("version"))
+            self.assertTrue(source.get("grade_levels"))
+            self.assertTrue(source.get("retrieved_at"))
+            self.assertEqual(source.get("content_hash_status"), "metadata_snapshot_only")
             self.assertTrue(source.get("source_url", "").startswith("https://"))
             self.assertTrue(source.get("clauses"))
             self.assertTrue(source["clauses"][0].get("clause_id"))
+            self.assertEqual(source["clauses"][0].get("evidence_status"), "clause_candidate")
+            self.assertEqual(source["clauses"][0].get("source_version"), source.get("version"))
 
     def test_builtin_records_expose_honest_provenance_status(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -51,6 +57,18 @@ class TestOfficialSnapshotProductContract(unittest.TestCase):
             self.assertEqual(source["provenance"]["verification_status"], "candidate")
             self.assertTrue(source["provenance"]["source_record_sha256"])
             self.assertTrue(source["retrieved_at"])
+
+    def test_search_keeps_source_provenance_on_project_records(self):
+        with tempfile.TemporaryDirectory() as temp:
+            result = search_official_evidence({"stage": "senior_secondary", "subject": "信息技术", "topic": "Python 循环"}, temp)
+        self.assertEqual(result["status"], "found")
+        self.assertTrue(result["sources"])
+        source = result["sources"][0]
+        self.assertTrue(source.get("issuer"))
+        self.assertTrue(source.get("grade_levels"))
+        self.assertTrue(source.get("stage"))
+        self.assertEqual(source.get("content_hash_status"), "metadata_snapshot_only")
+        self.assertTrue(source.get("specific_clauses", [])[0].get("source_version"))
 
 
 class _FakeOfficialResponse:
@@ -192,6 +210,39 @@ class TestLocalDeletionBoundaries(unittest.TestCase):
 
 
 class TestLocalWebContracts(unittest.TestCase):
+    def test_web_api_exposes_health_and_session_project_routes(self):
+        class Server:
+            workspace = None
+
+        handler = Handler.__new__(Handler)
+        handler.server = Server()
+        with tempfile.TemporaryDirectory() as temp:
+            handler.server.workspace = temp
+            health_status, health = handler._api("GET", "health")
+            projects_status, projects = handler._api("GET", "projects")
+            create_status, created = handler._api(
+                "POST",
+                "projects",
+                {
+                    "education_scope": "k12_info_technology",
+                    "mode": "standard_fast",
+                    "stage": "junior_secondary",
+                    "grade": "七年级",
+                    "subject": "信息科技",
+                    "topic": "算法",
+                    "class_profile": {"class_size": 40},
+                },
+            )
+            session_id = created["session"]["session_id"]
+            session_status, session = handler._api("GET", f"sessions/{session_id}")
+        self.assertEqual(health_status, 200)
+        self.assertIn("workspace", health)
+        self.assertEqual(projects_status, 200)
+        self.assertIn("sessions", projects)
+        self.assertEqual(create_status, 200)
+        self.assertEqual(session_status, 200)
+        self.assertEqual(session["session_id"], session_id)
+
     def test_web_api_exposes_sources_history_and_private_knowledge(self):
         class Server:
             workspace = None
@@ -220,6 +271,22 @@ class TestVisualGateContracts(unittest.TestCase):
             result = inspect_docx_structure(path)
         self.assertEqual(result["status"], "fail")
         self.assertIn("candidate", result["banned_tokens"])
+
+    def test_style_level_chinese_font_counts_as_explicit_font(self):
+        from docx import Document
+        from docx.shared import Pt
+
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "styled.docx"
+            document = Document()
+            document.styles["Normal"].font.name = "SimSun"
+            document.styles["Normal"].font.size = Pt(11)
+            document.add_paragraph("教师可读内容")
+            document.save(path)
+            result = inspect_docx_structure(path)
+        self.assertIn("SimSun", result["font_families"])
+        self.assertNotIn("未检测到明确的中文字体族", " ".join(result["warnings"]))
+        self.assertNotIn("未能从 Word XML 读取显式字号", " ".join(result["warnings"]))
 
 
 class TestReleaseAndDoctorContracts(unittest.TestCase):

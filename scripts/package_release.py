@@ -13,9 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_VERSION = "1.1.0"
-INCLUDE_DIRS = [".codex-plugin", "skills", "scripts", "mcp-server", "data/standards", "schemas", "templates", "web", "docs", "examples", "qa"]
-INCLUDE_FILES = ["README.md", "LICENSE", "manifest.json", ".mcp.json", "requirements-core.txt", "requirements-mcp.txt", "requirements-dev.txt", "requirements-qa.txt"]
-EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".test-home", ".dc-designer", "exports", "dist"}
+INCLUDE_DIRS = [".codex-plugin", "skills", "scripts", "mcp-server", "data/standards", "schemas", "templates", "web", "docs", "examples"]
+INCLUDE_FILES = ["README.md", "LICENSE", "manifest.json", ".mcp.json", "requirements-core.txt", "requirements-mcp.txt", "requirements-dev.txt", "requirements-qa.txt", "qa/reference_profile.json"]
+EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".test-home", ".dc-designer", "exports", "dist", "test_fixtures"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 
 
@@ -48,6 +48,21 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _dependency_summary() -> dict[str, list[str]]:
+    summary: dict[str, list[str]] = {}
+    for relative in ("requirements-core.txt", "requirements-mcp.txt", "requirements-qa.txt", "requirements-dev.txt"):
+        path = ROOT / relative
+        if not path.is_file():
+            continue
+        requirements = []
+        for line in path.read_text(encoding="utf-8").splitlines():
+            item = line.strip()
+            if item and not item.startswith("#"):
+                requirements.append(item)
+        summary[relative] = requirements
+    return summary
+
+
 def build_release(output_dir: Path, version: str) -> dict:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from release_check import run_check
@@ -67,7 +82,15 @@ def build_release(output_dir: Path, version: str) -> dict:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "file_count": len(files),
         "files": [],
-        "audit": {"status": audit["status"], "warnings": audit["warnings"], "notes": audit.get("notes", [])},
+        "audit": {
+            "status": audit["status"],
+            "errors": audit.get("errors", []),
+            "warnings": audit.get("warnings", []),
+            "notes": audit.get("notes", []),
+            "required_files": audit.get("required_files", []),
+        },
+        "dependency_summary": _dependency_summary(),
+        "release_readiness": "本地安装包已审计；远程仓库地址和官方平台提交仍需发布者绑定",
     }
     for path in files:
         manifest["files"].append({"path": path.relative_to(ROOT).as_posix(), "size": path.stat().st_size, "sha256": _sha256(path)})

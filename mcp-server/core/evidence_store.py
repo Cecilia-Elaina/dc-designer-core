@@ -45,10 +45,13 @@ def _iter_clauses(source: dict) -> Iterable[dict]:
         item["document_title"] = source.get("title", "")
         item["issuer"] = source.get("issuer", "教育部")
         item["version"] = source.get("version", "")
+        item["source_version"] = source.get("source_version", source.get("version", ""))
         item["stage"] = source.get("stage", [])
+        item["grade_levels"] = source.get("grade_levels", [])
         item["subject"] = source.get("subject", "")
         item["source_url"] = source.get("source_url", "")
         item["retrieved_at"] = source.get("retrieved_at", "")
+        item["metadata_snapshot_at"] = source.get("metadata_snapshot_at", "")
         item["status"] = source.get("status", "current")
         item["document_type"] = source.get("document_type", "official_document")
         item["publication_date"] = source.get("publication_date", "")
@@ -249,13 +252,20 @@ def search_official_evidence(query: dict, workspace: str | None = None) -> dict:
             "source_description": "中国教育部公开发布的课程方案/课程标准及相关官方文件",
             "source_level": clause.get("source_level", "A1"),
             "source_category": "official_authority",
+            "issuer": clause.get("issuer", ""),
             "credibility": "highest",
             "can_be_goal_basis": "yes",
             "applicable_scenes": ["k12"],
+            "stage": clause.get("stage", []),
+            "grade_levels": clause.get("grade_levels", []),
+            "subject": clause.get("subject", ""),
             "source_url": clause.get("source_url", ""),
-            "source_version": clause.get("version", ""),
+            "source_version": clause.get("source_version", clause.get("version", "")),
             "publication_date": clause.get("publication_date", ""),
             "effective_date": clause.get("effective_date", ""),
+            "retrieved_at": clause.get("retrieved_at", ""),
+            "metadata_snapshot_at": clause.get("metadata_snapshot_at", ""),
+            "status": clause.get("status", "current"),
             "document_type": clause.get("document_type", "official_document"),
             "retrieval_status": "found",
             "copyright_scope": "official_public_reference",
@@ -264,9 +274,14 @@ def search_official_evidence(query: dict, workspace: str | None = None) -> dict:
             "evidence_scope": "metadata_and_normalized_summary_only",
             "provenance_type": "OFFICIAL_STANDARD",
             "source_snapshot_id": clause.get("snapshot_id", ""),
+            "content_sha256": clause.get("content_sha256", ""),
+            "content_hash_status": clause.get("content_hash_status", "not_recorded"),
+            "source_record_sha256": clause.get("source_record_sha256", ""),
+            "verified_by_teacher": bool(clause.get("verified_by_teacher")),
         })
         sources_by_id[source_id]["specific_clauses"].append({
             "clause_id": clause.get("clause_id", ""),
+            "source_version": clause.get("source_version", clause.get("version", "")),
             "clause_text": clause.get("clause_text", ""),
             "excerpt": clause.get("excerpt", ""),
             "normalized_summary": clause.get("normalized_summary", clause.get("clause_text", "")),

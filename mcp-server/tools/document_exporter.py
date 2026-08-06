@@ -3252,6 +3252,9 @@ def export_ai_process_record(project: dict, output_path: str) -> dict:
     doc.add_paragraph('')
 
     # ---- Module 1: Core iteration log ----
+    # The seven-column iteration table is intended for teacher review and
+    # needs a landscape page to remain readable in Word.
+    _add_landscape_section(doc)
     doc.add_heading('模块一：核心迭代日志', level=1)
     doc.add_paragraph(
         '本模块记录 AI 在教学设计过程中的每一次关键迭代，'
@@ -3280,6 +3283,7 @@ def export_ai_process_record(project: dict, output_path: str) -> dict:
     _add_table(doc, headers, rows, col_widths=[1.5, 2.5, 2.5, 2.5, 2.5, 2.5, 1.5])
 
     # ---- Module 2: DC standard verification checklist ----
+    _add_portrait_section(doc)
     doc.add_heading('模块二：DC 标准验证清单', level=1)
     doc.add_paragraph(
         '本模块逐项检查 Dick & Carey 教学系统化设计模型各阶段的完成情况。'

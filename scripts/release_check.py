@@ -45,6 +45,7 @@ def run_check() -> dict:
         if not (ROOT / relative).is_file():
             errors.append(f"缺少发布必需文件: {relative}")
     plugin = _read_json(ROOT / ".codex-plugin/plugin.json", errors)
+    manifest = _read_json(ROOT / "manifest.json", errors)
     if isinstance(plugin, dict):
         if plugin.get("name") != "dc-designer-core":
             errors.append("Codex 插件名称必须为 dc-designer-core")
@@ -55,6 +56,15 @@ def run_check() -> dict:
         manifest_text = json.dumps(plugin, ensure_ascii=False)
         if "higher_education" in manifest_text or "corporate" in manifest_text:
             errors.append("Codex manifest 泄漏了 v1 不支持范围")
+    if isinstance(plugin, dict) and isinstance(manifest, dict):
+        if manifest.get("name") != plugin.get("name"):
+            errors.append("manifest.json 与 .codex-plugin/plugin.json 的名称不一致")
+        if manifest.get("version") != plugin.get("version"):
+            errors.append("manifest.json 与 .codex-plugin/plugin.json 的版本不一致")
+        manifest_skills = {str(item.get("name")) for item in manifest.get("skills", []) if isinstance(item, dict)}
+        available_skills = {path.name for path in (ROOT / "skills").iterdir() if path.is_dir() and (path / "SKILL.md").is_file()}
+        if manifest_skills != available_skills:
+            errors.append("manifest.json 与 skills 目录公开的 Skill 集合不一致")
     snapshot = _read_json(ROOT / "data/standards/k12/official_snapshot.json", errors)
     if isinstance(snapshot, dict):
         if not snapshot.get("snapshot_id") or not snapshot.get("snapshot_version"):
@@ -65,7 +75,7 @@ def run_check() -> dict:
             required_source_keys = (
                 "source_id", "title", "issuer", "document_type", "publication_date",
                 "effective_date", "version", "source_url", "stage", "subject",
-                "source_level", "source_category", "copyright_scope", "use_scope", "clauses",
+                "source_level", "source_category", "copyright_scope", "use_scope", "grade_levels", "clauses",
             )
             for key in required_source_keys:
                 if not source.get(key):
@@ -75,7 +85,7 @@ def run_check() -> dict:
             for clause in source.get("clauses", []) or []:
                 required_clause_keys = (
                     "clause_id", "section_path", "page_number", "anchor", "excerpt",
-                    "normalized_summary", "keywords", "applicable_topics", "supports_modules",
+                    "normalized_summary", "keywords", "applicable_topics", "evidence_status", "source_version", "supports_modules",
                 )
                 for key in required_clause_keys:
                     if not clause.get(key):
