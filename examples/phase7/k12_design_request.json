@@ -1,0 +1,14 @@
+{
+  "mode": "dc-design",
+  "user_type": "K12教师",
+  "scenario": "新课设计",
+  "subject": "信息科技",
+  "grade_level": "七年级",
+  "topic": "认识算法",
+  "teacher_inputs": {
+    "prior_knowledge": "学生能描述生活中做事步骤",
+    "common_difficulties": ["步骤笼统", "遗漏关键步骤"],
+    "available_media": ["黑板", "投影", "学习单"],
+    "devices": "不保证一人一机"
+  }
+}

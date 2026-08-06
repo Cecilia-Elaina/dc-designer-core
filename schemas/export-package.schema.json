@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/export-package.schema.json",
+  "title": "导出设计包",
+  "description": "Dick & Carey 教学系统设计项目的导出数据结构",
+  "type": "object",
+  "required": ["package_id", "project_id", "exported_at", "contents", "source_tracing"],
+  "properties": {
+    "package_id": {
+      "type": "string",
+      "description": "设计包唯一标识符"
+    },
+    "project_id": {
+      "type": "string",
+      "description": "关联的项目标识符"
+    },
+    "exported_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "导出时间"
+    },
+    "exported_by": {
+      "type": "string",
+      "description": "导出者标识"
+    },
+    "export_format": {
+      "type": "string",
+      "enum": ["markdown", "pdf", "docx", "json", "html"],
+      "description": "导出格式"
+    },
+    "contents": {
+      "type": "object",
+      "description": "设计包内容",
+      "properties": {
+        "executive_summary": {
+          "type": "string",
+          "description": "项目摘要"
+        },
+        "instructional_goal": {
+          "$ref": "instructional-goal.schema.json",
+          "description": "教学目的"
+        },
+        "skill_graph": {
+          "$ref": "skill-graph.schema.json",
+          "description": "教学分析流图"
+        },
+        "learner_analysis": {
+          "type": "object",
+          "description": "学习者和环境分析"
+        },
+        "performance_objectives": {
+          "type": "object",
+          "description": "绩效目标"
+        },
+        "assessment_plan": {
+          "$ref": "assessment-plan.schema.json",
+          "description": "评价方案"
+        },
+        "instructional_strategy": {
+          "$ref": "instructional-strategy.schema.json",
+          "description": "教学策略"
+        },
+        "instructional_materials": {
+          "type": "object",
+          "description": "教学材料"
+        },
+        "formative_evaluation": {
+          "$ref": "formative-evaluation.schema.json",
+          "description": "形成性评价"
+        },
+        "revision_records": {
+          "type": "array",
+          "description": "修改记录",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "source_tracing": {
+      "type": "object",
+      "description": "来源追溯信息",
+      "properties": {
+        "total_sources": {
+          "type": "number",
+          "description": "来源总数"
+        },
+        "by_level": {
+          "type": "object",
+          "description": "按等级统计",
+          "properties": {
+            "A_official": {
+              "type": "number"
+            },
+            "B_professional": {
+              "type": "number"
+            },
+            "C_teacher": {
+              "type": "number"
+            },
+            "D_public": {
+              "type": "number"
+            },
+            "E_ai": {
+              "type": "number"
+            }
+          }
+        },
+        "reliability_summary": {
+          "type": "string",
+          "description": "可信度总结"
+        },
+        "full_source_list": {
+          "type": "array",
+          "items": {
+            "$ref": "source.schema.json"
+          }
+        }
+      }
+    },
+    "quality_summary": {
+      "type": "object",
+      "description": "质量检查总结",
+      "properties": {
+        "quality_gates_passed": {
+          "type": "number",
+          "description": "通过的质量门禁数"
+        },
+        "quality_gates_total": {
+          "type": "number",
+          "description": "质量门禁总数"
+        },
+        "alignment_checks_passed": {
+          "type": "number",
+          "description": "通过的一致性检查数"
+        },
+        "alignment_checks_total": {
+          "type": "number",
+          "description": "一致性检查总数"
+        },
+        "remaining_issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "剩余问题"
+        }
+      }
+    },
+    "teacher_profile_snapshot": {
+      "type": "object",
+      "description": "教师档案快照（可选，需教师确认）",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "textbook": {
+          "type": "string"
+        },
+        "preferences_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "revision_summary": {
+      "type": "object",
+      "description": "修改历史总结",
+      "properties": {
+        "total_revisions": {
+          "type": "number",
+          "description": "修改次数"
+        },
+        "major_revisions": {
+          "type": "number",
+          "description": "重大修改次数"
+        },
+        "revision_timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "revision_number": {
+                "type": "number"
+              },
+              "date": {
+                "type": "string"
+              },
+              "trigger": {
+                "type": "string"
+              },
+              "modules_affected": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "privacy_compliance": {
+      "type": "object",
+      "description": "隐私合规声明",
+      "properties": {
+        "student_info_included": {
+          "type": "boolean",
+          "description": "是否包含学生个人信息"
+        },
+        "anonymization_applied": {
+          "type": "boolean",
+          "description": "是否应用了匿名化"
+        },
+        "teacher_consent_obtained": {
+          "type": "boolean",
+          "description": "是否获得教师同意"
+        }
+      }
+    }
+  }
+}

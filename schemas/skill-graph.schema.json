@@ -1,0 +1,163 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/skill-graph.schema.json",
+  "title": "教学分析流图",
+  "description": "Dick & Carey 模型模块2的输出：教学分析流图数据结构",
+  "type": "object",
+  "required": ["graph_id", "goal_steps", "analysis_method"],
+  "properties": {
+    "graph_id": {
+      "type": "string",
+      "description": "流图唯一标识符"
+    },
+    "analysis_method": {
+      "type": "string",
+      "enum": ["hierarchical", "cluster", "combined"],
+      "description": "分析方法：层次法、簇分析法、综合技术"
+    },
+    "goal_steps": {
+      "type": "array",
+      "description": "教学目的的主要步骤",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "description", "learning_type"],
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "description": "步骤编号（如 1, 2, 3）"
+          },
+          "description": {
+            "type": "string",
+            "description": "步骤描述（必须包含动词）"
+          },
+          "learning_type": {
+            "type": "string",
+            "enum": ["verbal_information", "intellectual_skill", "psychomotor_skill", "attitude"],
+            "description": "学习类型"
+          },
+          "is_decision": {
+            "type": "boolean",
+            "description": "是否为决策步骤（菱形框）"
+          },
+          "substeps": {
+            "type": "array",
+            "description": "子步骤（递归结构）",
+            "items": {
+              "$ref": "#/properties/goal_steps/items"
+            }
+          }
+        }
+      }
+    },
+    "subordinate_skills": {
+      "type": "array",
+      "description": "从属技能列表",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "description", "learning_type", "parent_step"],
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "description": "技能编号（如 1.1, 1.2, 2.1）"
+          },
+          "description": {
+            "type": "string",
+            "description": "技能描述（必须包含动词）"
+          },
+          "learning_type": {
+            "type": "string",
+            "enum": ["verbal_information", "intellectual_skill", "psychomotor_skill", "attitude"],
+            "description": "学习类型"
+          },
+          "parent_step": {
+            "type": "string",
+            "description": "父步骤编号"
+          },
+          "level": {
+            "type": "number",
+            "description": "层次级别"
+          },
+          "prerequisite_skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "前置技能编号列表"
+          }
+        }
+      }
+    },
+    "entry_skills": {
+      "type": "array",
+      "description": "入门技能列表（虚线以下的技能）",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "description", "learning_type"],
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "description": "技能编号"
+          },
+          "description": {
+            "type": "string",
+            "description": "技能描述"
+          },
+          "learning_type": {
+            "type": "string",
+            "enum": ["verbal_information", "intellectual_skill", "psychomotor_skill", "attitude"],
+            "description": "学习类型"
+          },
+          "assumed_known": {
+            "type": "boolean",
+            "description": "是否假设已知"
+          },
+          "verified_with_learners": {
+            "type": "boolean",
+            "description": "是否经过学习者验证"
+          }
+        }
+      }
+    },
+    "skill_connections": {
+      "type": "array",
+      "description": "技能间的连接关系",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from_skill": {
+            "type": "string",
+            "description": "起始技能编号"
+          },
+          "to_skill": {
+            "type": "string",
+            "description": "目标技能编号"
+          },
+          "connection_type": {
+            "type": "string",
+            "enum": ["prerequisite", "hierarchical", "sequential", "support"],
+            "description": "连接类型"
+          }
+        }
+      }
+    },
+    "teacher_confirmed": {
+      "type": "boolean",
+      "description": "是否经过教师确认"
+    },
+    "confirmation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "确认日期"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

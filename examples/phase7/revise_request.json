@@ -1,0 +1,12 @@
+{
+  "mode": "dc-revise",
+  "existing_design_project_path": "exports/mvp_algorithm_project_with_materials_full.json",
+  "feedback_or_revision_data": {
+    "feedback_type": "teacher_reflection",
+    "items": [
+      {"module": "objective", "issue": "任务三的描述不够具体", "severity": "medium"},
+      {"module": "assessment", "issue": "互评检查表评分标准太抽象", "severity": "low"},
+      {"module": "strategy", "issue": "小组任务时间分配需要调整", "severity": "low"}
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "mode": "standard_fast",
+  "user_type": "K12教师",
+  "stage": "初中",
+  "grade_level": "七年级",
+  "subject": "信息科技",
+  "topic": "Python分支结构",
+  "textbook_version": "教师本机教材资料",
+  "unit": "程序设计基础",
+  "periods": "2课时",
+  "class_profile": {
+    "class_size": 48,
+    "common_difficulties": ["条件表达式和分支覆盖不完整"]
+  },
+  "equipment": "Windows计算机、VSCode",
+  "teacher_inputs": {
+    "learning_context": {
+      "computer_count": 48
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "standard_id": "std_compulsory_2022_info_tech",
+  "title": "义务教育信息科技课程标准（2022年版）",
+  "version": "2022",
+  "publisher": "教育部",
+  "stage": "compulsory",
+  "subject": "信息科技",
+  "applicable_grades": ["小学", "七年级", "八年级", "九年级"],
+  "is_test_fixture": false,
+  "is_sample_metadata_only": false,
+  "core_competencies": [
+    "信息意识",
+    "计算思维",
+    "数字化学习与创新",
+    "信息社会责任"
+  ],
+  "content_areas": [
+    {
+      "area_name": "互联网应用与创新",
+      "grades": ["七年级", "八年级"],
+      "keywords": ["互联网", "网络应用", "信息检索", "在线协作"],
+      "description": "了解互联网的基本原理和应用"
+    },
+    {
+      "area_name": "数据与编码",
+      "grades": ["七年级", "八年级"],
+      "keywords": ["数据", "编码", "二进制", "数据处理"],
+      "description": "理解数据的编码和处理方式"
+    },
+    {
+      "area_name": "算法与程序设计",
+      "grades": ["七年级", "八年级"],
+      "keywords": ["算法", "程序", "编程", "流程图", "问题解决", "步骤描述"],
+      "description": "理解算法的基本概念，能用自然语言或流程图描述简单算法"
+    },
+    {
+      "area_name": "信息系统与社会",
+      "grades": ["七年级", "八年级"],
+      "keywords": ["信息系统", "信息安全", "信息社会"],
+      "description": "了解信息系统的基本组成和社会影响"
+    }
+  ],
+  "academic_quality_standards": [
+    {
+      "level": "学业质量标准一",
+      "grades": ["七年级"],
+      "description": "能在教师指导下，使用简单工具和方法解决生活中的信息科技问题",
+      "keywords": ["简单问题", "基本操作", "教师指导"]
+    },
+    {
+      "level": "学业质量标准二",
+      "grades": ["八年级"],
+      "description": "能独立运用信息科技知识和技能解决生活中的实际问题",
+      "keywords": ["独立解决", "实际问题", "综合运用"]
+    }
+  ],
+  "clauses": [
+    {
+      "clause_id": "IT2022-CONTENT-ALG-001",
+      "section": "课程内容 / 第二学段 / 算法与程序设计",
+      "clause_text": "在算法与程序设计模块中，学生应理解算法的基本概念，能用自然语言或流程图描述简单问题的解决步骤",
+      "keywords": ["算法", "自然语言", "流程图", "问题解决", "步骤"],
+      "applicable_grades": ["七年级", "八年级"],
+      "source_level": "A1",
+      "citation_span": {
+        "page_start": "",
+        "page_end": "",
+        "section": "课程内容第二学段"
+      },
+      "can_support": ["goal_basis", "content_reference", "assessment_generation"],
+      "note": "此条款基于课标内容领域描述，具体页码需教师确认"
+    },
+    {
+      "clause_id": "IT2022-COMPETENCE-CALC-001",
+      "section": "核心素养 / 计算思维",
+      "clause_text": "计算思维是指个体运用计算机科学领域的思想方法，在形成问题解决方案的过程中产生的一系列思维活动",
+      "keywords": ["计算思维", "问题解决", "解决方案", "思维活动"],
+      "applicable_grades": ["七年级", "八年级", "九年级"],
+      "source_level": "A1",
+      "citation_span": {
+        "page_start": "",
+        "page_end": "",
+        "section": "核心素养"
+      },
+      "can_support": ["goal_basis", "content_reference"],
+      "note": "核心素养定义条款，具体页码需教师确认"
+    },
+    {
+      "clause_id": "IT2022-QUALITY-001",
+      "section": "学业质量标准 / 标准一",
+      "clause_text": "能在教师指导下，使用简单工具和方法解决生活中的信息科技问题",
+      "keywords": ["教师指导", "简单问题", "解决", "生活"],
+      "applicable_grades": ["七年级"],
+      "source_level": "A1",
+      "citation_span": {
+        "page_start": "",
+        "page_end": "",
+        "section": "学业质量标准"
+      },
+      "can_support": ["goal_basis", "assessment_generation"],
+      "note": "学业质量标准条款，具体页码需教师确认"
+    }
+  ],
+  "file_reference": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.14_义务教育信息科技课程标准（2022年版）.pdf",
+  "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
+  "copyright_scope": "official_public",
+  "note": "条款内容基于课标目录结构和公开描述整理，具体原文需教师上传确认"
+}

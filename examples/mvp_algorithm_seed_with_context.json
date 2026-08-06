@@ -1,0 +1,42 @@
+{
+  "project_id": "proj_algo_ctx_001",
+  "metadata": {
+    "user_type": "K12教师",
+    "scene_type": "k12",
+    "project_name": "认识算法教学设计（含学情）",
+    "subject": "信息科技",
+    "grade_level": "七年级",
+    "textbook": "未指定",
+    "session_info": "1课时，45分钟"
+  },
+  "sources": [],
+  "goal": {
+    "learner": "七年级学生",
+    "behavior": "用自然语言描述解决简单问题的算法步骤",
+    "context": "在信息科技课堂上，面对生活中的简单问题情境",
+    "tools": "纸笔、流程图模板",
+    "full_statement": "七年级学生在信息科技课堂上，面对生活中的简单问题情境，能用自然语言描述解决简单问题的算法步骤，使用纸笔或流程图模板辅助表达",
+    "scene_type": "k12"
+  },
+  "learner_context_input": {
+    "class_duration": 45,
+    "class_size": 48,
+    "prior_knowledge": "学生能描述生活中做事步骤，但缺少算法抽象表达能力",
+    "entry_skills": [
+      "能阅读七年级水平生活问题文本",
+      "能用日常语言描述做事步骤",
+      "能识别顺序词"
+    ],
+    "common_difficulties": [
+      "步骤写得过于笼统",
+      "容易遗漏关键步骤",
+      "不能判断步骤顺序是否合理"
+    ],
+    "available_media": ["黑板", "投影", "学习单"],
+    "devices": "不保证一人一机",
+    "network": "普通教室网络不稳定",
+    "classroom_layout": "普通教室，可小组讨论",
+    "motivation": "对生活问题和校园任务较感兴趣",
+    "learning_preferences": ["情境任务", "小组讨论", "可视化流程"]
+  }
+}

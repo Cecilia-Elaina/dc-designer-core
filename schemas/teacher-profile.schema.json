@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/teacher-profile.schema.json",
+  "title": "教师档案",
+  "description": "教师长期记忆数据结构，遵循教师记忆政策",
+  "type": "object",
+  "required": ["teacher_id", "created_at"],
+  "properties": {
+    "teacher_id": {
+      "type": "string",
+      "description": "教师唯一标识符（匿名化）"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "档案创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "档案最后更新时间"
+    },
+    "basic_info": {
+      "type": "object",
+      "description": "教师基本信息",
+      "properties": {
+        "grade_level": {
+          "type": "string",
+          "enum": ["小学", "初中", "高中"],
+          "description": "学段"
+        },
+        "subject": {
+          "type": "string",
+          "description": "科目"
+        },
+        "teaching_years": {
+          "type": "number",
+          "minimum": 0,
+          "description": "教龄（年）"
+        }
+      }
+    },
+    "textbook_info": {
+      "type": "object",
+      "description": "教材信息",
+      "properties": {
+        "publisher": {
+          "type": "string",
+          "description": "出版社"
+        },
+        "version": {
+          "type": "string",
+          "description": "版本"
+        },
+        "grade": {
+          "type": "string",
+          "description": "年级"
+        }
+      }
+    },
+    "teaching_habits": {
+      "type": "object",
+      "description": "课时习惯",
+      "properties": {
+        "weekly_hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "每周课时数"
+        },
+        "session_length": {
+          "type": "number",
+          "minimum": 0,
+          "description": "每课时长度（分钟）"
+        },
+        "pace_preference": {
+          "type": "string",
+          "enum": ["快速", "中等", "缓慢"],
+          "description": "教学进度偏好"
+        }
+      }
+    },
+    "common_difficulties": {
+      "type": "array",
+      "description": "班级共性困难（匿名化，需教师确认）",
+      "items": {
+        "type": "object",
+        "required": ["topic", "difficulty", "confirmed_by_teacher"],
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "主题"
+          },
+          "difficulty": {
+            "type": "string",
+            "description": "困难描述"
+          },
+          "error_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "常见错误类型"
+          },
+          "confirmed_by_teacher": {
+            "type": "boolean",
+            "description": "教师是否确认"
+          },
+          "confirmation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "确认日期"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "过期时间（默认1年）"
+          }
+        }
+      }
+    },
+    "design_preferences": {
+      "type": "object",
+      "description": "设计偏好",
+      "properties": {
+        "preferred_strategies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "偏好的教学策略"
+        },
+        "preferred_media": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "偏好的媒体类型"
+        },
+        "preferred_grouping": {
+          "type": "string",
+          "enum": ["个别化", "小组", "全班", "混合"],
+          "description": "偏好的分组方式"
+        }
+      }
+    },
+    "common_resources": {
+      "type": "array",
+      "description": "常用资源",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "资源类型"
+          },
+          "resource_name": {
+            "type": "string",
+            "description": "资源名称"
+          },
+          "resource_location": {
+            "type": "string",
+            "description": "资源位置"
+          },
+          "usage_count": {
+            "type": "number",
+            "description": "使用次数"
+          }
+        }
+      }
+    },
+    "historical_projects": {
+      "type": "array",
+      "description": "历史教学设计项目（需教师确认保存）",
+      "items": {
+        "type": "object",
+        "required": ["project_id", "saved_with_consent"],
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "项目标识"
+          },
+          "project_name": {
+            "type": "string",
+            "description": "项目名称"
+          },
+          "subject": {
+            "type": "string",
+            "description": "科目"
+          },
+          "topic": {
+            "type": "string",
+            "description": "主题"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间"
+          },
+          "formative_conclusions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "形成性评价结论（匿名化）"
+          },
+          "saved_with_consent": {
+            "type": "boolean",
+            "description": "是否经教师确认保存"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "过期时间（默认3年）"
+          }
+        }
+      }
+    },
+    "consent_records": {
+      "type": "array",
+      "description": "教师确认记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "consent_type": {
+            "type": "string",
+            "description": "确认类型"
+          },
+          "consented_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "确认时间"
+          },
+          "content": {
+            "type": "string",
+            "description": "确认内容"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "source_levels": {
+    "A1": {"name": "国家级课程标准", "credibility": "highest", "can_be_goal_basis": true, "category": "official_authority"},
+    "A2": {"name": "国家级考试大纲", "credibility": "highest", "can_be_goal_basis": true, "category": "official_authority"},
+    "A3": {"name": "国家级政策文件", "credibility": "highest", "can_be_goal_basis": true, "category": "official_authority"},
+    "A4": {"name": "省级课程标准", "credibility": "high", "can_be_goal_basis": true, "category": "official_authority"},
+    "A5": {"name": "省级考试要求", "credibility": "high", "can_be_goal_basis": true, "category": "official_authority"},
+    "B1": {"name": "教材出版社", "credibility": "high", "can_be_goal_basis": true, "category": "professional_authority"},
+    "B2": {"name": "教学参考书", "credibility": "high", "can_be_goal_basis": true, "category": "professional_authority"},
+    "B3": {"name": "专业教学标准", "credibility": "high", "can_be_goal_basis": true, "category": "professional_authority"},
+    "B4": {"name": "行业标准", "credibility": "high", "can_be_goal_basis": true, "category": "professional_authority"},
+    "B5": {"name": "学术著作", "credibility": "medium_high", "can_be_goal_basis": "limited", "category": "professional_authority"},
+    "C1": {"name": "教师教案", "credibility": "medium", "can_be_goal_basis": "limited", "category": "teacher_private"},
+    "C2": {"name": "教师课件", "credibility": "medium", "can_be_goal_basis": "limited", "category": "teacher_private"},
+    "C3": {"name": "教师反思", "credibility": "medium", "can_be_goal_basis": "limited", "category": "teacher_private"},
+    "C4": {"name": "校本教研", "credibility": "medium", "can_be_goal_basis": "limited", "category": "teacher_private"},
+    "C5": {"name": "学情数据", "credibility": "medium", "can_be_goal_basis": "limited", "category": "teacher_private"}
+  }
+}

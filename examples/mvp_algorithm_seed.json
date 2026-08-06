@@ -1,0 +1,158 @@
+{
+  "project_id": "proj_example_001",
+  "created_at": "2026-06-27T00:00:00",
+  "updated_at": "2026-06-27T00:00:00",
+  "metadata": {
+    "user_type": "K12教师",
+    "scene_type": "k12",
+    "project_name": "认识算法教学设计",
+    "subject": "信息科技",
+    "grade_level": "七年级",
+    "textbook": "未指定（教师尚未提供教材版本）",
+    "session_info": "1课时，45分钟"
+  },
+  "sources": [
+    {
+      "source_id": "src_001",
+      "source_level": "C1",
+      "source_category": "teacher_private",
+      "source_name": "教师提供的教学经验说明",
+      "credibility": "medium",
+      "can_be_goal_basis": "limited",
+      "retrieval_status": "teacher_confirmed",
+      "search_query": "",
+      "retrieved_at": "",
+      "accessed_at": "2026-06-27T00:00:00",
+      "citation_span": {},
+      "uploaded_file_id": "",
+      "copyright_scope": "teacher_private_use_only",
+      "use_scope": ["content_reference", "private_reference_only"],
+      "fallback_required": true,
+      "verified_by_teacher": true,
+      "verification_date": "2026-06-27T00:00:00",
+      "specific_clauses": [],
+      "applicable_scenes": ["k12"],
+      "notes": "教师反映学生知道算法这个词，但不会用步骤化方式解决简单问题"
+    }
+  ],
+  "goal": {
+    "goal_id": "goal_001",
+    "learner": "七年级学生",
+    "behavior": "学生能用自然语言描述解决简单问题的算法步骤",
+    "context": "在信息科技课堂上，面对生活中的简单问题情境",
+    "tools": "纸笔、流程图模板",
+    "full_statement": "七年级学生在信息科技课堂上，面对生活中的简单问题情境，能用自然语言描述解决简单问题的算法步骤，使用纸笔或流程图模板辅助表达",
+    "goal_classification": "intellectual_skill",
+    "performance_problem": "学生知道算法这个词，但不会用步骤化方式解决简单问题",
+    "desired_state": "学生能用自然语言或流程图描述解决简单问题的算法",
+    "current_state": "学生能描述生活中的做事步骤，但缺少算法抽象表达能力",
+    "gap": "缺少从自然语言到算法表达的转化能力",
+    "scene_type": "k12",
+    "sources": [
+      {
+        "source_id": "src_001",
+        "source_level": "C1",
+        "source_name": "教师提供的教学经验说明",
+        "credibility": "medium",
+        "can_be_goal_basis": "limited",
+        "retrieval_status": "teacher_confirmed"
+      }
+    ],
+    "feasibility": {
+      "management_acceptance": true,
+      "sufficient_resources": true,
+      "content_stability": true,
+      "learner_availability": true
+    },
+    "status": "warning",
+    "issues": ["K12场景无A/B级官方来源，教学目的标记为待验证草案"],
+    "recommendations": ["建议教师上传课程标准或教材相关章节作为依据"],
+    "requires_teacher_confirmation": true,
+    "is_verified": false
+  },
+  "skill_graph": {
+    "graph_id": "sg_001",
+    "goal_type": "intellectual_skill",
+    "classification_rationale": "目标行为包含'描述'、'解决'等智慧技能动词，内容涉及算法理解和问题求解",
+    "goal_node": {
+      "skill_id": "goal_main",
+      "description": "用自然语言描述解决简单问题的算法步骤",
+      "learning_type": "intellectual_skill"
+    },
+    "goal_steps": [
+      {
+        "step_id": "step_1",
+        "description": "识别问题中的输入、处理和输出",
+        "learning_type": "intellectual_skill",
+        "source": "auto_generated",
+        "is_decision": false
+      },
+      {
+        "step_id": "step_2",
+        "description": "将解决问题的过程分解为有序步骤",
+        "learning_type": "intellectual_skill",
+        "source": "auto_generated",
+        "is_decision": false
+      },
+      {
+        "step_id": "step_3",
+        "description": "用自然语言清晰表述每个步骤",
+        "learning_type": "verbal_information",
+        "source": "auto_generated",
+        "is_decision": false
+      }
+    ],
+    "subordinate_skills": [
+      {
+        "skill_id": "sub_1",
+        "description": "区分问题中的已知条件和未知结果",
+        "learning_type": "intellectual_skill",
+        "parent_step": "step_1",
+        "level": 2
+      },
+      {
+        "skill_id": "sub_2",
+        "description": "判断步骤之间的先后逻辑关系",
+        "learning_type": "intellectual_skill",
+        "parent_step": "step_2",
+        "level": 2
+      }
+    ],
+    "entry_behaviors": [
+      {
+        "skill_id": "entry_1",
+        "description": "能用自然语言描述日常生活中的做事步骤",
+        "learning_type": "verbal_information",
+        "assumed_known": true
+      },
+      {
+        "skill_id": "entry_2",
+        "description": "理解'先做什么、再做什么'的基本顺序概念",
+        "learning_type": "verbal_information",
+        "assumed_known": true
+      }
+    ],
+    "edges": [
+      {"from": "goal_main", "to": "step_1", "type": "sequence"},
+      {"from": "step_1", "to": "step_2", "type": "sequence"},
+      {"from": "step_2", "to": "step_3", "type": "sequence"},
+      {"from": "sub_1", "to": "step_1", "type": "support"},
+      {"from": "sub_2", "to": "step_2", "type": "support"},
+      {"from": "entry_1", "to": "sub_1", "type": "prerequisite"},
+      {"from": "entry_2", "to": "sub_2", "type": "prerequisite"}
+    ],
+    "entry_behavior_boundary": {
+      "description": "虚线以下为入门技能（entry_1, entry_2），虚线以上为本教学需要教授的技能"
+    },
+    "requires_teacher_confirmation": true,
+    "metadata": {
+      "step_count": 3,
+      "subskill_count": 2,
+      "entry_count": 2,
+      "edge_count": 7
+    }
+  },
+  "objectives": [],
+  "assessment_plan": {},
+  "quality_check": {}
+}

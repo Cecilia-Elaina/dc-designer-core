@@ -1,0 +1,225 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/instructional-strategy.schema.json",
+  "title": "教学策略",
+  "description": "Dick & Carey 模型模块6的输出：教学策略数据结构",
+  "type": "object",
+  "required": ["strategy_id", "content_sequence", "learning_components", "media_selection"],
+  "properties": {
+    "strategy_id": {
+      "type": "string",
+      "description": "教学策略唯一标识符"
+    },
+    "content_sequence": {
+      "type": "string",
+      "description": "内容顺序安排说明"
+    },
+    "content_clustering": {
+      "type": "string",
+      "description": "内容分块说明"
+    },
+    "learning_components": {
+      "type": "object",
+      "description": "五个学习成分",
+      "properties": {
+        "preinstructional": {
+          "type": "object",
+          "description": "教学前活动",
+          "properties": {
+            "motivation": {
+              "type": "string",
+              "description": "激励策略（ARCS模型）"
+            },
+            "objectives": {
+              "type": "string",
+              "description": "目标说明策略"
+            },
+            "prerequisites": {
+              "type": "string",
+              "description": "预备技能评估策略"
+            }
+          }
+        },
+        "content_presentation": {
+          "type": "array",
+          "description": "内容呈现",
+          "items": {
+            "type": "object",
+            "properties": {
+              "objective_id": {
+                "type": "string",
+                "description": "目标编号"
+              },
+              "content": {
+                "type": "string",
+                "description": "呈现内容"
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "例子"
+              },
+              "media": {
+                "type": "string",
+                "description": "媒体选择"
+              },
+              "sequence": {
+                "type": "number",
+                "description": "呈现顺序"
+              }
+            }
+          }
+        },
+        "learner_participation": {
+          "type": "array",
+          "description": "学习者参与",
+          "items": {
+            "type": "object",
+            "properties": {
+              "objective_id": {
+                "type": "string",
+                "description": "目标编号"
+              },
+              "practice_activities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "练习活动"
+              },
+              "feedback_mechanism": {
+                "type": "string",
+                "description": "反馈机制"
+              }
+            }
+          }
+        },
+        "assessment": {
+          "type": "object",
+          "description": "评测活动",
+          "properties": {
+            "entry_behaviors_timing": {
+              "type": "string",
+              "description": "入门技能测试时机"
+            },
+            "pretest_timing": {
+              "type": "string",
+              "description": "前测时机"
+            },
+            "posttest_timing": {
+              "type": "string",
+              "description": "后测时机"
+            },
+            "embedded_assessment": {
+              "type": "string",
+              "description": "嵌入式评测说明"
+            }
+          }
+        },
+        "enhancement": {
+          "type": "object",
+          "description": "增强活动",
+          "properties": {
+            "memory_aids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "记忆辅助工具"
+            },
+            "transfer_considerations": {
+              "type": "string",
+              "description": "学习迁移考虑"
+            }
+          }
+        }
+      }
+    },
+    "learning_result_strategies": {
+      "type": "object",
+      "description": "针对不同学习结果的策略",
+      "properties": {
+        "intellectual_skills": {
+          "type": "string",
+          "description": "智慧技能策略"
+        },
+        "verbal_information": {
+          "type": "string",
+          "description": "言语信息策略"
+        },
+        "psychomotor_skills": {
+          "type": "string",
+          "description": "心智运动技能策略"
+        },
+        "attitudes": {
+          "type": "string",
+          "description": "态度策略"
+        }
+      }
+    },
+    "student_grouping": {
+      "type": "string",
+      "enum": ["individual", "pairs", "small_group", "whole_class", "mixed"],
+      "description": "学生分组方式"
+    },
+    "grouping_rationale": {
+      "type": "string",
+      "description": "分组理由"
+    },
+    "media_selection": {
+      "type": "string",
+      "description": "媒体选择说明"
+    },
+    "delivery_system": {
+      "type": "string",
+      "description": "传递系统说明"
+    },
+    "session_plan": {
+      "type": "array",
+      "description": "课时分配计划",
+      "items": {
+        "type": "object",
+        "properties": {
+          "session_number": {
+            "type": "number",
+            "description": "课次编号"
+          },
+          "session_title": {
+            "type": "string",
+            "description": "课次标题"
+          },
+          "duration": {
+            "type": "string",
+            "description": "时长"
+          },
+          "objectives_covered": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "覆盖的目标编号"
+          },
+          "activities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "活动列表"
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

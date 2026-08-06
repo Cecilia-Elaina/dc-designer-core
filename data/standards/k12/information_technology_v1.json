@@ -1,0 +1,142 @@
+[
+  {
+    "source_id": "moe-edu-law-2021",
+    "title": "中华人民共和国教育法（2021年修正）",
+    "issuer": "全国人民代表大会常务委员会",
+    "version": "2021",
+    "stage": ["primary", "junior_secondary", "senior_secondary"],
+    "subject": "通用",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/jyb_sjzl/sjzl_zcfg/zcfg_jyfl/202107/t20210730_547843.html",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "clauses": [
+      {
+        "clause_id": "EDU-LAW-2021-DIRECTION",
+        "section_path": ["教育方针与教育目的"],
+        "clause_text": "作为国家教育活动的宏观法律依据，用于约束课程设计的方向；不得直接替代具体学科课标条款。",
+        "keywords": ["教育方针", "教育目的", "宏观依据"]
+      }
+    ]
+  },
+  {
+    "source_id": "moe-education-power-2024-2035",
+    "title": "教育强国建设规划纲要（2024—2035年）",
+    "issuer": "中共中央、国务院",
+    "version": "2024—2035",
+    "stage": ["primary", "junior_secondary", "senior_secondary"],
+    "subject": "通用",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1778/202501/t20250119_1176193.html",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "clauses": [
+      {
+        "clause_id": "EDU-POWER-2024-DIRECTION",
+        "section_path": ["总体要求"],
+        "clause_text": "提供教育高质量发展的宏观方向，用于检查信息科技课程设计的育人方向，不直接生成单节课绩效目标。",
+        "keywords": ["教育强国", "高质量发展", "宏观方向"]
+      }
+    ]
+  },
+  {
+    "source_id": "moe-compulsory-plan-2022",
+    "title": "义务教育课程方案（2022年版）",
+    "issuer": "中华人民共和国教育部",
+    "version": "2022",
+    "stage": ["primary", "junior_secondary"],
+    "subject": "信息科技",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "clauses": [
+      {
+        "clause_id": "COMPULSORY-PLAN-2022-IT",
+        "section_path": ["课程设置", "信息科技"],
+        "clause_text": "用于确定义务教育阶段信息科技课程的课程定位、实施范围和课程安排；具体课题目标仍需回到学科课程标准。",
+        "keywords": ["义务教育", "课程方案", "信息科技", "课程定位"]
+      }
+    ]
+  },
+  {
+    "source_id": "moe-compulsory-it-standard-2022",
+    "title": "义务教育信息科技课程标准（2022年版）",
+    "issuer": "中华人民共和国教育部",
+    "version": "2022",
+    "stage": ["primary", "junior_secondary"],
+    "subject": "信息科技",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "core_competencies": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任"],
+    "clauses": [
+      {
+        "clause_id": "COMPULSORY-IT-2022-COMPETENCIES",
+        "section_path": ["课程性质与课程理念", "核心素养"],
+        "clause_text": "信息科技课程围绕信息意识、计算思维、数字化学习与创新、信息社会责任等核心素养组织学习。",
+        "keywords": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任", "核心素养"]
+      },
+      {
+        "clause_id": "COMPULSORY-IT-2022-ALGORITHM",
+        "section_path": ["课程内容", "算法与程序设计"],
+        "clause_text": "围绕算法与程序设计内容，支持学生分析问题、抽象建模、设计解决方案并用适切方式表达和验证。课题级行为需要结合教材与教师情境确认。",
+        "keywords": ["算法", "程序设计", "问题解决", "抽象", "建模", "验证", "流程"]
+      },
+      {
+        "clause_id": "COMPULSORY-IT-2022-QUALITY",
+        "section_path": ["学业质量"],
+        "clause_text": "学业质量判断应关注学生在真实或模拟情境中运用信息科技知识与技能解决问题的表现，不能只用脱离任务的记忆题替代。",
+        "keywords": ["学业质量", "真实情境", "解决问题", "表现"]
+      }
+    ]
+  },
+  {
+    "source_id": "moe-senior-plan-2017-2020",
+    "title": "普通高中课程方案（2017年版2020年修订）",
+    "issuer": "中华人民共和国教育部",
+    "version": "2017/2020修订",
+    "stage": ["senior_secondary"],
+    "subject": "信息技术",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "clauses": [
+      {
+        "clause_id": "SENIOR-PLAN-2017-2020-IT",
+        "section_path": ["课程设置", "信息技术"],
+        "clause_text": "用于确定普通高中信息技术课程的课程定位与实施框架；具体学习目标以高中信息技术课程标准和教材内容为依据。",
+        "keywords": ["普通高中", "课程方案", "信息技术", "课程定位"]
+      }
+    ]
+  },
+  {
+    "source_id": "moe-senior-it-standard-2017-2020",
+    "title": "普通高中信息技术课程标准（2017年版2020年修订）",
+    "issuer": "中华人民共和国教育部",
+    "version": "2017/2020修订",
+    "stage": ["senior_secondary"],
+    "subject": "信息技术",
+    "source_level": "A1",
+    "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/t20200603_462199.html",
+    "retrieved_at": "2026-08-01",
+    "status": "current",
+    "core_competencies": ["信息意识", "计算思维", "数字化学习与创新", "信息社会责任"],
+    "clauses": [
+      {
+        "clause_id": "SENIOR-IT-2017-2020-COMPETENCIES",
+        "section_path": ["学科核心素养"],
+        "clause_text": "高中信息技术课程以信息意识、计算思维、数字化学习与创新、信息社会责任为学科核心素养框架。",
+        "keywords": ["高中", "信息技术", "核心素养", "计算思维"]
+      },
+      {
+        "clause_id": "SENIOR-IT-2017-2020-COMPUTING",
+        "section_path": ["课程内容", "数据与计算"],
+        "clause_text": "数据与计算等内容要求学生经历分析问题、设计算法、编程实现、调试验证和解释结果等活动；具体课题需与教材单元核对。",
+        "keywords": ["数据与计算", "算法", "编程", "调试", "验证", "解释"]
+      }
+    ]
+  }
+]

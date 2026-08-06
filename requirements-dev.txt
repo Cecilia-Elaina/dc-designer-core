@@ -1,0 +1,5 @@
+-r requirements-core.txt
+-r requirements-mcp.txt
+pytest>=8,<10
+PyYAML>=6,<7
+jsonschema>=4,<5

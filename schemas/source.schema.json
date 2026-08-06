@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/source.schema.json",
+  "title": "来源记录",
+  "description": "教学系统设计中内容来源的标准化记录格式",
+  "type": "object",
+  "required": ["source_id", "source_level", "source_name", "credibility", "can_be_goal_basis"],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "description": "来源唯一标识符"
+    },
+    "source_level": {
+      "type": "string",
+      "enum": ["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5", "D1", "D2", "D3", "D4", "E1", "E2", "E3"],
+      "description": "来源等级"
+    },
+    "source_category": {
+      "type": "string",
+      "enum": ["official_authority", "professional_authority", "teacher_private", "public", "ai_generated"],
+      "description": "来源类别"
+    },
+    "source_name": {
+      "type": "string",
+      "description": "来源名称"
+    },
+    "source_description": {
+      "type": "string",
+      "description": "来源描述"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "来源链接（可选）"
+    },
+    "source_date": {
+      "type": "string",
+      "description": "来源发布日期"
+    },
+    "source_version": {
+      "type": "string",
+      "description": "来源版本"
+    },
+    "credibility": {
+      "type": "string",
+      "enum": ["highest", "high", "medium_high", "medium", "medium_low", "low", "uncertain"],
+      "description": "可信度"
+    },
+    "can_be_goal_basis": {
+      "type": "string",
+      "enum": ["yes", "no", "limited"],
+      "description": "是否可以作为教学目的依据"
+    },
+    "applicable_scenes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["k12", "higher_ed", "vocational", "corporate", "general"]
+      },
+      "description": "适用的教学场景"
+    },
+    "specific_clauses": {
+      "type": "array",
+      "description": "具体引用的条款（可选）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "clause_id": {
+            "type": "string",
+            "description": "条款编号"
+          },
+          "clause_text": {
+            "type": "string",
+            "description": "条款内容"
+          },
+          "page_number": {
+            "type": "string",
+            "description": "页码"
+          }
+        }
+      }
+    },
+    "verified_by_teacher": {
+      "type": "boolean",
+      "description": "是否经过教师验证"
+    },
+    "verification_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "验证日期"
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注"
+    },
+    "retrieval_status": {
+      "type": "string",
+      "enum": ["found", "not_found", "user_uploaded", "user_provided", "teacher_confirmed", "ai_inferred"],
+      "description": "检索状态：found=检索到, not_found=未检索到, user_uploaded=教师上传, teacher_confirmed=教师确认, ai_inferred=AI推断"
+    },
+    "search_query": {
+      "type": "string",
+      "description": "检索时使用的关键词"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "检索时间"
+    },
+    "accessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后访问时间"
+    },
+    "citation_span": {
+      "type": "object",
+      "description": "引用位置信息",
+      "properties": {
+        "page_start": {
+          "type": "string",
+          "description": "起始页码"
+        },
+        "page_end": {
+          "type": "string",
+          "description": "结束页码"
+        },
+        "section": {
+          "type": "string",
+          "description": "章节"
+        },
+        "paragraph": {
+          "type": "string",
+          "description": "段落"
+        }
+      }
+    },
+    "uploaded_file_id": {
+      "type": "string",
+      "description": "教师上传的文件标识符"
+    },
+    "copyright_scope": {
+      "type": "string",
+      "enum": ["public_domain", "official_public", "official_public_reference", "licensed", "teacher_private_use_only", "teacher_uploaded_private", "unknown"],
+      "description": "版权范围：public_domain=公共领域, official_public=官方公开, licensed=授权使用, teacher_private_use_only=仅教师私用, unknown=未知"
+    },
+    "use_scope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["goal_basis", "content_reference", "assessment_generation", "strategy_design", "private_reference_only", "not_for_public_export"]
+      },
+      "description": "允许的使用范围：goal_basis=可作目标依据, content_reference=内容参考, assessment_generation=可用于生成评价, strategy_design=可用于策略设计, private_reference_only=仅私用参考, not_for_public_export=不得公开导出"
+    },
+    "fallback_required": {
+      "type": "boolean",
+      "description": "当此来源不可用时，是否需要寻找替代来源"
+    }
+  }
+}

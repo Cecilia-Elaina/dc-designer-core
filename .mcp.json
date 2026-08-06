@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dc-designer-mcp": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["mcp-server/server.py"]
+    }
+  }
+}

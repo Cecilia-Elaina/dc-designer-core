@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.test-home/
+.test-venv/
+.npm-cache/
+.playwright-local/
+.playwright-browsers/
+.test-web-workspace/
+.dc-designer/
+exports/
+dist/
+/*.docx
+/*.pdf
+/*.pptx
+qa/reference/
+.claude/
+.codex/
+legacy-skills/
+.test-export-new/
+.test-visual-new/
+.test-visual-qa/
+
+# Teacher-private knowledge base runtime data must never enter the repository.
+data/knowledge_base/documents/*
+data/knowledge_base/indexes/*

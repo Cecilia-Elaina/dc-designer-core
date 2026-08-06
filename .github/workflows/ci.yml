@@ -1,0 +1,33 @@
+name: dc-designer-core CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m compileall -q mcp-server scripts
+      - run: node --check web/app.js
+      - run: python scripts/release_check.py
+      - run: python -m pytest -q
+      - run: python scripts/package_release.py --output-dir artifacts/dist
+      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.0.zip --timeout 360
+
+  windows-visual:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements-core.txt
+      - run: python -m compileall -q mcp-server scripts
+      - run: python scripts/doctor.py --json-output artifacts/doctor.json
+      - run: python scripts/acceptance_cases.py

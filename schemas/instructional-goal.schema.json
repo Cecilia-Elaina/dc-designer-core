@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/instructional-goal.schema.json",
+  "title": "教学目的",
+  "description": "Dick & Carey 模型模块1的输出：教学目的陈述",
+  "type": "object",
+  "required": ["goal_id", "full_statement", "learner", "behavior", "context", "tools", "sources"],
+  "properties": {
+    "goal_id": {
+      "type": "string",
+      "description": "教学目的唯一标识符"
+    },
+    "full_statement": {
+      "type": "string",
+      "description": "完整的目的陈述语句"
+    },
+    "learner": {
+      "type": "string",
+      "description": "学习者描述"
+    },
+    "behavior": {
+      "type": "string",
+      "description": "学习者在应用环境下应该能做什么"
+    },
+    "context": {
+      "type": "string",
+      "description": "所学技能要运用的环境"
+    },
+    "tools": {
+      "type": "string",
+      "description": "在应用环境中学习者可用的工具"
+    },
+    "goal_classification": {
+      "type": "string",
+      "enum": ["verbal_information", "intellectual_skill", "psychomotor_skill", "attitude", "mixed"],
+      "description": "目的学习类型分类"
+    },
+    "performance_problem": {
+      "type": "string",
+      "description": "绩效问题描述"
+    },
+    "desired_state": {
+      "type": "string",
+      "description": "期望状态"
+    },
+    "current_state": {
+      "type": "string",
+      "description": "当前状态"
+    },
+    "gap": {
+      "type": "string",
+      "description": "绩效差距"
+    },
+    "sources": {
+      "type": "array",
+      "description": "目的依据来源",
+      "items": {
+        "$ref": "source.schema.json"
+      }
+    },
+    "feasibility_check": {
+      "type": "object",
+      "description": "可行性检查",
+      "properties": {
+        "management_acceptance": {
+          "type": "boolean",
+          "description": "管理层是否接受"
+        },
+        "sufficient_resources": {
+          "type": "boolean",
+          "description": "是否有充足资源"
+        },
+        "content_stability": {
+          "type": "boolean",
+          "description": "内容是否稳定"
+        },
+        "learner_availability": {
+          "type": "boolean",
+          "description": "是否有学习者"
+        }
+      }
+    },
+    "teacher_confirmed": {
+      "type": "boolean",
+      "description": "是否经过教师确认"
+    },
+    "confirmation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "确认日期"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

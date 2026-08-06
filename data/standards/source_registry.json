@@ -1,0 +1,70 @@
+{
+  "registry_version": "1.0",
+  "last_updated": "2026-06-27",
+  "sources": [
+    {
+      "source_id": "std_compulsory_2022_info_tech",
+      "title": "义务教育信息科技课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "信息科技",
+      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.14_义务教育信息科技课程标准（2022年版）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
+      "publisher": "教育部",
+      "description": "义务教育阶段信息科技课程标准，包含核心素养、内容要求、学业质量标准",
+      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
+      "copyright_scope": "official_public",
+      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
+    },
+    {
+      "source_id": "std_compulsory_2022_math",
+      "title": "义务教育数学课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "数学",
+      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.05_义务教育数学课程标准（2022年版）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220510531636118932.pdf",
+      "publisher": "教育部",
+      "description": "义务教育阶段数学课程标准",
+      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
+      "copyright_scope": "official_public",
+      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
+    },
+    {
+      "source_id": "std_compulsory_2022_chinese",
+      "title": "义务教育语文课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "语文",
+      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.03_义务教育语文课程标准（2022年版）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582344386456.pdf",
+      "publisher": "教育部",
+      "description": "义务教育阶段语文课程标准",
+      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
+      "copyright_scope": "official_public",
+      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
+    },
+    {
+      "source_id": "std_compulsory_plan_2022",
+      "title": "义务教育课程方案（2022年版）",
+      "level": "A1",
+      "category": "curriculum_plan",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "通用",
+      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.01_义务教育课程方案（2022年版）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582343217634.pdf",
+      "publisher": "教育部",
+      "description": "义务教育阶段课程方案，规定各学段课程设置和课时比例",
+      "applicable_grades": ["小学", "七年级", "八年级", "九年级"],
+      "copyright_scope": "official_public",
+      "use_scope": ["goal_basis", "content_reference"]
+    }
+  ]
+}

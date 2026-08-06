@@ -1,0 +1,21 @@
+{
+  "standard_id": "mock_test_standard_001",
+  "title": "测试用课程标准片段（非真实课标）",
+  "version": "mock",
+  "publisher": "测试数据",
+  "stage": "test",
+  "subject": "信息科技",
+  "applicable_grades": ["七年级"],
+  "content_areas": [
+    {
+      "area_name": "算法基础",
+      "grades": ["七年级"],
+      "keywords": ["算法", "步骤", "流程图"],
+      "description": "【测试数据】理解算法的基本概念"
+    }
+  ],
+  "file_reference": "",
+  "copyright_scope": "public_domain",
+  "is_test_fixture": true,
+  "disclaimer": "此文件仅用于单元测试，不代表任何真实课程标准内容"
+}

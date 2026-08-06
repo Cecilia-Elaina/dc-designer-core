@@ -1,0 +1,15 @@
+{
+  "mode": "dc-design",
+  "user_type": "K12教师",
+  "scenario": "新课设计",
+  "subject": "信息科技",
+  "grade_level": "七年级",
+  "topic": "认识算法",
+  "teacher_inputs": {
+    "prior_knowledge": "学生能描述生活中做事步骤，但缺少算法抽象表达能力",
+    "common_difficulties": ["步骤写得过于笼统", "容易遗漏关键步骤", "不能判断步骤顺序是否合理"],
+    "available_media": ["黑板", "投影", "学习单"],
+    "devices": "不保证一人一机",
+    "motivation": "对生活问题和校园任务较感兴趣"
+  }
+}

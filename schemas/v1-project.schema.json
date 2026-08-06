@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/v1-project.schema.json",
+  "title": "dc-designer-core v1 项目",
+  "description": "中国 K12 信息科技/信息技术 Dick–Carey 教学系统设计项目合同。",
+  "type": "object",
+  "required": [
+    "schema_version", "project_id", "education_scope", "mode", "project",
+    "sources", "instructional_goal", "skill_graph", "performance_objectives",
+    "assessments", "instructional_strategy", "instructional_materials",
+    "alignment_report", "quality"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "education_scope": {"const": "k12_info_technology"},
+    "future_scopes": {"type": "array", "items": {"type": "string"}},
+    "mode": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": {"enum": ["standard_fast", "collaborative"]},
+        "label": {"type": "string"},
+        "interaction": {"type": "string"}
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": ["title", "topic", "stage", "grade", "subject"],
+      "properties": {
+        "title": {"type": "string"},
+        "topic": {"type": "string"},
+        "stage": {"enum": ["primary", "junior_secondary", "senior_secondary"]},
+        "grade": {"type": "string"},
+        "subject": {"enum": ["信息科技", "信息技术"]},
+        "textbook_version": {"type": "string"},
+        "unit": {"type": "string"},
+        "periods": {"type": ["string", "number"]}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "source_level", "source_name", "credibility", "can_be_goal_basis"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "source_level": {"type": "string"},
+          "source_category": {"type": "string"},
+          "source_name": {"type": "string"},
+          "source_url": {"type": "string"},
+          "source_version": {"type": "string"},
+          "credibility": {"type": "string"},
+          "can_be_goal_basis": {"type": "string"},
+          "specific_clauses": {"type": "array", "items": {"type": "object"}},
+          "evidence_status": {"type": "string"},
+          "provenance_type": {"type": "string"},
+          "distribution_allowed": {"type": "boolean"}
+        }
+      }
+    },
+    "evidence_claims": {"type": "array", "items": {"type": "object"}},
+    "instructional_goal": {"$ref": "#/definitions/goal"},
+    "goal_analysis": {"type": "object"},
+    "skill_graph": {
+      "type": "object",
+      "required": ["goal_node", "goal_steps", "subordinate_skills", "view_validation"],
+      "properties": {
+        "goal_node": {"type": "object"},
+        "goal_steps": {"type": "array"},
+        "subordinate_skills": {"type": "array"},
+        "entry_behaviors": {"type": "array"},
+        "entry_behaviours": {"type": "array"},
+        "view_validation": {"type": "object"}
+      }
+    },
+    "skill_graphs": {"type": "object"},
+    "learner_analysis": {"type": "object"},
+    "learning_context": {"type": "object"},
+    "performance_context": {"type": "object"},
+    "performance_objectives": {"type": "array", "items": {"$ref": "#/definitions/objective"}},
+    "assessments": {"type": "object"},
+    "instructional_sequence": {"type": "array", "items": {"type": "object"}},
+    "instructional_strategy": {"type": "object"},
+    "instructional_materials": {"type": "object"},
+    "formative_evaluation": {"type": "object"},
+    "revision_plan": {"type": "object"},
+    "alignment_report": {"type": "object"},
+    "decision_log": {"type": "array", "items": {"type": "object"}},
+    "required_confirmations": {"type": "array", "items": {"type": "object"}},
+    "exports": {"type": "object"},
+    "quality": {"$ref": "#/definitions/quality"}
+  },
+  "definitions": {
+    "goal": {
+      "type": "object",
+      "required": ["goal_id", "behavior", "evidence_status"],
+      "properties": {
+        "goal_id": {"type": "string"},
+        "behavior": {"type": "string", "minLength": 1},
+        "context": {"type": "string"},
+        "criterion": {"type": "string"},
+        "evidence_status": {"enum": ["no_source", "document_found", "clause_candidate", "clause_aligned", "teacher_confirmed", "final_verified"]},
+        "provenance_type": {"type": "string"},
+        "teacher_confirmation_required": {"type": "boolean"}
+      }
+    },
+    "objective": {
+      "type": "object",
+      "required": ["objective_id", "CN", "B", "CR"],
+      "properties": {
+        "objective_id": {"type": "string"},
+        "id": {"type": "string"},
+        "CN": {"type": "string", "minLength": 1},
+        "B": {"type": "string", "minLength": 1},
+        "CR": {"type": "string", "minLength": 1},
+        "condition": {"type": "string"},
+        "behavior": {"type": "string"},
+        "criterion": {"type": "string"},
+        "provenance_type": {"type": "string"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": ["draft_status", "evidence_status", "can_export_final"],
+      "properties": {
+        "draft_status": {"type": "string"},
+        "evidence_status": {"type": "string"},
+        "can_export_final": {"type": "boolean"},
+        "final_blocking_reasons": {"type": "array", "items": {"type": "string"}},
+        "graph_validation": {"type": "object"},
+        "alignment_status": {"type": "string"}
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "dc-designer-core",
+  "version": "1.1.0",
+  "description": "面向中国 K12 信息科技教师的本地化 Dick–Carey 教学系统设计 Codex 插件，提供课标证据追溯、可恢复协同设计和教师可读的 Word/Draw.io 导出。",
+  "author": {
+    "name": "dc-designer-core contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "instructional-design",
+    "dick-carey",
+    "k12",
+    "information-technology",
+    "教学系统设计",
+    "信息科技"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Dick–Carey 信息科技教学设计",
+    "shortDescription": "为中国 K12 信息科技教师协同完成系统化教学设计",
+    "longDescription": "依据中国现行课程方案、信息科技/信息技术课程标准和教师本机私有资料，按照 Dick–Carey 模型生成可追溯、可评价、可编辑、可修订的完整教学系统设计。所有教师资料只保存在本机；官方来源更新先进入待审核区。",
+    "developerName": "dc-designer-core contributors",
+    "category": "Education",
+    "capabilities": ["Interactive", "Write", "Local files"],
+    "defaultPrompt": [
+      "为七年级信息科技的‘认识算法’做课标约束快速设计",
+      "协同我完成一份 Python 分支结构教学系统设计",
+      "评审这份信息科技教学设计并列出可执行修改项"
+    ],
+    "brandColor": "#4472C4"
+  }
+}

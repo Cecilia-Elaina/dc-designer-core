@@ -1,0 +1,9 @@
+# Runtime dependencies for the local Codex Skill entry point and the
+# compatibility MCP server.
+mcp>=1.0,<2
+python-docx>=1.1
+openpyxl>=3.1
+Pillow>=10
+
+# matplotlib is optional. The exporter uses it when available and falls back
+# to Pillow so the plugin remains usable in a minimal local environment.

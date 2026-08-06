@@ -1,0 +1,15 @@
+{
+  "name": "dc-designer-core",
+  "version": "1.0.0",
+  "description": "历史兼容清单：产品正式入口以 .codex-plugin/plugin.json 为准；当前仅支持中国 K12 信息科技/信息技术。",
+  "author": "dc-designer-core contributors",
+  "license": "MIT",
+  "skills": [
+    {"name": "dc-info-tech-design", "path": "../skills/dc-info-tech-design/SKILL.md", "description": "信息科技教学系统设计"},
+    {"name": "dc-info-tech-review", "path": "../skills/dc-info-tech-review/SKILL.md", "description": "信息科技教学设计评审"},
+    {"name": "dc-info-tech-revise", "path": "../skills/dc-info-tech-revise/SKILL.md", "description": "信息科技教学设计修订"}
+  ],
+  "mcpServers": {"dc-designer-mcp": {"command": "python", "args": ["mcp-server/server.py"], "env": {}}},
+  "capabilities": ["中国 K12 信息科技", "Dick–Carey", "课标证据追溯", "Word/Excel/Draw.io 导出"],
+  "limitations": ["无教师确认不得标记最终版", "不伪造形成性评价数据", "不保存学生身份信息"]
+}

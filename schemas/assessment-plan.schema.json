@@ -1,0 +1,268 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/assessment-plan.schema.json",
+  "title": "评价方案",
+  "description": "Dick & Carey 模型模块5的输出：评价方案数据结构",
+  "type": "object",
+  "required": ["plan_id", "entry_behaviors_test", "pretest", "posttest", "quality_principles"],
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "description": "评价方案唯一标识符"
+    },
+    "entry_behaviors_test": {
+      "type": "object",
+      "description": "入门技能测试",
+      "properties": {
+        "test_name": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "测试目的"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/test_item"
+          }
+        },
+        "mastery_criteria": {
+          "type": "string",
+          "description": "掌握标准"
+        },
+        "linked_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "关联的入门技能编号"
+        }
+      }
+    },
+    "pretest": {
+      "type": "object",
+      "description": "前测",
+      "properties": {
+        "test_name": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "测试目的"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/test_item"
+          }
+        },
+        "mastery_criteria": {
+          "type": "string",
+          "description": "掌握标准"
+        },
+        "linked_objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "关联的绩效目标编号"
+        }
+      }
+    },
+    "practice_tests": {
+      "type": "array",
+      "description": "练习测试",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_name": {
+            "type": "string"
+          },
+          "session": {
+            "type": "string",
+            "description": "适用的课次"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/test_item"
+            }
+          },
+          "feedback_mechanism": {
+            "type": "string",
+            "description": "反馈机制"
+          }
+        }
+      }
+    },
+    "posttest": {
+      "type": "object",
+      "description": "后测",
+      "properties": {
+        "test_name": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "测试目的"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/test_item"
+          }
+        },
+        "mastery_criteria": {
+          "type": "string",
+          "description": "掌握标准"
+        },
+        "linked_objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "关联的绩效目标编号"
+        }
+      }
+    },
+    "performance_scales": {
+      "type": "array",
+      "description": "行为表现量表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scale_name": {
+            "type": "string"
+          },
+          "target_objective": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "element_id": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "scale_type": {
+                  "type": "string",
+                  "enum": ["checklist", "rating", "frequency"]
+                }
+              }
+            }
+          },
+          "instructions_for_learners": {
+            "type": "string",
+            "description": "给学习者的操作说明"
+          }
+        }
+      }
+    },
+    "portfolio_plan": {
+      "type": "string",
+      "description": "学习档案计划"
+    },
+    "quality_principles": {
+      "type": "object",
+      "description": "四类质量评判原则的遵循情况",
+      "properties": {
+        "objective_centered": {
+          "type": "boolean",
+          "description": "以目标为中心"
+        },
+        "learner_centered": {
+          "type": "boolean",
+          "description": "以学生为中心"
+        },
+        "context_centered": {
+          "type": "boolean",
+          "description": "以环境为中心"
+        },
+        "assessment_centered": {
+          "type": "boolean",
+          "description": "以评测为中心"
+        }
+      }
+    },
+    "alignment_check": {
+      "type": "object",
+      "description": "一致性检查结果",
+      "properties": {
+        "objectives_covered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "已覆盖的目标编号"
+        },
+        "objectives_missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "未覆盖的目标编号"
+        },
+        "coverage_rate": {
+          "type": "number",
+          "description": "覆盖率"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  },
+  "definitions": {
+    "test_item": {
+      "type": "object",
+      "required": ["item_id", "item_type", "question", "linked_objective"],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "description": "题目编号"
+        },
+        "item_type": {
+          "type": "string",
+          "enum": ["short_answer", "fill_blank", "multiple_choice", "matching", "performance_checklist", "rating_scale", "essay", "product_checklist"],
+          "description": "题目类型"
+        },
+        "question": {
+          "type": "string",
+          "description": "题目内容"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "选项（选择题用）"
+        },
+        "correct_answer": {
+          "type": "string",
+          "description": "正确答案"
+        },
+        "linked_objective": {
+          "type": "string",
+          "description": "关联的绩效目标编号"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard"],
+          "description": "难度"
+        }
+      }
+    }
+  }
+}

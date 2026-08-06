@@ -1,0 +1,235 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/project.schema.json",
+  "title": "教学系统设计项目",
+  "description": "Dick & Carey 教学系统设计项目的顶层数据结构",
+  "type": "object",
+  "required": ["project_id", "project_name", "scene_type", "created_at", "modules"],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "项目唯一标识符"
+    },
+    "project_name": {
+      "type": "string",
+      "description": "项目名称"
+    },
+    "scene_type": {
+      "type": "string",
+      "enum": ["k12", "higher_ed", "vocational", "corporate", "general"],
+      "description": "教学场景类型"
+    },
+    "designer": {
+      "type": "string",
+      "description": "设计者标识（教师或设计师）"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "项目创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "项目最后更新时间"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "in_progress", "completed", "archived"],
+      "description": "项目状态"
+    },
+    "current_module": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "当前进行的模块编号"
+    },
+    "modules": {
+      "type": "object",
+      "description": "项目各模块的数据",
+      "properties": {
+        "module_1_goal": {
+          "$ref": "instructional-goal.schema.json",
+          "description": "模块1：教学目的"
+        },
+        "module_2_analysis": {
+          "$ref": "skill-graph.schema.json",
+          "description": "模块2：教学分析"
+        },
+        "module_3_learner": {
+          "type": "object",
+          "description": "模块3：学习者和环境分析",
+          "properties": {
+            "learner_analysis": {
+              "type": "object",
+              "description": "学习者分析"
+            },
+            "performance_context": {
+              "type": "object",
+              "description": "应用环境分析"
+            },
+            "learning_context": {
+              "type": "object",
+              "description": "学习环境分析"
+            }
+          }
+        },
+        "module_4_objectives": {
+          "type": "object",
+          "description": "模块4：绩效目标",
+          "properties": {
+            "terminal_objective": {
+              "$ref": "performance-objective.schema.json"
+            },
+            "subordinate_objectives": {
+              "type": "array",
+              "items": {
+                "$ref": "performance-objective.schema.json"
+              }
+            }
+          }
+        },
+        "module_5_assessment": {
+          "$ref": "assessment-plan.schema.json",
+          "description": "模块5：评价方案"
+        },
+        "module_6_strategy": {
+          "$ref": "instructional-strategy.schema.json",
+          "description": "模块6：教学策略"
+        },
+        "module_7_materials": {
+          "type": "object",
+          "description": "模块7：教学材料"
+        },
+        "module_8_formative": {
+          "$ref": "formative-evaluation.schema.json",
+          "description": "模块8：形成性评价"
+        },
+        "module_9_revision": {
+          "type": "object",
+          "description": "模块9：修改教学"
+        }
+      }
+    },
+    "quality_gates": {
+      "type": "array",
+      "description": "质量门禁检查记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "module_id": {
+            "type": "number"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "veto_items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "check_results": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "alignment_checks": {
+      "type": "array",
+      "description": "一致性检查记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "consistent": {
+            "type": "boolean"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "revision_history": {
+      "type": "array",
+      "description": "修改历史",
+      "items": {
+        "type": "object",
+        "properties": {
+          "revision_id": {
+            "type": "string"
+          },
+          "revision_number": {
+            "type": "number"
+          },
+          "trigger": {
+            "type": "string"
+          },
+          "modules_affected": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "项目引用的所有来源",
+      "items": {
+        "$ref": "source.schema.json"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "项目元数据",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "description": "学科"
+        },
+        "grade_level": {
+          "type": "string",
+          "description": "年级"
+        },
+        "textbook": {
+          "type": "string",
+          "description": "教材版本"
+        },
+        "session_count": {
+          "type": "number",
+          "description": "课时数"
+        },
+        "total_hours": {
+          "type": "number",
+          "description": "总学时"
+        }
+      }
+    }
+  }
+}

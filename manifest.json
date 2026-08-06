@@ -1,0 +1,28 @@
+{
+  "name": "dc-designer-core",
+  "version": "1.1.0",
+  "description": "面向中国 K12 信息科技/信息技术教师的 Dick–Carey 教学系统设计插件",
+  "type": "plugin",
+  "model": "Dick & Carey Instructional Systems Design Model",
+  "authors": [{"name": "dc-designer-core contributors", "role": "plugin developers"}],
+  "license": "MIT",
+  "keywords": ["instructional-design", "dick-carey", "k12", "information-technology", "教学系统设计", "信息科技", "codex-plugin"],
+  "scope": {
+    "education_scope": "k12_info_technology",
+    "stages": ["primary", "junior_secondary", "senior_secondary"],
+    "subjects": ["信息科技", "信息技术"],
+    "modes": ["standard_fast", "collaborative"]
+  },
+  "skills": [
+    {"name": "dc-info-tech-design", "path": "skills/dc-info-tech-design/SKILL.md", "description": "课标约束快速设计或完整协同设计"},
+    {"name": "dc-info-tech-review", "path": "skills/dc-info-tech-review/SKILL.md", "description": "评审信息科技教学系统设计"},
+    {"name": "dc-info-tech-revise", "path": "skills/dc-info-tech-revise/SKILL.md", "description": "根据教师反馈和匿名数据修订设计"}
+  ],
+  "mcp_server": {"name": "dc-designer-mcp", "path": "mcp-server/server.py", "transport": "stdio", "compatibility_only": true},
+  "schemas": ["schemas/v1-project.schema.json", "schemas/v1-skill-graph.schema.json", "schemas/source.schema.json"],
+  "privacy_policy": {
+    "local_workspace": ".dc-designer",
+    "must_not_store": ["学生姓名", "学生学号", "身份证号", "电话", "学生个人成绩"],
+    "requires_consent": ["教师长期记忆", "历史教学设计", "匿名班级共性困难"]
+  }
+}

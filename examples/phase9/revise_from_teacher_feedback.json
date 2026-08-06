@@ -1,0 +1,19 @@
+{
+  "mode": "dc-revise",
+  "existing_design_project_path": "exports/phase8/mvp_algorithm_design_project.json",
+  "feedback_or_revision_data": {
+    "feedback_type": "teacher_reflection",
+    "items": [
+      {
+        "module": "objective",
+        "issue": "部分绩效目标行为动词不够可观察，如'理解算法的基本特征'",
+        "severity": "high"
+      },
+      {
+        "module": "assessment",
+        "issue": "后测评分标准维度不够明确，缺少具体的得分等级说明",
+        "severity": "medium"
+      }
+    ]
+  }
+}

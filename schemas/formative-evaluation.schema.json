@@ -1,0 +1,327 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/formative-evaluation.schema.json",
+  "title": "形成性评价",
+  "description": "Dick & Carey 模型模块8的输出：形成性评价数据结构",
+  "type": "object",
+  "required": ["evaluation_id", "one_on_one", "small_group", "field_trial"],
+  "properties": {
+    "evaluation_id": {
+      "type": "string",
+      "description": "形成性评价唯一标识符"
+    },
+    "one_on_one": {
+      "type": "object",
+      "description": "一对一评价",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "description": "评价目的"
+        },
+        "participants": {
+          "type": "array",
+          "description": "参与者（匿名化）",
+          "items": {
+            "type": "object",
+            "properties": {
+              "participant_id": {
+                "type": "string",
+                "description": "参与者标识（如：高于平均、中等、低于平均）"
+              },
+              "profile": {
+                "type": "string",
+                "description": "参与者特征描述"
+              }
+            }
+          }
+        },
+        "data_collection": {
+          "type": "object",
+          "description": "数据收集",
+          "properties": {
+            "clarity": {
+              "type": "object",
+              "description": "清晰度数据",
+              "properties": {
+                "vocabulary": {
+                  "type": "string"
+                },
+                "sentence_complexity": {
+                  "type": "string"
+                },
+                "introduction": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "examples": {
+                  "type": "string"
+                },
+                "transitions": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "sequencing": {
+                  "type": "string"
+                },
+                "pacing": {
+                  "type": "string"
+                }
+              }
+            },
+            "impact": {
+              "type": "object",
+              "description": "影响力数据",
+              "properties": {
+                "relevance": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "satisfaction": {
+                  "type": "string"
+                },
+                "learning_outcomes": {
+                  "type": "string"
+                }
+              }
+            },
+            "feasibility": {
+              "type": "object",
+              "description": "可行性数据",
+              "properties": {
+                "time_required": {
+                  "type": "string"
+                },
+                "facilities": {
+                  "type": "string"
+                },
+                "environment": {
+                  "type": "string"
+                },
+                "learner_maturity": {
+                  "type": "string"
+                }
+              }
+            },
+            "learner_marks": {
+              "type": "string",
+              "description": "学习者标注和评论"
+            },
+            "test_scores": {
+              "type": "string",
+              "description": "测试成绩"
+            },
+            "attitude_survey": {
+              "type": "string",
+              "description": "态度问卷结果"
+            }
+          }
+        },
+        "modifications_needed": {
+          "type": "array",
+          "description": "需要修改的内容",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module_affected": {
+                "type": "string"
+              },
+              "issue": {
+                "type": "string"
+              },
+              "recommendation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "small_group": {
+      "type": "object",
+      "description": "小组评价",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "description": "评价目的"
+        },
+        "participant_count": {
+          "type": "number",
+          "description": "参与者数量（8-20人）"
+        },
+        "participant_selection": {
+          "type": "string",
+          "description": "参与者选择标准"
+        },
+        "data_collection": {
+          "type": "object",
+          "description": "数据收集",
+          "properties": {
+            "pretest_scores": {
+              "type": "string",
+              "description": "前测成绩"
+            },
+            "posttest_scores": {
+              "type": "string",
+              "description": "后测成绩"
+            },
+            "attitude_survey": {
+              "type": "string",
+              "description": "态度问卷结果"
+            },
+            "time_on_task": {
+              "type": "string",
+              "description": "学习时间"
+            },
+            "comments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "学习者评论"
+            },
+            "feasibility_data": {
+              "type": "string",
+              "description": "可行性数据"
+            }
+          }
+        },
+        "analysis_tools_used": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["item_objective_table", "student_objective_table", "pre_post_comparison", "skill_graph_overlay"]
+          },
+          "description": "使用的分析工具"
+        },
+        "modifications_needed": {
+          "type": "array",
+          "description": "需要修改的内容",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module_affected": {
+                "type": "string"
+              },
+              "issue": {
+                "type": "string"
+              },
+              "recommendation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "field_trial": {
+      "type": "object",
+      "description": "场景评价（实地试验）",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "description": "评价目的"
+        },
+        "participant_count": {
+          "type": "number",
+          "description": "参与者数量（约30人）"
+        },
+        "environment": {
+          "type": "string",
+          "description": "评价环境描述"
+        },
+        "designer_role": {
+          "type": "string",
+          "description": "设计者角色（观察者）"
+        },
+        "data_collection": {
+          "type": "object",
+          "description": "数据收集",
+          "properties": {
+            "learner_achievement": {
+              "type": "string"
+            },
+            "learner_attitude": {
+              "type": "string"
+            },
+            "teacher_process": {
+              "type": "string"
+            },
+            "teacher_attitude": {
+              "type": "string"
+            },
+            "resources": {
+              "type": "string"
+            }
+          }
+        },
+        "modifications_needed": {
+          "type": "array",
+          "description": "需要修改的内容",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module_affected": {
+                "type": "string"
+              },
+              "issue": {
+                "type": "string"
+              },
+              "recommendation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "performance_context_evaluation": {
+      "type": "object",
+      "description": "应用环境下的形成性评价",
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "timing": {
+          "type": "string",
+          "description": "评价时机"
+        },
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "findings": {
+          "type": "string"
+        }
+      }
+    },
+    "overall_conclusions": {
+      "type": "string",
+      "description": "总体结论"
+    },
+    "next_steps": {
+      "type": "array",
+      "description": "下一步行动",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

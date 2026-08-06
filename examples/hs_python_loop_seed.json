@@ -1,0 +1,55 @@
+{
+  "project_id": "proj_hs_python_loop",
+  "metadata": {
+    "user_type": "高校教师",
+    "scene_type": "higher_ed",
+    "project_name": "Python循环结构教学设计",
+    "subject": "Python程序设计",
+    "grade_level": "大一/高职一年级",
+    "textbook": "Python编程基础（第3版）",
+    "session_info": "2课时，90分钟"
+  },
+  "sources": [],
+  "goal": {
+    "learner": "大学一年级或高职一年级学生",
+    "behavior": "能使用for循环和while循环解决实际编程问题，理解循环的执行流程和应用场景",
+    "context": "在计算机实验室或在线编程环境中，面对实际编程任务",
+    "tools": "Python集成开发环境（IDE）、计算机",
+    "full_statement": "大学一年级或高职一年级学生在计算机实验室中，面对实际编程任务，能使用for循环和while循环解决实际编程问题，理解循环的执行流程和应用场景，使用Python IDE完成代码编写和调试",
+    "scene_type": "higher_ed",
+    "performance_problem": "35%的学生在Python期末上机考核中，无法在规定时间内正确编写循环结构完成重复性任务",
+    "desired_state": "学生能运用for循环控制重复执行次数，遍历可迭代对象，并在循环体内使用break、continue控制流程",
+    "current_state": "学生知道循环这个词，但不会用循环简化重复操作",
+    "gap": "缺少从重复操作抽象为循环变量与序列的能力"
+  },
+  "learner_context_input": {
+    "class_duration": 90,
+    "class_size": 40,
+    "prior_knowledge": "学生了解Python基本语法，能编写简单的顺序结构程序",
+    "entry_skills": [
+      "理解变量和赋值",
+      "使用print输出",
+      "使用input获取输入",
+      "理解比较运算符"
+    ],
+    "common_difficulties": [
+      "for循环和while循环的使用场景混淆",
+      "循环变量的作用域不理解",
+      "break和continue的使用时机不明确"
+    ],
+    "available_media": [
+      "投影",
+      "计算机",
+      "在线编程平台"
+    ],
+    "devices": "保证一人一机",
+    "network": "有校园网",
+    "classroom_layout": "计算机实验室",
+    "motivation": "对实际编程任务较感兴趣",
+    "learning_preferences": [
+      "动手实践",
+      "案例学习",
+      "代码阅读"
+    ]
+  }
+}

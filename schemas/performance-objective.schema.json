@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/performance-objective.schema.json",
+  "title": "绩效目标",
+  "description": "Dick & Carey 模型模块4的输出：绩效目标数据结构（梅格三成分模型）",
+  "type": "object",
+  "required": ["objective_id", "condition", "behavior", "criteria", "full_statement", "linked_skill_id"],
+  "properties": {
+    "objective_id": {
+      "type": "string",
+      "description": "目标唯一标识符"
+    },
+    "objective_type": {
+      "type": "string",
+      "enum": ["terminal", "subordinate", "entry_skill"],
+      "description": "目标类型：学期目标、从属目标、入门技能目标"
+    },
+    "linked_skill_id": {
+      "type": "string",
+      "description": "关联的教学分析技能编号"
+    },
+    "condition": {
+      "type": "string",
+      "description": "条件：学习者完成任务时的条件和可用资源"
+    },
+    "behavior": {
+      "type": "string",
+      "description": "行为：学习者能够做什么"
+    },
+    "criteria": {
+      "type": "string",
+      "description": "标准：判断完成情况的标准"
+    },
+    "full_statement": {
+      "type": "string",
+      "description": "完整的目标陈述语句"
+    },
+    "learning_type": {
+      "type": "string",
+      "enum": ["verbal_information", "intellectual_skill", "psychomotor_skill", "attitude"],
+      "description": "学习类型"
+    },
+    "behavior_verb": {
+      "type": "string",
+      "description": "行为动词（必须可观测）"
+    },
+    "is_observable": {
+      "type": "boolean",
+      "description": "行为动词是否可观测"
+    },
+    "condition_functions": {
+      "type": "array",
+      "description": "条件的功能类型",
+      "items": {
+        "type": "string",
+        "enum": ["recall_clue", "resource_material", "complexity_control", "real_context"]
+      }
+    },
+    "criteria_type": {
+      "type": "string",
+      "enum": ["correctness", "completeness", "time_limit", "quality", "safety"],
+      "description": "标准类型"
+    },
+    "mastery_level": {
+      "type": "string",
+      "description": "掌握水平说明"
+    },
+    "assessment_link": {
+      "type": "string",
+      "description": "关联的评价证据编号"
+    },
+    "teacher_confirmed": {
+      "type": "boolean",
+      "description": "是否经过教师确认"
+    },
+    "confirmation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "确认日期"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "reports": [
+    {
+      "name": "教学系统设计范例.docx",
+      "structural": {
+        "size": 281319,
+        "tables": 258,
+        "drawings": 4,
+        "sections": [
+          {
+            "width_twips": 11906,
+            "height_twips": 16838,
+            "orientation": "portrait",
+            "margins_twips": {
+              "top": 1440,
+              "right": 1800,
+              "bottom": 1440,
+              "left": 1800
+            }
+          },
+          {
+            "width_twips": 11906,
+            "height_twips": 16838,
+            "orientation": "portrait",
+            "margins_twips": {
+              "top": 1440,
+              "right": 1800,
+              "bottom": 1440,
+              "left": 1800
+            }
+          },
+          {
+            "width_twips": 16838,
+            "height_twips": 11906,
+            "orientation": "landscape",
+            "margins_twips": {
+              "top": 1800,
+              "right": 1440,
+              "bottom": 1800,
+              "left": 1440
+            }
+          },
+          {
+            "width_twips": 16838,
+            "height_twips": 11906,
+            "orientation": "landscape",
+            "margins_twips": {
+              "top": 1800,
+              "right": 1440,
+              "bottom": 1800,
+              "left": 1440
+            }
+          }
+        ],
+        "font_families": [
+          "Segoe UI",
+          "Times New Roman",
+          "宋体"
+        ],
+        "min_font_half_points": 18
+      },
+      "render": {
+        "status": "fail",
+        "page_count": 82,
+        "errors": [
+          "发现疑似空白页: page-37.png"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "Python分支结构教学系统设计报告.docx",
+      "structural": {
+        "size": 320401,
+        "tables": 402,
+        "drawings": 4,
+        "sections": [
+          {
+            "width_twips": 11906,
+            "height_twips": 16838,
+            "orientation": "portrait",
+            "margins_twips": {
+              "top": 1440,
+              "right": 1800,
+              "bottom": 1440,
+              "left": 1800
+            }
+          },
+          {
+            "width_twips": 16838,
+            "height_twips": 11906,
+            "orientation": "landscape",
+            "margins_twips": {
+              "top": 1800,
+              "right": 1440,
+              "bottom": 1800,
+              "left": 1440
+            }
+          },
+          {
+            "width_twips": 16838,
+            "height_twips": 11906,
+            "orientation": "landscape",
+            "margins_twips": {
+              "top": 1800,
+              "right": 1440,
+              "bottom": 1800,
+              "left": 1440
+            }
+          },
+          {
+            "width_twips": 16838,
+            "height_twips": 11906,
+            "orientation": "landscape",
+            "margins_twips": {
+              "top": 1800,
+              "right": 1440,
+              "bottom": 1800,
+              "left": 1440
+            }
+          }
+        ],
+        "font_families": [
+          "Courier New",
+          "Segoe UI",
+          "Times New Roman",
+          "宋体",
+          "等线"
+        ],
+        "min_font_half_points": 21
+      },
+      "render": {
+        "status": "pass",
+        "page_count": 104,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ]
+}
