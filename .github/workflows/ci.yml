@@ -23,12 +23,19 @@ jobs:
       - run: python scripts/web_smoke.py
       - run: python -m pytest -q
       - run: python scripts/package_release.py --output-dir artifacts/dist
-      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.1.zip --timeout 360
+      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.2.zip --timeout 360
 
   windows-visual:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install visual QA tools
+        shell: pwsh
+        run: |
+          choco install libreoffice poppler -y --no-progress
+          $env:Path = "C:\Program Files\LibreOffice\program;C:\ProgramData\chocolatey\bin;$env:Path"
+          "Path=$env:Path" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "SOFFICE_PATH=C:\Program Files\LibreOffice\program\soffice.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"

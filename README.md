@@ -111,7 +111,7 @@ MIT License
 python scripts/doctor.py
 python scripts/acceptance_cases.py
 python scripts/package_release.py
-python scripts/clean_install_smoke.py --archive dist/dc-designer-core-v1.1.1.zip
+python scripts/clean_install_smoke.py --archive dist/dc-designer-core-v1.1.2.zip
 ```
 
 `acceptance_cases.py` 使用匿名合成请求验证初中分支、高中循环和小学算法三个场景；它不会导入或生成真实学生数据。`clean_install_smoke.py` 会将压缩包解压到临时目录，并在包外建立教师工作区，验证安装包不依赖开发者目录。
