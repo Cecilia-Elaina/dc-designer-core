@@ -44,13 +44,23 @@ def find_soffice() -> str:
 
 
 def find_pdftoppm() -> str:
-    command = shutil.which("pdftoppm") or ""
-    if command and Path(command).suffix.lower() == ".cmd":
-        wrapper = Path(command).resolve()
-        native = wrapper.parents[2] / "native" / "poppler" / "Library" / "bin" / "pdftoppm.exe"
-        if native.is_file():
-            return str(native)
-    return command
+    candidates = [
+        os.environ.get("PDFTOPPM_PATH", ""),
+        shutil.which("pdftoppm") or "",
+    ]
+    for candidate in candidates:
+        if not candidate:
+            continue
+        target = Path(candidate)
+        if not target.is_file():
+            continue
+        if target.suffix.lower() == ".cmd":
+            wrapper = target.resolve()
+            native = wrapper.parents[2] / "native" / "poppler" / "Library" / "bin" / "pdftoppm.exe"
+            if native.is_file():
+                return str(native)
+        return str(target.resolve())
+    return ""
 
 
 def inspect_docx_structure(path: str | Path) -> dict:

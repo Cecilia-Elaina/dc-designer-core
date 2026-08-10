@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from unittest.mock import patch
 import sys
 import tempfile
@@ -23,7 +24,7 @@ from core.standards_catalog import (
     load_builtin_snapshot,
     load_catalog,
 )
-from core.visual_qa import inspect_docx_structure, inspect_drawio
+from core.visual_qa import find_pdftoppm, inspect_docx_structure, inspect_drawio
 from scripts.dc_web import Handler
 from scripts.doctor import build_report
 from scripts.release_check import run_check
@@ -167,6 +168,15 @@ class TestDrawioPageValidation(unittest.TestCase):
             path.write_text(xml, encoding="utf-8")
             result = inspect_drawio(path)
         self.assertEqual(result["status"], "pass")
+
+
+class TestVisualToolResolution(unittest.TestCase):
+    def test_pdftoppm_uses_explicit_environment_path(self):
+        with tempfile.TemporaryDirectory() as temp:
+            executable = Path(temp) / "pdftoppm.exe"
+            executable.write_bytes(b"probe")
+            with patch.dict(os.environ, {"PDFTOPPM_PATH": str(executable)}), patch("core.visual_qa.shutil.which", return_value=""):
+                self.assertEqual(find_pdftoppm(), str(executable.resolve()))
 
 
 class TestLocalDeletionBoundaries(unittest.TestCase):
