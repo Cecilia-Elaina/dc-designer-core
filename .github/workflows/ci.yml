@@ -23,7 +23,7 @@ jobs:
       - run: python scripts/web_smoke.py
       - run: python -m pytest -q
       - run: python scripts/package_release.py --output-dir artifacts/dist
-      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.4.zip --timeout 360
+      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.5.zip --timeout 360
 
   windows-visual:
     runs-on: windows-latest
@@ -33,17 +33,18 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          choco install libreoffice poppler -y --no-progress
+          choco install libreoffice -y --no-progress
           $sofficeCommand = Get-Command soffice -ErrorAction SilentlyContinue
           $soffice = if ($sofficeCommand) { Get-Item -LiteralPath $sofficeCommand.Source -ErrorAction SilentlyContinue } else { $null }
           if (-not $soffice) {
             $soffice = Get-ChildItem -Path "C:\Program Files", "C:\Program Files (x86)" -Filter "soffice.exe" -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
           }
-          $pdftoppmCommand = Get-Command pdftoppm -ErrorAction SilentlyContinue
-          $pdftoppm = if ($pdftoppmCommand) { Get-Item -LiteralPath $pdftoppmCommand.Source -ErrorAction SilentlyContinue } else { $null }
-          if (-not $pdftoppm) {
-            $pdftoppm = Get-ChildItem -Path "C:\ProgramData\chocolatey\lib" -Filter "pdftoppm.exe" -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-          }
+          $popplerVersion = "26.02.0-0"
+          $popplerArchive = Join-Path $env:RUNNER_TEMP "Release-$popplerVersion.zip"
+          $popplerRoot = Join-Path $env:RUNNER_TEMP "poppler"
+          Invoke-WebRequest -Uri "https://github.com/oschwartz10612/poppler-windows/releases/download/v$popplerVersion/Release-$popplerVersion.zip" -OutFile $popplerArchive
+          Expand-Archive -Path $popplerArchive -DestinationPath $popplerRoot -Force
+          $pdftoppm = Get-ChildItem -Path $popplerRoot -Filter "pdftoppm.exe" -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
           if (-not $soffice) { throw "LibreOffice executable was not found after installation." }
           if (-not $pdftoppm) { throw "Poppler pdftoppm executable was not found after installation." }
           $toolDirs = @($soffice.DirectoryName, $pdftoppm.DirectoryName, "C:\ProgramData\chocolatey\bin") | Where-Object { $_ }

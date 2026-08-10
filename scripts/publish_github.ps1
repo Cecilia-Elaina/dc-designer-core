@@ -4,7 +4,7 @@ param(
     [string]$RepositoryUrl,
 
     [string]$Branch = "master",
-    [string]$Tag = "v1.1.4",
+    [string]$Tag = "v1.1.5",
     [switch]$DryRun
 )
 
