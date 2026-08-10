@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install visual QA tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice poppler-utils fonts-noto-cjk
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -19,7 +23,7 @@ jobs:
       - run: python scripts/web_smoke.py
       - run: python -m pytest -q
       - run: python scripts/package_release.py --output-dir artifacts/dist
-      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.0.zip --timeout 360
+      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.1.zip --timeout 360
 
   windows-visual:
     runs-on: windows-latest

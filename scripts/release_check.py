@@ -49,8 +49,6 @@ def run_check() -> dict:
     if isinstance(plugin, dict):
         if plugin.get("name") != "dc-designer-core":
             errors.append("Codex 插件名称必须为 dc-designer-core")
-        if plugin.get("version") != "1.1.0":
-            warnings.append(f"插件当前版本为 {plugin.get('version')}，预期发布版本为 1.1.0")
         if plugin.get("skills") != "./skills/":
             errors.append("Codex manifest 的 skills 必须指向 ./skills/")
         manifest_text = json.dumps(plugin, ensure_ascii=False)

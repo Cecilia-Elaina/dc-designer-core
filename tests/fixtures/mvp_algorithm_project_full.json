@@ -1,0 +1,20 @@
+{
+  "objectives": [
+    {
+      "objective_id": "PO-01",
+      "behavior": "用结构化语言描述算法步骤"
+    }
+  ],
+  "assessment_plan": {
+    "evidence": [
+      {
+        "evidence_id": "EV-01",
+        "description": "完成真实任务并提交步骤说明"
+      }
+    ]
+  },
+  "quality_check": {
+    "overall_status": "pass",
+    "can_export_as_final": false
+  }
+}

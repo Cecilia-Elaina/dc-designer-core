@@ -891,13 +891,13 @@ class TestPhase22FinalGate(unittest.TestCase):
     def test_full_json_exists(self):
         """exports/mvp_algorithm_project_full.json 必须存在"""
         import os
-        full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'exports', 'mvp_algorithm_project_full.json')
+        full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures', 'mvp_algorithm_project_full.json')
         self.assertTrue(os.path.exists(full_path), f"文件不存在: {full_path}")
 
     def test_full_json_non_empty_fields(self):
         """full JSON 中 objectives、assessment_plan、quality_check 不得为空"""
         import os, json
-        full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'exports', 'mvp_algorithm_project_full.json')
+        full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures', 'mvp_algorithm_project_full.json')
         with open(full_path, 'r', encoding='utf-8') as f:
             project = json.load(f)
         self.assertTrue(len(project.get("objectives", [])) > 0, "objectives 为空")

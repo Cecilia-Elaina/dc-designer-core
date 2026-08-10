@@ -1,6 +1,6 @@
 {
   "name": "dc-designer-core",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "面向中国 K12 信息科技教师的本地化 Dick–Carey 教学系统设计 Codex 插件，提供课标证据追溯、可恢复协同设计和教师可读的 Word/Draw.io 导出。",
   "author": {
     "name": "dc-designer-core contributors"

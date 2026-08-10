@@ -100,6 +100,11 @@ def main() -> int:
         output = Path(args.json_output).expanduser().resolve()
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8")
+        except (AttributeError, OSError, ValueError):
+            pass
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 1 if report["status"] == "fail" else 0
 

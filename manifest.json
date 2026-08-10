@@ -1,6 +1,6 @@
 {
   "name": "dc-designer-core",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "面向中国 K12 信息科技/信息技术教师的 Dick–Carey 教学系统设计插件",
   "type": "plugin",
   "model": "Dick & Carey Instructional Systems Design Model",
