@@ -6,6 +6,8 @@ __pycache__/
 .npm-cache/
 .playwright-local/
 .playwright-browsers/
+.playwright-cli/
+output/
 .test-web-workspace/
 .dc-designer/
 exports/

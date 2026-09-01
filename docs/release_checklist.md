@@ -3,6 +3,7 @@
 ## 产品与范围
 
 - [ ] `.codex-plugin/plugin.json` 版本、名称、三个公开 Skill 和说明一致。
+- [ ] `.agents/plugins/marketplace.json` 指向正确的 GitHub 插件仓库根目录。
 - [ ] 仅支持中国大陆 K12 信息科技/信息技术，其他范围返回 `unsupported_scope`。
 - [ ] README、快速开始、隐私和依赖说明完整。
 
@@ -25,7 +26,8 @@
 - [ ] `python scripts/doctor.py` 通过核心检查。
 - [ ] `python scripts/release_check.py` 通过。
 - [ ] `python scripts/package_release.py` 生成版本压缩包、SHA256 和清单。
-- [ ] 解压到干净目录后仍能运行 `scripts/dc_info_tech.py` 和 `scripts/dc_web.py`。
+- [ ] 解压到干净目录后仍能运行 `scripts/dc_info_tech.py`；官网静态文件可独立预览。
+- [ ] GitHub Pages 工作流能够从 `site/` 生成公开站点。
 - [ ] 未把 `exports/`、参考报告、测试缓存或教师资料打入压缩包。
 
 ## 干净环境与三案例

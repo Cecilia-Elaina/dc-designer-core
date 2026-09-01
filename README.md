@@ -50,16 +50,15 @@ python scripts/dc_info_tech.py revise --project <project.json> --feedback-file <
 python scripts/dc_info_tech.py knowledge-ingest --path <teacher-file> --metadata-json '{"subject":"信息科技"}'
 ```
 
-## 本地工作台
+## 产品官网
 
-不使用 Codex 对话时，可以启动本机教师工作台：
+官网是插件的产品介绍、安装引导和公开文档入口，不承载教学设计工作台。公开站点源码位于 `site/`，通过 GitHub Pages 发布；本地预览可以运行：
 
 ```text
-python scripts/doctor.py
-python scripts/dc_web.py --port 8765
+python -m http.server 4173 --directory site
 ```
 
-浏览器打开 `http://127.0.0.1:8765/`。工作台支持新建设计、阶段进度、确认或修改决策、暂停继续、版本回退、来源查看、官方文件待审核更新以及本机项目删除。服务只绑定回环地址，不上传教师文件，也不要求账号。
+浏览器打开 `http://127.0.0.1:4173/`。官网的“复制给 Codex”按钮会提供 GitHub marketplace 导入指令，实际安装仍受 Codex 工作区权限和管理员设置控制。
 
 ## 环境与安装
 
@@ -71,7 +70,7 @@ python scripts/dc_web.py --port 8765
 
 ## 官方来源与更新
 
-内置库是带快照编号的官方来源元数据和短条款候选，不复制受限全文。每条来源包含发布机构、日期、版本、链接、页码或条款定位、适用学段和用途。教师可通过对话入口或本地工作台获取教育部/政府官方链接；在线文件只会进入 `.dc-designer/knowledge/official/updates.json` 的待审核区，教师确认并补齐元数据后才会进入本机活动目录。
+内置库是带快照编号的官方来源元数据和短条款候选，不复制受限全文。每条来源包含发布机构、日期、版本、链接、页码或条款定位、适用学段和用途。教师可通过插件对话获取教育部/政府官方链接；在线文件只会进入 `.dc-designer/knowledge/official/updates.json` 的待审核区，教师确认并补齐元数据后才会进入本机活动目录。
 
 ## 隐私与产品边界
 
@@ -89,6 +88,7 @@ python scripts/release_check.py
 
 ```text
 .codex-plugin/       Codex 官方插件清单
+.agents/plugins/     Codex GitHub marketplace 清单
 skills/              三个公开 Skill
 scripts/             本地 Skill 入口
 mcp-server/core/     范围、证据、知识库、质量和路径核心
@@ -97,6 +97,7 @@ data/standards/      官方来源元数据和条款候选
 schemas/             v1 项目与技能图合同
 docs/                审计、复用矩阵、插件合同
 tests/               回归与 v1 端到端验收
+site/                产品官网静态页面
 ```
 
 ## 许可

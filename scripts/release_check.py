@@ -12,11 +12,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = [
     ".codex-plugin/plugin.json",
+    ".agents/plugins/marketplace.json",
     "README.md",
     "LICENSE",
     ".mcp.json",
     "scripts/dc_info_tech.py",
-    "scripts/dc_web.py",
+    "site/index.html",
+    "site/styles.css",
+    "site/site.js",
     "data/standards/k12/official_snapshot.json",
 ]
 REQUIRED_SKILLS = [
@@ -90,8 +93,8 @@ def run_check() -> dict:
                         errors.append(f"source {source.get('source_id', '')} clause {clause.get('clause_id', '')} missing {key}")
             if source.get("content_hash_status") not in {None, "", "metadata_snapshot_only", "retrieved", "not_recorded"}:
                 errors.append(f"official source {source.get('source_id', '')} has unknown content_hash_status")
-    scan_files = [ROOT / "README.md", ROOT / "manifest.json", ROOT / ".codex-plugin/plugin.json"]
-    scan_files += [ROOT / "docs", ROOT / "skills", ROOT / "qa"]
+    scan_files = [ROOT / "README.md", ROOT / "manifest.json", ROOT / ".codex-plugin/plugin.json", ROOT / ".agents"]
+    scan_files += [ROOT / "docs", ROOT / "skills", ROOT / "qa", ROOT / "site"]
     for item in scan_files:
         paths = [item] if item.is_file() else list(item.rglob("*")) if item.is_dir() else []
         for path in paths:

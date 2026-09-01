@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_VERSION = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8")).get("version", "0.0.0")
-INCLUDE_DIRS = [".codex-plugin", "skills", "scripts", "mcp-server", "data/standards", "schemas", "templates", "web", "docs", "examples"]
+INCLUDE_DIRS = [".agents/plugins", ".codex-plugin", "skills", "scripts", "mcp-server", "data/standards", "schemas", "templates", "site", "docs", "examples"]
 INCLUDE_FILES = ["README.md", "LICENSE", "manifest.json", ".mcp.json", "requirements-core.txt", "requirements-mcp.txt", "requirements-dev.txt", "requirements-qa.txt", "qa/reference_profile.json"]
 EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".test-home", ".dc-designer", "exports", "dist", "test_fixtures"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}

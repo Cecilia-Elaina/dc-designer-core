@@ -25,13 +25,13 @@ python scripts/doctor.py
 
 系统会先展示官方依据候选和来源层级。教学目的、入门技能、学情、课时设备和教学策略等关键内容必须由教师确认或修改；“条款候选”不等同于最终依据。
 
-## 3. 启动本地工作台
+## 3. 查看产品官网
 
 ```text
-python scripts/dc_web.py --port 8765
+python -m http.server 4173 --directory site
 ```
 
-打开 `http://127.0.0.1:8765/`。项目、版本、导出文件和本机知识库都位于教师工作区，默认是 `%USERPROFILE%\\.dc-designer`。
+打开 `http://127.0.0.1:4173/`。官网用于了解产品、复制 Codex 安装指令和跳转 GitHub；教学设计通过 Codex 插件入口完成。
 
 ## 4. 导入教师资料
 

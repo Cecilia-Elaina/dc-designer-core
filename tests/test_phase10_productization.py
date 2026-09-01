@@ -25,7 +25,6 @@ from core.standards_catalog import (
     load_catalog,
 )
 from core.visual_qa import find_pdftoppm, inspect_docx_structure, inspect_drawio
-from scripts.dc_web import Handler
 from scripts.doctor import build_report
 from scripts.release_check import run_check
 
@@ -217,56 +216,6 @@ class TestLocalDeletionBoundaries(unittest.TestCase):
             result = delete_local_source("local-test-source", temp)
         self.assertEqual(result["status"], "deleted")
         self.assertTrue(result["snapshot"]["path"])
-
-
-class TestLocalWebContracts(unittest.TestCase):
-    def test_web_api_exposes_health_and_session_project_routes(self):
-        class Server:
-            workspace = None
-
-        handler = Handler.__new__(Handler)
-        handler.server = Server()
-        with tempfile.TemporaryDirectory() as temp:
-            handler.server.workspace = temp
-            health_status, health = handler._api("GET", "health")
-            projects_status, projects = handler._api("GET", "projects")
-            create_status, created = handler._api(
-                "POST",
-                "projects",
-                {
-                    "education_scope": "k12_info_technology",
-                    "mode": "standard_fast",
-                    "stage": "junior_secondary",
-                    "grade": "七年级",
-                    "subject": "信息科技",
-                    "topic": "算法",
-                    "class_profile": {"class_size": 40},
-                },
-            )
-            session_id = created["session"]["session_id"]
-            session_status, session = handler._api("GET", f"sessions/{session_id}")
-        self.assertEqual(health_status, 200)
-        self.assertIn("workspace", health)
-        self.assertEqual(projects_status, 200)
-        self.assertIn("sessions", projects)
-        self.assertEqual(create_status, 200)
-        self.assertEqual(session_status, 200)
-        self.assertEqual(session["session_id"], session_id)
-
-    def test_web_api_exposes_sources_history_and_private_knowledge(self):
-        class Server:
-            workspace = None
-
-        handler = Handler.__new__(Handler)
-        handler.server = Server()
-        with tempfile.TemporaryDirectory() as temp:
-            handler.server.workspace = temp
-            status, sources = handler._api("GET", "sources")
-            knowledge_status, knowledge = handler._api("GET", "knowledge")
-        self.assertEqual(status, 200)
-        self.assertIn("source_history", sources)
-        self.assertEqual(knowledge_status, 200)
-        self.assertIn("matches", knowledge)
 
 
 class TestVisualGateContracts(unittest.TestCase):
