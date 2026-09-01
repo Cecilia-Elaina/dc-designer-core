@@ -58,9 +58,28 @@ class TestPublicSiteAssets(unittest.TestCase):
         for section_id in ("approach", "workflow", "evidence", "outputs", "install"):
             self.assertIn(f'id="{section_id}"', html)
         self.assertEqual(html.count('class="flow-stage"'), 10)
+        self.assertEqual(html.count('class="stage-note"'), 10)
+        self.assertEqual(html.count('tabindex="0"'), 10)
         self.assertIn('class="implementation-rail"', html)
+        self.assertIn('data-principle-visual', html)
+        self.assertIn('data-work-mode', html)
+        self.assertEqual(html.count('data-disclosure-button'), 2)
+        self.assertIn('id="principle-map"', html)
+        self.assertIn('id="work-mode-options"', html)
         self.assertIn('class="evidence-chain"', html)
         self.assertEqual(html.count('class="evidence-node'), 4)
+        for evidence_class in ("evidence-node-official", "evidence-node-teacher", "evidence-node-context", "evidence-node-confirm"):
+            self.assertIn(evidence_class, html)
+        self.assertIn('class="evidence-gate"', html)
+        self.assertNotIn('class="evidence-status"', html)
+        self.assertIn('class="graph-trunk"', html)
+        self.assertIn('class="graph-rail"', html)
+        self.assertEqual(html.count('class="graph-drop '), 3)
+        self.assertNotIn('graph-connector', html)
+        self.assertIn('class="report-showcase-card', html)
+        self.assertNotIn('INSTALL PROMPT', html)
+        self.assertIn('class="github-icon"', html)
+        self.assertNotIn("GitHub ↗", html)
 
     def test_model_and_evidence_copy_are_teacher_facing(self):
         html = (SITE / "index.html").read_text(encoding="utf-8")

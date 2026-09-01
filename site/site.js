@@ -47,6 +47,19 @@ async function copyInstallPrompt(event) {
 
 document.querySelectorAll("[data-copy-install]").forEach((button) => button.addEventListener("click", copyInstallPrompt));
 
+document.querySelectorAll("[data-disclosure-button]").forEach((button) => {
+  const panel = document.getElementById(button.getAttribute("aria-controls"));
+  const owner = button.closest("[data-principle-visual], [data-work-mode]");
+  if (!panel || !owner) return;
+  panel.setAttribute("aria-hidden", "true");
+  button.addEventListener("click", () => {
+    const open = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!open));
+    panel.setAttribute("aria-hidden", String(open));
+    owner.classList.toggle("is-open", !open);
+  });
+});
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileNav = document.querySelector("#mobile-nav");
 if (menuToggle && mobileNav) {

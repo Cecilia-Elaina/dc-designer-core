@@ -31,7 +31,7 @@ python scripts/doctor.py
 python -m http.server 4173 --directory site
 ```
 
-打开 `http://127.0.0.1:4173/`。官网用于了解产品、复制 Codex 安装指令和跳转 GitHub；教学设计通过 Codex 插件入口完成。
+打开 `http://127.0.0.1:4173/`。如果该端口已被占用，可改用 `python -m http.server 4174 --directory site` 并打开 `http://127.0.0.1:4174/`。官网用于了解产品、复制 Codex 安装指令和跳转 GitHub；教学设计通过 Codex 插件入口完成。
 
 ## 4. 导入教师资料
 

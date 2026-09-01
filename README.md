@@ -58,7 +58,7 @@ python scripts/dc_info_tech.py knowledge-ingest --path <teacher-file> --metadata
 python -m http.server 4173 --directory site
 ```
 
-浏览器打开 `http://127.0.0.1:4173/`。官网的“复制给 Codex”按钮会提供 GitHub marketplace 导入指令，实际安装仍受 Codex 工作区权限和管理员设置控制。
+浏览器打开 `http://127.0.0.1:4173/`；如果该端口已被其他本地项目占用，可改用 `python -m http.server 4174 --directory site`，然后打开 `http://127.0.0.1:4174/`。官网的“复制给 Codex”按钮会提供 GitHub marketplace 导入指令，实际安装仍受 Codex 工作区权限和管理员设置控制。
 
 ## 环境与安装
 

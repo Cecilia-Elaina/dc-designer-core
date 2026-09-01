@@ -48,7 +48,8 @@
             <span>复制给 Codex</span>
           </button>
           <a class="button button-line" href="https://github.com/Cecilia-Elaina/dc-designer-core" target="_blank" rel="noreferrer">
-            查看 GitHub <span aria-hidden="true">↗</span>
+            <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.04 1.77 2.73 1.26 3.4.96.1-.75.4-1.26.74-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.79 1.08.79 2.18v3.22c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            查看 GitHub
           </a>
         </div>
         <p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p>
@@ -96,26 +97,45 @@
       <div class="method-overview">
         <div class="principles reveal">
           <div class="block-label">设计理念</div>
-          <p class="principle-lede">教学设计的起点不是一份模板，而是学习者需要完成的真实表现。</p>
-          <div class="principle-list">
-            <div class="principle-item"><span>01</span><div><strong>从需求出发</strong><p>先看绩效差距，再确定教学目的。</p></div></div>
-            <div class="principle-item"><span>02</span><div><strong>让目标可观察</strong><p>把目标写成学习者能够完成的行为。</p></div></div>
-            <div class="principle-item"><span>03</span><div><strong>用证据推动修订</strong><p>让评价结果回到策略、材料和课堂。</p></div></div>
+          <div class="principle-visual" data-principle-visual>
+            <button class="principle-core" type="button" data-disclosure-button aria-expanded="false" aria-controls="principle-map">
+              <span class="principle-core-label">DESIGN START</span>
+              <strong>真实表现</strong>
+              <small>教学设计的起点</small>
+              <span class="principle-toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="principle-map" id="principle-map">
+              <div class="principle-link principle-link-a"><span>01</span><strong>从需求出发</strong><small>先看绩效差距</small></div>
+              <div class="principle-link principle-link-b"><span>02</span><strong>让目标可观察</strong><small>写出完成行为</small></div>
+              <div class="principle-link principle-link-c"><span>03</span><strong>用证据推动修订</strong><small>回到策略与课堂</small></div>
+              <i class="principle-connector principle-connector-a" aria-hidden="true"></i>
+              <i class="principle-connector principle-connector-b" aria-hidden="true"></i>
+              <i class="principle-connector principle-connector-c" aria-hidden="true"></i>
+            </div>
           </div>
+          <p class="principle-caption">教学设计的起点不是一份模板，而是学习者需要完成的真实表现。</p>
         </div>
         <div class="design-paths reveal reveal-delay-1">
-          <div class="block-label">两种进入方式</div>
-          <div class="path-list">
-            <article class="path-row">
-              <span class="path-number">01</span>
-              <div><p class="path-label">STANDARD FAST</p><h3>课标约束快速设计</h3><p>输入课题、教材位置、课时、设备和匿名班级共性学情。插件检索依据，快速搭建一份教师可以继续确认的系统设计。</p></div>
-              <span class="path-arrow" aria-hidden="true">↗</span>
-            </article>
-            <article class="path-row">
-              <span class="path-number">02</span>
-              <div><p class="path-label">COLLABORATIVE</p><h3>完整协同设计</h3><p>从评价需求和绩效差距开始，一阶段一阶段地提问、比较候选、保存决策，再继续向下设计。</p></div>
-              <span class="path-arrow" aria-hidden="true">↗</span>
-            </article>
+          <div class="block-label">工作方式</div>
+          <div class="work-mode-visual" data-work-mode>
+            <button class="work-mode-core" type="button" data-disclosure-button aria-expanded="false" aria-controls="work-mode-options">
+              <span class="work-mode-label">WORK MODE</span>
+              <strong>选择你的工作方式</strong>
+              <small>从一个课题开始，逐步走向课堂</small>
+              <span class="work-mode-toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="work-mode-options" id="work-mode-options">
+              <article class="work-mode-option">
+                <span class="path-number">01</span>
+                <div><p class="path-label">STANDARD FAST</p><h3>课标约束快速设计</h3><p>输入课题、教材位置、课时、设备和匿名班级共性学情。插件检索依据，快速搭建一份教师可以继续确认的系统设计。</p></div>
+                <span class="path-arrow" aria-hidden="true">↗</span>
+              </article>
+              <article class="work-mode-option">
+                <span class="path-number">02</span>
+                <div><p class="path-label">COLLABORATIVE</p><h3>完整协同设计</h3><p>从评价需求和绩效差距开始，一阶段一阶段地提问、比较候选、保存决策，再继续向下设计。</p></div>
+                <span class="path-arrow" aria-hidden="true">↗</span>
+              </article>
+            </div>
           </div>
         </div>
       </div>
@@ -128,21 +148,21 @@
           </div>
           <p>每个阶段都留下下一阶段需要的输入。形成性评价和修订把流程重新连回需求与目的。</p>
         </div>
-        <div class="flow-map" role="img" aria-label="Dick–Carey 教学系统设计流程图：从评价需求与教学目的开始，经过教学分析、学习者与环境分析、绩效目标、评价工具、教学策略、教学材料、形成性评价和修订教学，最后进行总结性评价，并由反馈回到需求与目的。">
+        <div class="flow-map" role="group" aria-label="Dick–Carey 教学系统设计流程图：从评价需求与教学目的开始，经过教学分析、学习者与环境分析、绩效目标、评价工具、教学策略、教学材料、形成性评价和修订教学，最后进行总结性评价，并由反馈回到需求与目的。">
           <div class="flow-row flow-row-top">
-            <article class="flow-stage"><span>01</span><strong>评价需求</strong><small>确定教学目的</small></article><b class="flow-arrow" aria-hidden="true">→</b>
-            <article class="flow-stage"><span>02</span><strong>教学分析</strong><small>拆解技能路径</small></article><b class="flow-arrow" aria-hidden="true">→</b>
-            <article class="flow-stage"><span>03</span><strong>学习者与环境</strong><small>看见真实情境</small></article><b class="flow-arrow" aria-hidden="true">→</b>
-            <article class="flow-stage"><span>04</span><strong>绩效目标</strong><small>写出可观察行为</small></article><b class="flow-arrow" aria-hidden="true">→</b>
-            <article class="flow-stage"><span>05</span><strong>评价工具</strong><small>决定学习证据</small></article>
+            <article class="flow-stage" tabindex="0"><span>01</span><strong>评价需求</strong><small>确定教学目的</small><div class="stage-note"><strong>这一步做什么</strong><p>确认要解决的绩效问题，并把最终表现写成教学目的。</p></div></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage" tabindex="0"><span>02</span><strong>教学分析</strong><small>拆解技能路径</small><div class="stage-note"><strong>这一步做什么</strong><p>拆解完成目的所需的主要步骤、从属技能和入门技能。</p></div></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage" tabindex="0"><span>03</span><strong>学习者与环境</strong><small>看见真实情境</small><div class="stage-note"><strong>这一步做什么</strong><p>分析学习者特征、先备能力、学习环境和应用环境。</p></div></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage" tabindex="0"><span>04</span><strong>绩效目标</strong><small>写出可观察行为</small><div class="stage-note"><strong>这一步做什么</strong><p>用条件、行为和标准描述可观察、可评价的学习结果。</p></div></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage" tabindex="0"><span>05</span><strong>评价工具</strong><small>决定学习证据</small><div class="stage-note"><strong>这一步做什么</strong><p>设计能够证明学习者达成目标的任务、量规和评价工具。</p></div></article>
           </div>
           <div class="flow-turn" aria-hidden="true"><span>↓</span><small>证据进入课堂</small></div>
           <div class="flow-row flow-row-bottom">
-            <article class="flow-stage"><span>10</span><strong>总结性评价</strong><small>检验整体效果</small></article><b class="flow-arrow" aria-hidden="true">←</b>
-            <article class="flow-stage"><span>09</span><strong>修订教学</strong><small>依据反馈更新</small></article><b class="flow-arrow" aria-hidden="true">←</b>
-            <article class="flow-stage"><span>08</span><strong>形成性评价</strong><small>小范围验证材料</small></article><b class="flow-arrow" aria-hidden="true">←</b>
-            <article class="flow-stage"><span>07</span><strong>教学材料</strong><small>组织课堂资源</small></article><b class="flow-arrow" aria-hidden="true">←</b>
-            <article class="flow-stage"><span>06</span><strong>教学策略</strong><small>安排呈现与练习</small></article>
+            <article class="flow-stage" tabindex="0"><span>10</span><strong>总结性评价</strong><small>检验整体效果</small><div class="stage-note"><strong>这一步做什么</strong><p>在更完整的教学情境中检验整体教学系统的效果。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage" tabindex="0"><span>09</span><strong>修订教学</strong><small>依据反馈更新</small><div class="stage-note"><strong>这一步做什么</strong><p>根据形成性评价证据修订目标、策略、材料和评价。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage" tabindex="0"><span>08</span><strong>形成性评价</strong><small>小范围验证材料</small><div class="stage-note"><strong>这一步做什么</strong><p>通过一对一或小组试用，发现学习困难和材料问题。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage" tabindex="0"><span>07</span><strong>教学材料</strong><small>组织课堂资源</small><div class="stage-note"><strong>这一步做什么</strong><p>开发或选择教师手册、学习单、示例和课堂评价材料。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage" tabindex="0"><span>06</span><strong>教学策略</strong><small>安排呈现与练习</small><div class="stage-note"><strong>这一步做什么</strong><p>安排信息呈现、学习者参与、练习、反馈和课堂时间。</p></div></article>
           </div>
           <div class="flow-return"><span class="return-line" aria-hidden="true"></span><strong>形成性反馈</strong><span>↺ 回到需求与目的</span></div>
         </div>
@@ -178,15 +198,19 @@
           <div class="evidence-chain-wrap reveal">
             <div class="block-label light-label">来源如何进入设计</div>
             <div class="evidence-chain" role="img" aria-label="证据链：官方课标、教师资料、课堂情境经过教师确认，进入教学决策。">
-              <div class="evidence-node"><span>01</span><strong>官方课标</strong><small>文件与适用范围</small></div>
+              <div class="evidence-node evidence-node-official"><span>01</span><strong>官方课标</strong><small>文件与适用范围</small></div>
               <b aria-hidden="true">→</b>
-              <div class="evidence-node"><span>02</span><strong>教师资料</strong><small>校本与个人经验</small></div>
+              <div class="evidence-node evidence-node-teacher"><span>02</span><strong>教师资料</strong><small>校本与个人经验</small></div>
               <b aria-hidden="true">→</b>
-              <div class="evidence-node"><span>03</span><strong>课堂情境</strong><small>学情与设备条件</small></div>
+              <div class="evidence-node evidence-node-context"><span>03</span><strong>课堂情境</strong><small>学情与设备条件</small></div>
               <b aria-hidden="true">→</b>
-              <div class="evidence-node evidence-node-final"><span>04</span><strong>教师确认</strong><small>进入教学决策</small></div>
+              <div class="evidence-node evidence-node-confirm"><span>04</span><strong>教师确认</strong><small>进入教学决策</small></div>
             </div>
-            <div class="evidence-status"><span>候选依据</span><em>不等于</em><strong>教师已确认</strong></div>
+            <div class="evidence-gate">
+              <span class="gate-line" aria-hidden="true"></span>
+              <div><strong>确认门</strong><p>依据核验后才进入教学决策</p></div>
+              <span class="gate-mark">FINAL GATE</span>
+            </div>
           </div>
 
           <div class="local-panel reveal reveal-delay-1">
@@ -236,7 +260,7 @@
         <div class="artifact-sheet artifact-graph reveal reveal-delay-2">
           <div class="sheet-top"><span>DRAW.IO / 03</span><span>可编辑图</span></div>
           <div class="graph-title">技能<br><em>层级</em></div>
-          <div class="graph-map" aria-hidden="true"><span class="graph-root">教学目的</span><span class="graph-branch branch-a">主要步骤</span><span class="graph-branch branch-b">从属技能</span><span class="graph-branch branch-c">入门技能</span><i class="graph-connector c-a"></i><i class="graph-connector c-b"></i><i class="graph-connector c-c"></i></div>
+          <div class="graph-map" aria-hidden="true"><span class="graph-root">教学目的</span><span class="graph-branch branch-a">主要步骤</span><span class="graph-branch branch-b">从属技能</span><span class="graph-branch branch-c">入门技能</span><i class="graph-trunk"></i><i class="graph-rail"></i><i class="graph-drop drop-a"></i><i class="graph-drop drop-b"></i><i class="graph-drop drop-c"></i></div>
           <p>目的流程、技能层级和程序控制流分别呈现。</p>
         </div>
       </div>
@@ -246,14 +270,33 @@
     <section class="install section-shell section-wide" id="install">
       <div class="install-grid">
         <div class="install-copy reveal"><p class="kicker">04 / BEGIN WITH CODEX</p><h2>从一次对话开始</h2><p>把一个课题、一份模糊的想法，或一次已有设计的评审交给 Codex。</p><button class="button button-dark copy-install" type="button" data-copy-install><span class="button-icon" aria-hidden="true">▣</span><span>复制给 Codex</span></button><p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p></div>
-        <div class="install-note reveal reveal-delay-1"><span class="mini-label">INSTALL PROMPT</span><p>请在当前 Codex 工作区的 Plugins 设置中从 GitHub 仓库 https://github.com/Cecilia-Elaina/dc-designer-core 导入 marketplace 并安装 dc-designer-core，安装后调用 /dc-designer-core:dc-info-tech-design；若当前账户无权限，请说明需要的管理员设置。</p><div class="install-note-footer"><span>权限由 Codex 工作区控制</span><span>GitHub source</span></div></div>
+        <div class="report-showcase-card reveal reveal-delay-1" aria-label="教学系统设计报告成果展示">
+          <div class="report-showcase-top"><span>REPORT / PREVIEW</span><span>DC–01</span></div>
+          <div class="report-showcase-heading"><span>Python</span><em>循环程序设计</em></div>
+          <div class="report-showcase-rule"></div>
+          <div class="report-showcase-grid">
+            <div class="report-index-list">
+              <div><span>01</span><strong>教学目的</strong><small>从需求与绩效差距开始</small></div>
+              <div><span>02</span><strong>教学分析</strong><small>拆解技能路径</small></div>
+              <div><span>03</span><strong>绩效目标</strong><small>写出可观察行为</small></div>
+              <div><span>04</span><strong>评价证据</strong><small>判断是否达成目标</small></div>
+            </div>
+            <div class="report-page">
+              <span class="report-page-kicker">教学系统设计报告</span>
+              <h3>从需求到课堂</h3>
+              <p>目的 · 分析 · 评价 · 策略</p>
+              <div class="report-page-lines"><i></i><i></i><i></i><i class="short"></i></div>
+            </div>
+          </div>
+          <div class="report-showcase-footer"><span>完整报告</span><span>教师手册</span><span>学生学习单</span></div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-top"><a class="brand brand-footer" href="#top"><span class="brand-mark">DC</span><span class="brand-name">DC DESIGNER CORE</span></a><p>为中国 K–12 信息科技教师，整理一条可以被解释、被评价、被修订的教学设计路径。</p></div>
-    <div class="footer-bottom"><span>© 2026 DC Designer Core</span><span>MIT License</span><a class="text-link text-link-light" href="https://github.com/Cecilia-Elaina/dc-designer-core" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    <div class="footer-bottom"><span>© 2026 DC Designer Core</span><span>MIT License</span><a class="text-link text-link-light github-link" href="https://github.com/Cecilia-Elaina/dc-designer-core" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 DC Designer Core"><svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.04 1.77 2.73 1.26 3.4.96.1-.75.4-1.26.74-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.79 1.08.79 2.18v3.22c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg><span>GitHub</span></a></div>
   </footer>
   <script src="site.js"></script>
 </body>
