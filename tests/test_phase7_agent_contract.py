@@ -838,11 +838,11 @@ class TestDesignExportPackageHasRealFiles(unittest.TestCase):
 
 
 # ======================================================================
-# Phase 7.2: Tool plan matches AGENTS.md required tools
+# Phase 7.2: Tool plan matches the required project tools
 # ======================================================================
 
 class TestToolPlanMatchesAgentsRequiredTools(unittest.TestCase):
-    """Phase 7.2: tool_status_report must list all AGENTS.md required tools."""
+    """Phase 7.2: tool_status_report must list all required project tools."""
 
     @classmethod
     def setUpClass(cls):
@@ -1186,7 +1186,7 @@ class TestExportFailureMonkeypatch(unittest.TestCase):
 
 
 class TestToolStatusReport(unittest.TestCase):
-    """Test: tool_status_report covers AGENTS.md required tools."""
+    """Test: tool_status_report covers the required project tools."""
 
     @classmethod
     def setUpClass(cls):

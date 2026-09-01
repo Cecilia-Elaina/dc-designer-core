@@ -276,7 +276,7 @@ import tempfile
 # ======================================================================
 
 class TestSkillsMatchAgentsPolicy(unittest.TestCase):
-    """Test: skills align with AGENTS.md policy."""
+    """Test: skills align with the canonical product policy."""
 
     def test_dc_design_skill_has_confirmation_requirements(self):
         with open(os.path.join(REPO_ROOT, "skills", "dc-info-tech-design", "SKILL.md"), "r", encoding="utf-8") as f:

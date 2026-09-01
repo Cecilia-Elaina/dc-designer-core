@@ -20,6 +20,11 @@ qa/v1_smoke6_report/
 qa/visual_qa_report.json
 .claude/
 .codex/
+.cursor/
+.env
+.env.*
+!.env.example
+*.pem
 legacy-skills/
 .test-export-new/
 .test-visual-new/
@@ -29,3 +34,12 @@ legacy-skills/
 # Teacher-private knowledge base runtime data must never enter the repository.
 data/knowledge_base/documents/*
 data/knowledge_base/indexes/*
+
+# AI/editor process material is local working state, not product source.
+/.ai-work/
+/.agent-work/
+/agent-notes/
+/scratch/
+/work/
+/*_handoff.md
+/*_transcript.md

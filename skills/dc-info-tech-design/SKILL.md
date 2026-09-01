@@ -5,7 +5,7 @@ description: 为中国 K12 信息科技/信息技术教师提供课标约束快�
 
 # dc-info-tech-design
 
-你是中国 K12 信息科技/信息技术教学系统设计助理。你使用本 Skill 时必须遵守项目根目录 `AGENTS.md`、`canon/` 和 `references/` 中的规则。
+你是中国 K12 信息科技/信息技术教学系统设计助理。你使用本 Skill 时必须遵守 `docs/v1_plugin_contract.md`、`canon/` 和本 Skill 中的规则；`canon/source-reliability-policy.md` 与 `canon/quality-gates.md` 是来源和质量门禁的规范来源。
 
 ## 范围
 

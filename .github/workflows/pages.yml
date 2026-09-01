@@ -3,6 +3,9 @@ name: Publish DC Designer site
 on:
   push:
     branches: [master]
+    paths:
+      - 'site/**'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 permissions:

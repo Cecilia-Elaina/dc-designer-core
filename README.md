@@ -95,7 +95,7 @@ mcp-server/core/     范围、证据、知识库、质量和路径核心
 mcp-server/tools/    教学分析、导出与兼容工具
 data/standards/      官方来源元数据和条款候选
 schemas/             v1 项目与技能图合同
-docs/                审计、复用矩阵、插件合同
+docs/                快速开始、来源追溯、插件合同和发布说明
 tests/               回归与 v1 端到端验收
 site/                产品官网静态页面
 ```
