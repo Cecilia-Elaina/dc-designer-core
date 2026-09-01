@@ -52,11 +52,25 @@ document.querySelectorAll("[data-disclosure-button]").forEach((button) => {
   const owner = button.closest("[data-principle-visual], [data-work-mode]");
   if (!panel || !owner) return;
   panel.setAttribute("aria-hidden", "true");
+  const setOpen = (open) => {
+    button.setAttribute("aria-expanded", String(open));
+    panel.setAttribute("aria-hidden", String(!open));
+    owner.classList.toggle("is-open", open);
+  };
+  owner.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "mouse") setOpen(true);
+  });
+  owner.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse" && !owner.matches(":focus-within")) setOpen(false);
+  });
   button.addEventListener("click", () => {
     const open = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", String(!open));
-    panel.setAttribute("aria-hidden", String(open));
-    owner.classList.toggle("is-open", !open);
+    setOpen(!open);
+  });
+  owner.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    setOpen(false);
+    button.focus();
   });
 });
 
