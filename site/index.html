@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="面向中国 K-12 信息科技教师的 Dick–Carey 教学系统设计 Codex 插件。">
+  <meta name="description" content="DC Designer 是基于 Dick–Carey 模型的教学系统设计 Codex 插件，从课标与需求出发，把教学决策、评价证据和课堂材料组织成一条可执行的设计路径。">
   <meta name="theme-color" content="#F9F8F6">
   <title>DC Designer — Dick–Carey 教学系统设计</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main-content">跳到主要内容</a>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="DC Designer 首页">
@@ -18,9 +18,10 @@
     </a>
     <nav class="desktop-nav" aria-label="主要导航">
       <a class="text-link" href="#approach">方法</a>
-      <a class="text-link" href="#workflow">流程</a>
+      <a class="text-link" href="#workflow">模型</a>
+      <a class="text-link" href="#evidence">证据</a>
       <a class="text-link" href="#outputs">产物</a>
-      <a class="text-link" href="#install">安装</a>
+      <a class="text-link" href="#install">开始</a>
     </nav>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
       <span class="menu-label">菜单</span>
@@ -28,17 +29,18 @@
     </button>
     <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden>
       <a href="#approach">方法</a>
-      <a href="#workflow">流程</a>
+      <a href="#workflow">模型</a>
+      <a href="#evidence">证据</a>
       <a href="#outputs">产物</a>
-      <a href="#install">安装</a>
+      <a href="#install">开始</a>
     </nav>
   </header>
 
   <main id="main-content">
-    <section class="hero section-shell" id="top">
+    <section class="hero section-shell" id="hero">
       <div class="hero-copy reveal">
-        <p class="kicker">DICK–CAREY / 中国 K–12 信息科技</p>
-        <h1>把教学系统设计，<em>交还给真实课堂。</em></h1>
+        <p class="kicker">DICK–CAREY 模型</p>
+        <h1><span>从课标到课堂</span><em>让教学设计真正可执行</em></h1>
         <p class="hero-lede">DC Designer Core 是一个面向中国大陆小学、初中和普通高中信息科技教师的 Codex 插件。它让课标依据、教学分析、评价证据和课堂材料在同一条设计链上彼此对应。</p>
         <div class="hero-actions">
           <button class="button button-dark copy-install" type="button" data-copy-install>
@@ -56,7 +58,7 @@
         <div class="showcase-label">SHOWCASE / 01</div>
         <div class="report-preview">
           <div class="report-topline"><span>教学系统设计报告</span><span>DC–01</span></div>
-          <div class="report-title">Python<br><em>循环程序设计</em></div>
+          <div class="report-title"><span>Python</span><em>循环程序设计</em></div>
           <div class="report-rule"></div>
           <div class="report-columns">
             <div>
@@ -68,105 +70,153 @@
               <strong>课标 / 课堂 / 评价</strong>
             </div>
           </div>
-          <div class="report-diagram" aria-hidden="true">
-            <div class="diagram-line"></div>
-            <span class="diagram-node node-one">需求<br>与目的</span>
-            <span class="diagram-node node-two">技能<br>分析</span>
-            <span class="diagram-node node-three">评价<br>证据</span>
-            <span class="diagram-node node-four">教学<br>材料</span>
+          <div class="report-flow" aria-hidden="true">
+            <span class="report-flow-line"></span>
+            <span class="report-node">需求<br>与目的</span>
+            <span class="report-node">技能<br>分析</span>
+            <span class="report-node">评价<br>证据</span>
+            <span class="report-node">教学<br>材料</span>
           </div>
           <div class="report-footer"><span>可追溯</span><span>可评价</span><span>可修订</span></div>
         </div>
-        <p class="showcase-caption">一份设计，不只是几页文字。它应该能解释为什么这样教，也能说明如何知道学生学会了。</p>
+        <p class="showcase-caption">一份教学设计，不应只是几页文字。它需要说明教学决策从何而来、课堂如何展开，也要用清晰的评价证据判断学生是否达成学习目标。</p>
       </div>
-      <div class="hero-index" aria-hidden="true"><span>01</span><span>系统化</span><span>本地优先</span><span>向下阅读</span></div>
+      <div class="hero-index" aria-label="页面导览"><span>01</span><span>系统化</span><span>可追溯</span><span>向下阅读</span></div>
     </section>
 
-    <section class="statement section-shell section-wide" id="approach">
-      <div class="section-intro reveal">
-        <p class="kicker">01 / WHY A SYSTEM</p>
-        <h2>教学设计不是一段生成文字。<br><em>它是一组必须互相证明的决定。</em></h2>
-      </div>
-      <div class="statement-grid">
-        <div class="statement-aside reveal reveal-delay-1"><span>从一个问题开始</span><span class="large-index">→</span></div>
-        <div class="statement-body reveal reveal-delay-2">
-          <p>从评价需求和绩效差距出发，确定可观察的教学目的；再把目的拆成技能、从属技能和入门技能，决定如何教、如何评、需要什么材料。</p>
-          <p>插件负责把复杂的系统化设计过程组织起来，教师始终保留对课标依据、学习者情境和关键结论的确认权。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="modes section-shell section-wide">
-      <div class="section-heading-row reveal">
+    <section class="method section-shell section-wide" id="approach">
+      <div class="method-heading reveal">
         <div>
-          <p class="kicker">02 / TWO WAYS IN</p>
-          <h2>从你熟悉的地方开始。</h2>
+          <p class="kicker">01 / METHOD AND MODEL</p>
+          <h2>先理解教学系统<br><em>再决定如何教</em></h2>
         </div>
-        <p class="section-note">同一套 Dick–Carey 方法，适应两种真实的设计现场。</p>
+        <p class="section-note">Dick–Carey 模型把教学看成一组彼此关联的决定。插件让这组决定能够被解释、被评价，也能够回到课堂继续修订。</p>
       </div>
-      <div class="mode-list">
-        <article class="mode-row reveal">
-          <div class="mode-number">01</div>
-          <div class="mode-main">
-            <p class="mode-label">STANDARD FAST / 课标约束快速设计</p>
-            <h3>把常规课题快速变成一份能用的系统设计。</h3>
-            <p>输入学段、课题、教材位置、课时、设备和匿名班级共性学情。插件检索课程标准候选，搭建目标、教学分析、评价、策略和材料，再把需要教师确认的决定清楚列出来。</p>
+
+      <div class="method-overview">
+        <div class="principles reveal">
+          <div class="block-label">设计理念</div>
+          <p class="principle-lede">教学设计的起点不是一份模板，而是学习者需要完成的真实表现。</p>
+          <div class="principle-list">
+            <div class="principle-item"><span>01</span><div><strong>从需求出发</strong><p>先看绩效差距，再确定教学目的。</p></div></div>
+            <div class="principle-item"><span>02</span><div><strong>让目标可观察</strong><p>把目标写成学习者能够完成的行为。</p></div></div>
+            <div class="principle-item"><span>03</span><div><strong>用证据推动修订</strong><p>让评价结果回到策略、材料和课堂。</p></div></div>
           </div>
-          <div class="mode-meta"><span>适合</span><strong>一线教师<br>日常备课</strong><span class="row-arrow" aria-hidden="true">↗</span></div>
-        </article>
-        <article class="mode-row reveal">
-          <div class="mode-number">02</div>
-          <div class="mode-main">
-            <p class="mode-label">COLLABORATIVE / 完整协同设计</p>
-            <h3>把模糊的教学想法，逐步变成可审查的方案。</h3>
-            <p>从需求和绩效差距开始，一阶段一阶段地提问、给出候选、说明理由、等待确认。每次修改都保留决策记录，并重新检查目标、评价、策略、材料和来源的一致性。</p>
+        </div>
+        <div class="design-paths reveal reveal-delay-1">
+          <div class="block-label">两种进入方式</div>
+          <div class="path-list">
+            <article class="path-row">
+              <span class="path-number">01</span>
+              <div><p class="path-label">STANDARD FAST</p><h3>课标约束快速设计</h3><p>输入课题、教材位置、课时、设备和匿名班级共性学情。插件检索依据，快速搭建一份教师可以继续确认的系统设计。</p></div>
+              <span class="path-arrow" aria-hidden="true">↗</span>
+            </article>
+            <article class="path-row">
+              <span class="path-number">02</span>
+              <div><p class="path-label">COLLABORATIVE</p><h3>完整协同设计</h3><p>从评价需求和绩效差距开始，一阶段一阶段地提问、比较候选、保存决策，再继续向下设计。</p></div>
+              <span class="path-arrow" aria-hidden="true">↗</span>
+            </article>
           </div>
-          <div class="mode-meta"><span>适合</span><strong>课程研发<br>协同设计</strong><span class="row-arrow" aria-hidden="true">↗</span></div>
-        </article>
+        </div>
+      </div>
+
+      <div class="model-block reveal" id="workflow">
+        <div class="model-block-heading">
+          <div>
+            <p class="block-label">DICK–CAREY TEACHING SYSTEM</p>
+            <h3>一条从需求走向课堂的设计流程</h3>
+          </div>
+          <p>每个阶段都留下下一阶段需要的输入。形成性评价和修订把流程重新连回需求与目的。</p>
+        </div>
+        <div class="flow-map" role="img" aria-label="Dick–Carey 教学系统设计流程图：从评价需求与教学目的开始，经过教学分析、学习者与环境分析、绩效目标、评价工具、教学策略、教学材料、形成性评价和修订教学，最后进行总结性评价，并由反馈回到需求与目的。">
+          <div class="flow-row flow-row-top">
+            <article class="flow-stage"><span>01</span><strong>评价需求</strong><small>确定教学目的</small></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage"><span>02</span><strong>教学分析</strong><small>拆解技能路径</small></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage"><span>03</span><strong>学习者与环境</strong><small>看见真实情境</small></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage"><span>04</span><strong>绩效目标</strong><small>写出可观察行为</small></article><b class="flow-arrow" aria-hidden="true">→</b>
+            <article class="flow-stage"><span>05</span><strong>评价工具</strong><small>决定学习证据</small></article>
+          </div>
+          <div class="flow-turn" aria-hidden="true"><span>↓</span><small>证据进入课堂</small></div>
+          <div class="flow-row flow-row-bottom">
+            <article class="flow-stage"><span>10</span><strong>总结性评价</strong><small>检验整体效果</small></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage"><span>09</span><strong>修订教学</strong><small>依据反馈更新</small></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage"><span>08</span><strong>形成性评价</strong><small>小范围验证材料</small></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage"><span>07</span><strong>教学材料</strong><small>组织课堂资源</small></article><b class="flow-arrow" aria-hidden="true">←</b>
+            <article class="flow-stage"><span>06</span><strong>教学策略</strong><small>安排呈现与练习</small></article>
+          </div>
+          <div class="flow-return"><span class="return-line" aria-hidden="true"></span><strong>形成性反馈</strong><span>↺ 回到需求与目的</span></div>
+        </div>
+      </div>
+
+      <div class="implementation reveal">
+        <div class="implementation-heading"><p class="block-label">PLUGIN IMPLEMENTATION</p><h3>模型给出骨架<br><em>插件把它带进课堂</em></h3></div>
+        <div class="implementation-rail">
+          <div class="rail-step"><span>01</span><strong>检索依据</strong><small>课标与教师资料</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="rail-step"><span>02</span><strong>组织决策</strong><small>目的与技能分析</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="rail-step"><span>03</span><strong>生成证据</strong><small>目标与评价工具</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="rail-step"><span>04</span><strong>输出材料</strong><small>教案与学习单</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="rail-step"><span>05</span><strong>记录修订</strong><small>一致性与反馈</small></div>
+        </div>
       </div>
     </section>
 
-    <section class="workflow section-shell section-dark section-wide" id="workflow">
-      <div class="section-heading-row reveal">
-        <div>
-          <p class="kicker kicker-light">03 / THE MODEL</p>
-          <h2>让每一步，都有下一步的理由。</h2>
+    <section class="evidence section-dark section-wide" id="evidence">
+      <div class="section-inner">
+        <div class="evidence-heading reveal">
+          <div>
+            <p class="kicker kicker-light">02 / EVIDENCE AND BOUNDARY</p>
+            <h2>每一个决定<br><em>都有一条证据链</em></h2>
+          </div>
+          <p class="section-note section-note-light">来源有边界，教师有确认权。插件把官方依据、教师资料、课堂情境和最终决定放在同一条可追溯路径上。</p>
         </div>
-        <p class="section-note section-note-light">不是套模板，而是让系统设计的逻辑显形。</p>
-      </div>
-      <div class="workflow-list">
-        <div class="workflow-item reveal"><span class="workflow-number">01</span><strong>评价需求与教学目的</strong><p>明确要解决的绩效问题，以及学习者最终需要完成的真实表现。</p></div>
-        <div class="workflow-item reveal"><span class="workflow-number">02</span><strong>教学分析与技能图</strong><p>拆解主要步骤、从属技能和入门技能，区分目的流程与程序控制流。</p></div>
-        <div class="workflow-item reveal"><span class="workflow-number">03</span><strong>学习者与环境</strong><p>描述匿名的班级共性学情、学习环境和真实应用环境，不凭空填写个人数据。</p></div>
-        <div class="workflow-item reveal"><span class="workflow-number">04</span><strong>绩效目标与评价证据</strong><p>用条件、行为和标准写出可观察目标，并让编程任务包含运行、测试和调试证据。</p></div>
-        <div class="workflow-item reveal"><span class="workflow-number">05</span><strong>教学策略与材料</strong><p>把目标和评价转化为教学活动、教师话术、学习单、量规与课堂材料。</p></div>
-        <div class="workflow-item reveal"><span class="workflow-number">06</span><strong>形成性评价与修订</strong><p>真实数据尚未产生时明确标记待实施；获得反馈后先做影响分析，再重新对齐。</p></div>
-      </div>
-      <div class="workflow-end reveal"><span>目的</span><span class="end-line"></span><span>证据</span><span class="end-line"></span><span>课堂</span></div>
-    </section>
 
-    <section class="evidence section-shell section-wide">
-      <div class="evidence-grid">
-        <div class="evidence-copy reveal">
-          <p class="kicker">04 / SOURCE WITH CONTEXT</p>
-          <h2>课标不是一句标签。<br><em>它应该回到证据。</em></h2>
-          <p>内置知识库保存课程方案和课程标准的来源元数据、公开链接与条款候选。教师自己的教材、教案和校本资料单独保存在本机，并明确区分来源等级。</p>
+        <div class="evidence-layout">
+          <div class="evidence-chain-wrap reveal">
+            <div class="block-label light-label">来源如何进入设计</div>
+            <div class="evidence-chain" role="img" aria-label="证据链：官方课标、教师资料、课堂情境经过教师确认，进入教学决策。">
+              <div class="evidence-node"><span>01</span><strong>官方课标</strong><small>文件与适用范围</small></div>
+              <b aria-hidden="true">→</b>
+              <div class="evidence-node"><span>02</span><strong>教师资料</strong><small>校本与个人经验</small></div>
+              <b aria-hidden="true">→</b>
+              <div class="evidence-node"><span>03</span><strong>课堂情境</strong><small>学情与设备条件</small></div>
+              <b aria-hidden="true">→</b>
+              <div class="evidence-node evidence-node-final"><span>04</span><strong>教师确认</strong><small>进入教学决策</small></div>
+            </div>
+            <div class="evidence-status"><span>候选依据</span><em>不等于</em><strong>教师已确认</strong></div>
+          </div>
+
+          <div class="local-panel reveal reveal-delay-1">
+            <div class="block-label light-label">LOCAL FIRST</div>
+            <h3>教师的资料<br><em>留在教师的设备里</em></h3>
+            <div class="local-signal"><span class="signal-dot"></span><strong>本地知识库</strong><small>资料边界清楚可见</small></div>
+            <div class="boundary-list">
+              <div><span>01</span><p>教材、教案、试卷和校本资料保存在本机。</p></div>
+              <div><span>02</span><p>只接收匿名聚合的班级共性学情。</p></div>
+              <div><span>03</span><p>没有真实评价数据时明确标记待实施与待验证。</p></div>
+            </div>
+          </div>
         </div>
-        <div class="evidence-track reveal reveal-delay-1">
-          <div class="evidence-step"><span>01</span><strong>官方来源</strong><p>文件、发布机构、日期、版本和适用范围。</p></div>
-          <div class="evidence-step"><span>02</span><strong>条款候选</strong><p>链接、章节和定位清楚可查，候选不冒充已确认依据。</p></div>
-          <div class="evidence-step"><span>03</span><strong>教师资料</strong><p>作为情境参考，保留 C1 私有来源边界。</p></div>
-          <div class="evidence-step"><span>04</span><strong>教师确认</strong><p>关键依据和设计决定由教师审核后进入最终门禁。</p></div>
+
+        <div class="questions reveal">
+          <div class="block-label light-label">开始之前</div>
+          <div class="question-list">
+            <details><summary>它适合哪些教师？<span aria-hidden="true">+</span></summary><p>当前面向中国大陆小学、初中和普通高中信息科技或信息技术教师。高校、职教、企业培训和其他学科不在 v1 产品范围内。</p></details>
+            <details><summary>它会替教师直接决定教学目标吗？<span aria-hidden="true">+</span></summary><p>它会检索依据、提出候选并说明理由，但关键结论需要教师确认或修改，未确认时不会标记为最终版。</p></details>
+            <details><summary>没有形成性评价数据也能使用吗？<span aria-hidden="true">+</span></summary><p>可以生成形成性评价方案和待收集字段，但不会把推断写成真实效果。</p></details>
+          </div>
         </div>
       </div>
-      <div class="pull-quote reveal"><span>条款候选</span><span class="quote-line"></span><em>不等于</em><span class="quote-line"></span><span>教师已确认</span></div>
     </section>
 
     <section class="outputs section-shell section-wide" id="outputs">
       <div class="section-heading-row reveal">
         <div>
-          <p class="kicker">05 / THE OUTPUT</p>
-          <h2>一个项目，多种可交付结果。</h2>
+          <p class="kicker">03 / THE OUTPUT</p>
+          <h2>一个项目<br><em>多种可交付结果</em></h2>
         </div>
         <p class="section-note">从同一份结构化项目对象生成，编号、依据和链接保持一致。</p>
       </div>
@@ -193,31 +243,10 @@
       <div class="output-footer reveal"><span>完整报告</span><span>教师手册</span><span>学生学习单</span><span>Excel 矩阵</span><span>Draw.io 图</span><span>JSON / Markdown</span></div>
     </section>
 
-    <section class="privacy section-shell section-dark section-wide">
-      <div class="privacy-grid">
-        <div class="privacy-lead reveal"><p class="kicker kicker-light">06 / LOCAL FIRST</p><h2>教师的资料，<br><em>留在教师的设备里。</em></h2></div>
-        <div class="privacy-list reveal reveal-delay-1">
-          <div><span>01</span><p>教师上传的教材、教案、试卷和校本资料保存在本机知识库。</p></div>
-          <div><span>02</span><p>只接收匿名聚合的班级共性学情，不保存学生姓名、学号、电话或个人成绩。</p></div>
-          <div><span>03</span><p>没有真实形成性评价数据时，报告明确写“待实施 / 待验证”，不编造效果。</p></div>
-        </div>
-      </div>
-    </section>
-
     <section class="install section-shell section-wide" id="install">
       <div class="install-grid">
-        <div class="install-copy reveal"><p class="kicker">07 / BEGIN WITH CODEX</p><h2>从你的下一次对话开始。</h2><p>复制下面这句话，交给 Codex。安装完成后，从一个课题、一份模糊的想法，或一次已有设计的评审开始。</p><button class="button button-dark copy-install" type="button" data-copy-install><span class="button-icon" aria-hidden="true">▣</span><span>复制给 Codex</span></button><p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p></div>
+        <div class="install-copy reveal"><p class="kicker">04 / BEGIN WITH CODEX</p><h2>从一次对话开始</h2><p>把一个课题、一份模糊的想法，或一次已有设计的评审交给 Codex。</p><button class="button button-dark copy-install" type="button" data-copy-install><span class="button-icon" aria-hidden="true">▣</span><span>复制给 Codex</span></button><p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p></div>
         <div class="install-note reveal reveal-delay-1"><span class="mini-label">INSTALL PROMPT</span><p>请在当前 Codex 工作区的 Plugins 设置中从 GitHub 仓库 https://github.com/Cecilia-Elaina/dc-designer-core 导入 marketplace 并安装 dc-designer-core，安装后调用 /dc-designer-core:dc-info-tech-design；若当前账户无权限，请说明需要的管理员设置。</p><div class="install-note-footer"><span>权限由 Codex 工作区控制</span><span>GitHub source</span></div></div>
-      </div>
-    </section>
-
-    <section class="faq section-shell section-wide">
-      <div class="section-heading-row reveal"><div><p class="kicker">08 / QUESTIONS</p><h2>开始之前，先知道这些。</h2></div></div>
-      <div class="faq-list reveal">
-        <details><summary>它适合哪些教师？<span aria-hidden="true">+</span></summary><p>当前面向中国大陆小学、初中和普通高中信息科技 / 信息技术教师。高校、职教、企业培训和其他学科不在 v1 产品范围内。</p></details>
-        <details><summary>它会替教师直接决定教学目标吗？<span aria-hidden="true">+</span></summary><p>它会检索依据、提出候选并说明理由，但教学目的、入门技能、学情和策略等关键结论需要教师确认或修改，未确认时不会标记为最终版。</p></details>
-        <details><summary>安装是不是完全自动的？<span aria-hidden="true">+</span></summary><p>官网按钮会复制 Codex 的 GitHub marketplace 导入指令。实际安装仍受当前账户、工作区权限和管理员设置影响。</p></details>
-        <details><summary>没有形成性评价数据也能使用吗？<span aria-hidden="true">+</span></summary><p>可以生成形成性评价方案和待收集字段，但不会把推断写成真实效果；报告会保留“待实施 / 待验证”状态。</p></details>
       </div>
     </section>
   </main>

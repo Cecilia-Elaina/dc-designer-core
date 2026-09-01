@@ -28,6 +28,47 @@ class TestPublicSiteAssets(unittest.TestCase):
         for marker in ("DC DESIGNER CORE", "Dick–Carey", "STANDARD FAST", "COLLABORATIVE", "#install", "复制给 Codex"):
             self.assertIn(marker, html)
 
+    def test_hero_copy_matches_requested_lines(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertIn("<h1><span>从课标到课堂</span><em>让教学设计真正可执行</em></h1>", html)
+        hero_text = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
+        self.assertNotRegex(hero_text, r"[，。！？、；：,.!?]")
+        self.assertIn("DICK–CAREY 模型", html)
+        self.assertNotIn("DICK–CAREY / 中国 K–12 信息科技", html)
+
+    def test_hero_preview_has_separated_title_and_equal_flow_nodes(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        css = (SITE / "styles.css").read_text(encoding="utf-8")
+        self.assertIn('<div class="report-title"><span>Python</span><em>循环程序设计</em></div>', html)
+        self.assertEqual(html.count('class="report-node"'), 4)
+        self.assertIn(".report-flow {", css)
+        self.assertIn("grid-template-columns: repeat(4, minmax(0, 1fr))", css)
+        self.assertNotIn("position: absolute", css[css.index(".report-flow {"):css.index(".report-flow-line {")])
+
+    def test_hero_index_uses_requested_labels(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        for label in ("01", "系统化", "可追溯", "向下阅读"):
+            self.assertIn(f">{label}<", html)
+        self.assertNotIn(">本地优先<", html)
+
+    def test_information_architecture_is_merged_and_graphical(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        for obsolete_heading in ("WHY A SYSTEM", "TWO WAYS IN", "SOURCE WITH CONTEXT", "QUESTIONS"):
+            self.assertNotIn(obsolete_heading, html)
+        for section_id in ("approach", "workflow", "evidence", "outputs", "install"):
+            self.assertIn(f'id="{section_id}"', html)
+        self.assertEqual(html.count('class="flow-stage"'), 10)
+        self.assertIn('class="implementation-rail"', html)
+        self.assertIn('class="evidence-chain"', html)
+        self.assertEqual(html.count('class="evidence-node'), 4)
+
+    def test_model_and_evidence_copy_are_teacher_facing(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertIn("一份教学设计，不应只是几页文字。它需要说明教学决策从何而来、课堂如何展开，也要用清晰的评价证据判断学生是否达成学习目标。", html)
+        self.assertIn("模型给出骨架", html)
+        self.assertIn("插件把它带进课堂", html)
+        self.assertIn("来源有边界，教师有确认权", html)
+
     def test_site_does_not_expose_old_workbench_or_internal_enums(self):
         content = "\n".join(path.read_text(encoding="utf-8") for path in SITE.iterdir() if path.is_file())
         for forbidden in ("新建设计项目", "教师工作台", "candidate", "sufficient", "cognitive_strategy", "authentic_programming_task"):
