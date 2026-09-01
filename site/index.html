@@ -128,12 +128,12 @@
               <article class="work-mode-option">
                 <span class="path-number">01</span>
                 <div><p class="path-label">STANDARD FAST</p><h3>课标约束快速设计</h3><p>输入课题、教材位置、课时、设备和匿名班级共性学情。插件检索依据，快速搭建一份教师可以继续确认的系统设计。</p></div>
-                <span class="path-arrow" aria-hidden="true">↗</span>
+                <span class="path-arrow" aria-hidden="true">→</span>
               </article>
               <article class="work-mode-option">
                 <span class="path-number">02</span>
                 <div><p class="path-label">COLLABORATIVE</p><h3>完整协同设计</h3><p>从评价需求和绩效差距开始，一阶段一阶段地提问、比较候选、保存决策，再继续向下设计。</p></div>
-                <span class="path-arrow" aria-hidden="true">↗</span>
+                <span class="path-arrow" aria-hidden="true">→</span>
               </article>
             </div>
           </div>
@@ -156,7 +156,7 @@
             <article class="flow-stage" tabindex="0"><span>04</span><strong>绩效目标</strong><small>写出可观察行为</small><div class="stage-note"><strong>这一步做什么</strong><p>用条件、行为和标准描述可观察、可评价的学习结果。</p></div></article><b class="flow-arrow" aria-hidden="true">→</b>
             <article class="flow-stage" tabindex="0"><span>05</span><strong>评价工具</strong><small>决定学习证据</small><div class="stage-note"><strong>这一步做什么</strong><p>设计能够证明学习者达成目标的任务、量规和评价工具。</p></div></article>
           </div>
-          <div class="flow-turn" aria-hidden="true"><span>↓</span><small>证据进入课堂</small></div>
+          <div class="flow-turn" aria-hidden="true"><div class="flow-turn-marker"><span>↓</span><small>证据进入课堂</small></div></div>
           <div class="flow-row flow-row-bottom">
             <article class="flow-stage" tabindex="0"><span>10</span><strong>总结性评价</strong><small>检验整体效果</small><div class="stage-note"><strong>这一步做什么</strong><p>在更完整的教学情境中检验整体教学系统的效果。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
             <article class="flow-stage" tabindex="0"><span>09</span><strong>修订教学</strong><small>依据反馈更新</small><div class="stage-note"><strong>这一步做什么</strong><p>根据形成性评价证据修订目标、策略、材料和评价。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
@@ -164,7 +164,7 @@
             <article class="flow-stage" tabindex="0"><span>07</span><strong>教学材料</strong><small>组织课堂资源</small><div class="stage-note"><strong>这一步做什么</strong><p>开发或选择教师手册、学习单、示例和课堂评价材料。</p></div></article><b class="flow-arrow" aria-hidden="true">←</b>
             <article class="flow-stage" tabindex="0"><span>06</span><strong>教学策略</strong><small>安排呈现与练习</small><div class="stage-note"><strong>这一步做什么</strong><p>安排信息呈现、学习者参与、练习、反馈和课堂时间。</p></div></article>
           </div>
-          <div class="flow-return"><span class="return-line" aria-hidden="true"></span><strong>形成性反馈</strong><span>↺ 回到需求与目的</span></div>
+          <div class="flow-return"><span class="return-line" aria-hidden="true"></span><strong>形成性反馈</strong><span>← 回到需求与目的</span></div>
         </div>
       </div>
 
@@ -207,8 +207,8 @@
               <div class="evidence-node evidence-node-confirm"><span>04</span><strong>教师确认</strong><small>进入教学决策</small></div>
             </div>
             <div class="evidence-gate">
-              <span class="gate-line" aria-hidden="true"></span>
-              <div><strong>确认门</strong><p>依据核验后才进入教学决策</p></div>
+              <span class="gate-route" aria-hidden="true">证据 → 决定</span>
+              <div><strong>确认门</strong><p>教师核验依据后，才进入教学决策</p></div>
               <span class="gate-mark">FINAL GATE</span>
             </div>
           </div>
@@ -260,7 +260,15 @@
         <div class="artifact-sheet artifact-graph reveal reveal-delay-2">
           <div class="sheet-top"><span>DRAW.IO / 03</span><span>可编辑图</span></div>
           <div class="graph-title">技能<br><em>层级</em></div>
-          <div class="graph-map" aria-hidden="true"><span class="graph-root">教学目的</span><span class="graph-branch branch-a">主要步骤</span><span class="graph-branch branch-b">从属技能</span><span class="graph-branch branch-c">入门技能</span><i class="graph-trunk"></i><i class="graph-rail"></i><i class="graph-drop drop-a"></i><i class="graph-drop drop-b"></i><i class="graph-drop drop-c"></i></div>
+          <div class="graph-map" aria-hidden="true">
+            <span class="graph-root">教学目的</span>
+            <i class="graph-link link-a"></i>
+            <span class="graph-branch branch-a">主要步骤</span>
+            <i class="graph-link link-b"></i>
+            <span class="graph-branch branch-b">从属技能</span>
+            <i class="graph-link link-c"></i>
+            <span class="graph-branch branch-c">入门技能</span>
+          </div>
           <p>目的流程、技能层级和程序控制流分别呈现。</p>
         </div>
       </div>
@@ -269,7 +277,7 @@
 
     <section class="install section-shell section-wide" id="install">
       <div class="install-grid">
-        <div class="install-copy reveal"><p class="kicker">04 / BEGIN WITH CODEX</p><h2>从一次对话开始</h2><p>把一个课题、一份模糊的想法，或一次已有设计的评审交给 Codex。</p><button class="button button-dark copy-install" type="button" data-copy-install><span class="button-icon" aria-hidden="true">▣</span><span>复制给 Codex</span></button><p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p></div>
+        <div class="install-copy reveal"><p class="kicker">04 / BEGIN WITH CODEX</p><h2>从一次对话开始</h2><p>把一个课题、一份模糊的想法，或一次已有设计的评审交给 Codex。</p><button class="button button-dark copy-install" type="button" data-copy-install><span class="button-icon" aria-hidden="true">▣</span><span>复制给 Codex</span></button><p class="copy-feedback" role="status" aria-live="polite" data-copy-feedback></p><div class="copy-explainer"><span class="mini-label">复制的内容</span><strong>一段让 Codex 找到插件并开始设计对话的指令</strong><p>复制后粘贴给 Codex，安装完成即可从一个课题开始。</p><div class="copy-route" aria-hidden="true"><span>复制</span><i>→</i><span>粘贴给 Codex</span><i>→</i><span>开始设计</span></div></div></div>
         <div class="report-showcase-card reveal reveal-delay-1" aria-label="教学系统设计报告成果展示">
           <div class="report-showcase-top"><span>REPORT / PREVIEW</span><span>DC–01</span></div>
           <div class="report-showcase-heading"><span>Python</span><em>循环程序设计</em></div>
