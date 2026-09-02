@@ -60,7 +60,7 @@ jobs:
               .github/workflows/pages.yml)
                 site=true
                 ;;
-              .codex-plugin/*|.claude-plugin/*|gemini-extension.json|GEMINI.md|.mcp.json|commands/*|prompts/*|docs/agent-compatibility.md|manifest.json|scripts/package_release.py|scripts/release_check.py|scripts/compatibility_check.py)
+              .codex-plugin/*|.claude-plugin/*|gemini-extension.json|GEMINI.md|.mcp.json|commands/*|prompts/*|docs/agent-compatibility.md|manifest.json|scripts/dc_info_tech.py|scripts/package_release.py|scripts/publish_github.ps1|scripts/release_check.py|scripts/compatibility_check.py)
                 compatibility=true
                 ;;
               .github/workflows/ci.yml|.agents/plugins/marketplace.json|CITATION.cff|tests/test_public_site.py)
