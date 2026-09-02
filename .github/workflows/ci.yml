@@ -18,6 +18,7 @@ jobs:
       core: ${{ steps.scope.outputs.core }}
       public: ${{ steps.scope.outputs.public }}
       site: ${{ steps.scope.outputs.site }}
+      compatibility: ${{ steps.scope.outputs.compatibility }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,6 +50,7 @@ jobs:
           core=false
           public=false
           site=false
+          compatibility=false
           while IFS= read -r path; do
             [ -z "$path" ] && continue
             case "$path" in
@@ -57,6 +59,9 @@ jobs:
                 ;;
               .github/workflows/pages.yml)
                 site=true
+                ;;
+              .codex-plugin/*|.claude-plugin/*|gemini-extension.json|GEMINI.md|.mcp.json|commands/*|prompts/*|docs/agent-compatibility.md|manifest.json|scripts/package_release.py|scripts/release_check.py|scripts/compatibility_check.py)
+                compatibility=true
                 ;;
               .github/workflows/ci.yml|.agents/plugins/marketplace.json|CITATION.cff|tests/test_public_site.py)
                 public=true
@@ -72,6 +77,7 @@ jobs:
           echo "core=$core" >> "$GITHUB_OUTPUT"
           echo "public=$public" >> "$GITHUB_OUTPUT"
           echo "site=$site" >> "$GITHUB_OUTPUT"
+          echo "compatibility=$compatibility" >> "$GITHUB_OUTPUT"
 
   site:
     name: Verify product site
@@ -97,6 +103,21 @@ jobs:
       - name: Run public site contract test
         run: python -m unittest discover -s tests -p 'test_public_site.py' -q
 
+  compatibility:
+    name: Verify agent adapters
+    needs: changes
+    if: needs.changes.outputs.compatibility == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check adapter manifests and prompts
+        run: python scripts/compatibility_check.py
+      - name: Run release metadata audit
+        run: python scripts/release_check.py
+
   core:
     needs: changes
     if: needs.changes.outputs.core == 'true'
@@ -117,7 +138,7 @@ jobs:
       - run: python scripts/site_smoke.py
       - run: python -m pytest -q
       - run: python scripts/package_release.py --output-dir artifacts/dist
-      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v1.1.5.zip --timeout 360
+      - run: python scripts/clean_install_smoke.py --archive artifacts/dist/dc-designer-core-v2.0.0.zip --timeout 360
 
   windows-visual:
     needs: changes

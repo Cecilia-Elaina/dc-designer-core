@@ -1,12 +1,12 @@
 {
   "name": "dc-designer-core",
-  "version": "1.1.5",
-  "description": "DC Designer：面向中国 K12 信息科技/信息技术教师的本地优先 Dick–Carey 教学系统设计插件",
+  "version": "2.0.0",
+  "description": "DC Designer：面向中国 K12 信息科技/信息技术教师的跨智能体、本地优先 Dick–Carey 教学系统设计插件",
   "type": "plugin",
   "model": "Dick & Carey Instructional Systems Design Model",
   "authors": [{"name": "DC Designer contributors", "role": "plugin developers"}],
   "license": "MIT",
-  "keywords": ["instructional-design", "dick-carey", "k12", "information-technology", "教学系统设计", "信息科技", "codex-plugin"],
+  "keywords": ["instructional-design", "dick-carey", "k12", "information-technology", "教学系统设计", "信息科技", "agent-plugin", "mcp", "codex", "claude-code", "gemini-cli"],
   "scope": {
     "education_scope": "k12_info_technology",
     "stages": ["primary", "junior_secondary", "senior_secondary"],
@@ -19,6 +19,15 @@
     {"name": "dc-info-tech-revise", "path": "skills/dc-info-tech-revise/SKILL.md", "description": "根据教师反馈和匿名数据修订设计"}
   ],
   "mcp_server": {"name": "dc-designer-mcp", "path": "mcp-server/server.py", "transport": "stdio", "compatibility_only": true},
+  "compatibility": {
+    "shared_protocol": "portable-prompt-and-mcp",
+    "native_hosts": [
+      {"name": "Codex", "manifest": ".codex-plugin/plugin.json"},
+      {"name": "Claude Code", "manifest": ".claude-plugin/plugin.json"},
+      {"name": "Gemini CLI", "manifest": "gemini-extension.json"}
+    ],
+    "fallback": "Any agent that can read project files can use prompts/dc-designer-core.md and the local scripts."
+  },
   "schemas": ["schemas/v1-project.schema.json", "schemas/v1-skill-graph.schema.json", "schemas/source.schema.json"],
   "privacy_policy": {
     "local_workspace": ".dc-designer",

@@ -1,0 +1,8 @@
+description = "创建中国 K12 信息科技教学系统设计"
+prompt = """
+请读取 skills/dc-info-tech-design/SKILL.md、docs/agent-compatibility.md 和 docs/v1_plugin_contract.md，按其中的范围、来源、隐私和教师确认规则，协助完成中国 K12 信息科技/信息技术教学系统设计。
+
+用户补充：{{args}}
+
+默认先判断是课标约束快速设计还是完整协同设计；缺少信息时只问当前阶段最必要的 1 至 3 项，不编造学生数据或教学效果。
+"""

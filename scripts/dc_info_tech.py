@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Command-line entry point used by the three Codex v1 Skills."""
+"""Command-line entry point shared by the three agent Skills."""
 
 from __future__ import annotations
 

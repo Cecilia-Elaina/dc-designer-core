@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: DC Designer
-version: 1.1.5
+version: 2.0.0
 type: software
 authors:
   - name: xiajiadi
@@ -9,7 +9,7 @@ url: https://xiajiadi.github.io/dc-designer-core/
 license: MIT
 abstract: >-
   Evidence-grounded Dick-Carey instructional design for China K-12
-  Information Technology education, delivered as a local-first Codex plugin.
+  Information Technology education, delivered as a local-first multi-agent plugin.
 keywords:
   - instructional design
   - Dick-Carey

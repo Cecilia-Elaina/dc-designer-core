@@ -344,6 +344,10 @@ p { color: var(--muted); font-size: 15px; line-height: 1.9; }
 .install-copy > p:not(.kicker):not(.copy-feedback) { margin-bottom: 30px; }
 .copy-explainer { margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--line); }
 .mini-label { color: var(--soft); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.agent-support { display: flex; flex-wrap: wrap; gap: 7px 12px; align-items: baseline; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--soft); font-size: 11px; letter-spacing: .06em; line-height: 1.6; }
+.agent-support > span { margin-right: 3px; color: var(--soft); font-size: 10px; letter-spacing: .16em; }
+.agent-support strong { color: var(--ink); font-family: var(--display); font-size: 14px; font-weight: 400; letter-spacing: 0; }
+.agent-support i { color: var(--line-strong); font-style: normal; }
 .copy-explainer strong { display: block; max-width: 440px; margin: 11px 0 8px; font-family: var(--display); font-size: 1.45rem; font-weight: 400; line-height: 1.35; }
 .copy-explainer p { max-width: 450px; margin: 0; color: var(--soft); font-size: 12px; line-height: 1.7; }
 .copy-route { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px; align-items: center; margin-top: 26px; color: var(--soft); font-size: 10px; letter-spacing: .06em; }
@@ -546,6 +550,7 @@ p { color: var(--muted); font-size: 15px; line-height: 1.9; }
   .output-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; font-size: 9px; }
   .outputs.section-wide { padding-bottom: 68px; }
   .copy-explainer { margin-top: 40px; }
+  .agent-support { gap: 6px 10px; }
   .copy-explainer strong { font-size: 1.25rem; }
   .report-showcase-card { padding: 22px; }
   .report-showcase-heading { margin-top: 42px; font-size: 2.75rem; }

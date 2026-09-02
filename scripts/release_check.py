@@ -12,7 +12,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = [
     ".codex-plugin/plugin.json",
+    ".claude-plugin/plugin.json",
     ".agents/plugins/marketplace.json",
+    "gemini-extension.json",
+    "GEMINI.md",
+    "prompts/dc-designer-core.md",
+    "docs/agent-compatibility.md",
     "README.md",
     "LICENSE",
     ".mcp.json",
@@ -27,7 +32,12 @@ REQUIRED_SKILLS = [
     "skills/dc-info-tech-review/SKILL.md",
     "skills/dc-info-tech-revise/SKILL.md",
 ]
-TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".html", ".css", ".js"}
+REQUIRED_GEMINI_COMMANDS = [
+    "commands/dc-info-tech-design.toml",
+    "commands/dc-info-tech-review.toml",
+    "commands/dc-info-tech-revise.toml",
+]
+TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".toml", ".txt", ".html", ".css", ".js"}
 USER_PATH_RE = re.compile(r"(?:[A-Za-z]:\\Users\\|[A-Za-z]:\\Download\\|/Users/|/home/)", re.IGNORECASE)
 PLACEHOLDER_RE = re.compile(r"github\.com/dc-designer-core/dc-designer-core|example\.com", re.IGNORECASE)
 
@@ -44,10 +54,12 @@ def run_check() -> dict:
     errors: list[str] = []
     warnings: list[str] = []
     notes: list[str] = []
-    for relative in REQUIRED_FILES + REQUIRED_SKILLS:
+    for relative in REQUIRED_FILES + REQUIRED_SKILLS + REQUIRED_GEMINI_COMMANDS:
         if not (ROOT / relative).is_file():
             errors.append(f"缺少发布必需文件: {relative}")
     plugin = _read_json(ROOT / ".codex-plugin/plugin.json", errors)
+    claude_plugin = _read_json(ROOT / ".claude-plugin/plugin.json", errors)
+    gemini_extension = _read_json(ROOT / "gemini-extension.json", errors)
     manifest = _read_json(ROOT / "manifest.json", errors)
     if isinstance(plugin, dict):
         if plugin.get("name") != "dc-designer-core":
@@ -57,6 +69,19 @@ def run_check() -> dict:
         manifest_text = json.dumps(plugin, ensure_ascii=False)
         if "higher_education" in manifest_text or "corporate" in manifest_text:
             errors.append("Codex manifest 泄漏了 v1 不支持范围")
+    if isinstance(claude_plugin, dict):
+        if claude_plugin.get("name") != "dc-designer-core":
+            errors.append("Claude Code 插件名称必须为 dc-designer-core")
+        if claude_plugin.get("version") != (plugin or {}).get("version"):
+            errors.append("Claude Code 插件版本与核心版本不一致")
+    if isinstance(gemini_extension, dict):
+        if gemini_extension.get("name") != "dc-designer-core":
+            errors.append("Gemini 扩展名称必须为 dc-designer-core")
+        if gemini_extension.get("version") != (plugin or {}).get("version"):
+            errors.append("Gemini 扩展版本与核心版本不一致")
+        server = (gemini_extension.get("mcpServers") or {}).get("dc-designer-mcp", {})
+        if "${extensionPath}" not in json.dumps(server, ensure_ascii=False):
+            errors.append("Gemini 扩展的 MCP 路径必须使用 extensionPath")
     if isinstance(plugin, dict) and isinstance(manifest, dict):
         if manifest.get("name") != plugin.get("name"):
             errors.append("manifest.json 与 .codex-plugin/plugin.json 的名称不一致")
@@ -93,8 +118,8 @@ def run_check() -> dict:
                         errors.append(f"source {source.get('source_id', '')} clause {clause.get('clause_id', '')} missing {key}")
             if source.get("content_hash_status") not in {None, "", "metadata_snapshot_only", "retrieved", "not_recorded"}:
                 errors.append(f"official source {source.get('source_id', '')} has unknown content_hash_status")
-    scan_files = [ROOT / "README.md", ROOT / "manifest.json", ROOT / ".codex-plugin/plugin.json", ROOT / ".agents"]
-    scan_files += [ROOT / "docs", ROOT / "skills", ROOT / "qa", ROOT / "site"]
+    scan_files = [ROOT / "README.md", ROOT / "manifest.json", ROOT / ".codex-plugin/plugin.json", ROOT / ".claude-plugin/plugin.json", ROOT / "gemini-extension.json", ROOT / "GEMINI.md", ROOT / ".agents"]
+    scan_files += [ROOT / "docs", ROOT / "skills", ROOT / "commands", ROOT / "prompts", ROOT / "qa", ROOT / "site"]
     for item in scan_files:
         paths = [item] if item.is_file() else list(item.rglob("*")) if item.is_dir() else []
         for path in paths:
@@ -116,7 +141,7 @@ def run_check() -> dict:
         "errors": errors,
         "warnings": warnings,
         "notes": notes,
-        "required_files": REQUIRED_FILES + REQUIRED_SKILLS,
+        "required_files": REQUIRED_FILES + REQUIRED_SKILLS + REQUIRED_GEMINI_COMMANDS,
     }
 
 

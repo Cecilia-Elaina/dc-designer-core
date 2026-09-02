@@ -1,10 +1,12 @@
-# v1 Codex 插件合同
+# v1 核心插件合同（跨智能体）
 
 ## 公开入口
 
 - `dc-info-tech-design`：新建教学系统设计，提供课标约束快速设计和完整协同设计两种模式。
 - `dc-info-tech-review`：评审已有项目，只读原项目并输出可执行 findings。
 - `dc-info-tech-revise`：基于反馈和形成性评价输入做影响分析、修改和一致性重检。
+
+三条入口是跨智能体共享的核心 Skill 名称。Codex 和 Claude Code 使用宿主自己的 Skill 命名空间，Gemini CLI 使用同名命令；支持 MCP 或只能读取项目文件的其他智能体使用同一套脚本、合同和通用启动提示词。宿主适配细节见 [`docs/agent-compatibility.md`](agent-compatibility.md)。
 
 ## 范围
 

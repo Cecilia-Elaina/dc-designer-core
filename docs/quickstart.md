@@ -10,13 +10,44 @@ python scripts/doctor.py
 
 至少应满足 Python、python-docx、openpyxl、Pillow 和 LibreOffice 检查。没有 LibreOffice 时仍可生成草案，但视觉质量门禁会保持“待验证”。
 
-## 2. 在 Codex 中使用
+## 2. 在任意智能体中使用
 
-安装插件后新建对话，调用：
+本项目的核心 Skill、MCP Server 和通用启动提示词与具体智能体宿主解耦。先阅读[跨智能体接入](agent-compatibility.md)，再按当前宿主选择入口。项目级接入优先，未经明确授权不要写入用户全局配置。
+
+### Codex
+
+从当前仓库的 `.codex-plugin/` 识别插件后，在新建对话中调用：
 
 ```text
 /dc-designer-core:dc-info-tech-design
 ```
+
+### Claude Code
+
+在仓库根目录启动项目级插件：
+
+```text
+claude --plugin-dir .
+```
+
+然后调用共享 Skill：
+
+```text
+/dc-designer-core:dc-info-tech-design
+```
+
+### Gemini CLI
+
+从 GitHub 仓库安装扩展，重启 Gemini CLI 后调用命令：
+
+```text
+gemini extensions install https://github.com/xiajiadi/dc-designer-core
+/dc-info-tech-design
+```
+
+### 其他智能体
+
+支持 MCP 的宿主可以接入 `.mcp.json` 中的本地 `dc-designer-mcp`；不能使用 MCP 时，直接把 [`prompts/dc-designer-core.md`](../prompts/dc-designer-core.md) 粘贴给智能体。智能体应先报告实际接入方式和权限状态，再开始设计，不得把“读到了仓库文件”描述成“插件已安装”。
 
 可以直接描述课题，也可以明确选择两种模式：
 
@@ -31,7 +62,7 @@ python scripts/doctor.py
 python -m http.server 4173 --directory site
 ```
 
-打开 `http://127.0.0.1:4173/`。如果该端口已被占用，可改用 `python -m http.server 4174 --directory site` 并打开 `http://127.0.0.1:4174/`。官网用于了解产品、复制 Codex 安装指令和跳转 GitHub；教学设计通过 Codex 插件入口完成。
+打开 `http://127.0.0.1:4173/`。如果该端口已被占用，可改用 `python -m http.server 4174 --directory site` 并打开 `http://127.0.0.1:4174/`。官网用于了解产品、复制通用启动提示词和跳转 GitHub；教学设计通过当前智能体的原生入口、MCP 或本地 Skill 完成。
 
 ## 4. 导入教师资料
 

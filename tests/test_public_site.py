@@ -25,7 +25,7 @@ class TestPublicSiteAssets(unittest.TestCase):
         self.assertIn('href="styles.css"', html)
         self.assertIn('src="site.js"', html)
         self.assertEqual(len(re.findall(r"<h1\b", html)), 1)
-        for marker in ("DC DESIGNER", "Dick–Carey", "STANDARD FAST", "COLLABORATIVE", "#install", "复制给 Codex"):
+        for marker in ("DC DESIGNER", "Dick–Carey", "STANDARD FAST", "COLLABORATIVE", "#install", "复制给任意智能体", "Claude Code", "Gemini CLI"):
             self.assertIn(marker, html)
 
     def test_hero_copy_matches_requested_lines(self):
@@ -128,14 +128,35 @@ class TestPublicSiteAssets(unittest.TestCase):
 
     def test_install_prompt_is_consistent_and_actionable(self):
         js = (SITE / "site.js").read_text(encoding="utf-8")
-        match = re.search(r'const INSTALL_PROMPT = "(.+?)";', js)
-        self.assertIsNotNone(match)
-        prompt = match.group(1)
-        self.assertIn("Plugins", prompt)
-        self.assertIn("https://github.com/xiajiadi/dc-designer-core", prompt)
-        self.assertIn("导入 marketplace", prompt)
-        self.assertIn("dc-info-tech-design", prompt)
-        self.assertIn("若当前账户无权限", prompt)
+        self.assertIn("const INSTALL_PROMPT = [", js)
+        for marker in (
+            "https://github.com/xiajiadi/dc-designer-core",
+            "Codex",
+            "Claude Code",
+            "Gemini CLI",
+            "python mcp-server/server.py",
+            "dc-info-tech-design",
+            "不要在没有我明确授权时写入用户全局配置",
+        ):
+            self.assertIn(marker, js)
+        self.assertNotIn("当前 Codex 工作区的 Plugins 设置中", js)
+
+    def test_cross_agent_manifests_and_commands_are_aligned(self):
+        codex = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        claude = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        gemini = json.loads((ROOT / "gemini-extension.json").read_text(encoding="utf-8"))
+        core = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+        for manifest in (codex, claude, gemini):
+            self.assertEqual(manifest["name"], "dc-designer-core")
+            self.assertEqual(manifest["version"], core["version"])
+        self.assertEqual(codex["skills"], "./skills/")
+        self.assertEqual(codex["mcpServers"], "./.mcp.json")
+        self.assertEqual(gemini["contextFileName"], "GEMINI.md")
+        self.assertIn("${extensionPath}", json.dumps(gemini["mcpServers"], ensure_ascii=False))
+        for name in ("dc-info-tech-design.toml", "dc-info-tech-review.toml", "dc-info-tech-revise.toml"):
+            command = (ROOT / "commands" / name).read_text(encoding="utf-8")
+            self.assertIn("prompt =", command)
+            self.assertIn("{{args}}", command)
 
     def test_marketplace_manifest_points_to_plugin_repository_root(self):
         manifest = json.loads((ROOT / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))

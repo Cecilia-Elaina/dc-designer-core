@@ -2,20 +2,23 @@
 
 ## 概述
 
-`dc-designer-mcp` 是 Dick & Carey 教学系统设计插件的 MCP Server，提供外部能力接口，包括课程标准检索、教师知识库管理、教学分析流图生成、绩效目标生成、评价方案生成、教学策略生成、形成性评价数据采集、修改教学、文件导出等。
+`dc-designer-mcp` 是 DC Designer 的跨智能体 MCP Server，提供外部能力接口，包括课程标准检索、教师知识库管理、教学分析流图生成、绩效目标生成、评价方案生成、教学策略生成、形成性评价数据采集、修改教学、文件导出等。Codex、Claude Code、Gemini CLI 和其他支持 MCP 的宿主可以共用这一个本地入口。
 
 ## 安装
 
 ```bash
 cd mcp-server
-pip install -r requirements.txt
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
 ```
 
 ## 运行
 
 ```bash
-python server.py
+.venv/Scripts/python server.py
 ```
+
+上面的环境位于当前项目目录，只服务于当前仓库；其他智能体也可以直接复用宿主已经配置好的项目 Python 环境。
 
 ## 工具列表
 
