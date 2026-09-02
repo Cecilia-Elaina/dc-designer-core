@@ -45,18 +45,18 @@ DC Designer 将这些决策放回同一个教学系统中处理。
 
 ## Sample Artifacts
 
-下面的截面来自仓库内的匿名示例项目，用来展示输出形态，不代表教师私有资料或真实学生效果数据。
+下面的截图取自《Python 分支结构教学系统设计报告》，用于展示插件生成的交付物形态；报告中的课堂情境与评价数据仅作示例，不代表真实学生效果。
 
 <table>
   <tr>
-    <td align="center"><img src="docs/assets/sample-report-page.png" alt="Sample Word report page" width="280"></td>
-    <td align="center"><img src="docs/assets/sample-skill-map.png" alt="Sample skill hierarchy map" width="420"></td>
-    <td align="center"><img src="docs/assets/sample-program-flow.png" alt="Sample programming control flow" width="420"></td>
+    <td align="center"><img src="docs/assets/sample-report-page.png" alt="Python branch structure teaching system design report" width="280"></td>
+    <td align="center"><img src="docs/assets/sample-skill-map.png" alt="Skill goals and subordinate skills overview" width="420"></td>
+    <td align="center"><img src="docs/assets/sample-skill-hierarchy.png" alt="Subordinate skills and entry skills map" width="420"></td>
   </tr>
   <tr>
-    <td align="center"><sub>Word 教学系统设计报告</sub></td>
+    <td align="center"><sub>Python 分支结构教学系统设计报告</sub></td>
+    <td align="center"><sub>技能目标与从属技能概览</sub></td>
     <td align="center"><sub>从属技能与入门技能图</sub></td>
-    <td align="center"><sub>程序控制流程图</sub></td>
   </tr>
 </table>
 
