@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       core: ${{ steps.scope.outputs.core }}
+      public: ${{ steps.scope.outputs.public }}
       site: ${{ steps.scope.outputs.site }}
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +47,7 @@ jobs:
           fi
 
           core=false
+          public=false
           site=false
           while IFS= read -r path; do
             [ -z "$path" ] && continue
@@ -56,6 +58,9 @@ jobs:
               .github/workflows/pages.yml)
                 site=true
                 ;;
+              .github/workflows/ci.yml|.agents/plugins/marketplace.json|CITATION.cff|tests/test_public_site.py)
+                public=true
+                ;;
               docs/*|*.md)
                 ;;
               *)
@@ -65,6 +70,7 @@ jobs:
           done <<< "$files"
 
           echo "core=$core" >> "$GITHUB_OUTPUT"
+          echo "public=$public" >> "$GITHUB_OUTPUT"
           echo "site=$site" >> "$GITHUB_OUTPUT"
 
   site:
@@ -78,6 +84,18 @@ jobs:
         run: node --check site/site.js
       - name: Run site smoke test
         run: python scripts/site_smoke.py
+
+  public:
+    name: Check public metadata
+    needs: changes
+    if: needs.changes.outputs.public == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check public site JavaScript
+        run: node --check site/site.js
+      - name: Run public site contract test
+        run: python -m unittest discover -s tests -p 'test_public_site.py' -q
 
   core:
     needs: changes

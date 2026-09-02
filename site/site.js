@@ -1,6 +1,6 @@
 document.documentElement.classList.add("js");
 
-const INSTALL_PROMPT = "请在当前 Codex 工作区的 Plugins 设置中从 GitHub 仓库 https://github.com/Cecilia-Elaina/dc-designer-core 导入 marketplace 并安装 dc-designer-core，安装后调用 /dc-designer-core:dc-info-tech-design；若当前账户无权限，请说明需要的管理员设置。";
+const INSTALL_PROMPT = "请在当前 Codex 工作区的 Plugins 设置中从 GitHub 仓库 https://github.com/xiajiadi/dc-designer-core 导入 marketplace 并安装 dc-designer-core，安装后调用 /dc-designer-core:dc-info-tech-design；若当前账户无权限，请说明需要的管理员设置。";
 
 function announce(message, source) {
   document.querySelectorAll("[data-copy-feedback]").forEach((target) => {

@@ -4,15 +4,15 @@
   <p><strong>从课标到课堂，让教学设计真正可执行。</strong></p>
   <p>Evidence-grounded Dick–Carey instructional design for China K–12 IT education.</p>
   <p>
-    <a href="https://cecilia-elaina.github.io/dc-designer-core/">产品官网</a>
+    <a href="https://xiajiadi.github.io/dc-designer-core/">产品官网</a>
     ·
     <a href="docs/quickstart.md">快速开始</a>
     ·
     <a href="docs/source_provenance.md">来源与证据</a>
   </p>
   <p>
-    <a href="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/ci.yml"><img src="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
-    <a href="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/pages.yml"><img src="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/pages.yml/badge.svg?branch=master" alt="GitHub Pages"></a>
+    <a href="https://github.com/xiajiadi/dc-designer-core/actions/workflows/ci.yml"><img src="https://github.com/xiajiadi/dc-designer-core/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
+    <a href="https://github.com/xiajiadi/dc-designer-core/actions/workflows/pages.yml"><img src="https://github.com/xiajiadi/dc-designer-core/actions/workflows/pages.yml/badge.svg?branch=master" alt="GitHub Pages"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1f1f1f.svg" alt="MIT License"></a>
   </p>
 </div>

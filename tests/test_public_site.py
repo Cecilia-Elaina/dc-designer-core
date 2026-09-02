@@ -25,7 +25,7 @@ class TestPublicSiteAssets(unittest.TestCase):
         self.assertIn('href="styles.css"', html)
         self.assertIn('src="site.js"', html)
         self.assertEqual(len(re.findall(r"<h1\b", html)), 1)
-        for marker in ("DC DESIGNER CORE", "Dick–Carey", "STANDARD FAST", "COLLABORATIVE", "#install", "复制给 Codex"):
+        for marker in ("DC DESIGNER", "Dick–Carey", "STANDARD FAST", "COLLABORATIVE", "#install", "复制给 Codex"):
             self.assertIn(marker, html)
 
     def test_hero_copy_matches_requested_lines(self):
@@ -132,7 +132,7 @@ class TestPublicSiteAssets(unittest.TestCase):
         self.assertIsNotNone(match)
         prompt = match.group(1)
         self.assertIn("Plugins", prompt)
-        self.assertIn("https://github.com/Cecilia-Elaina/dc-designer-core", prompt)
+        self.assertIn("https://github.com/xiajiadi/dc-designer-core", prompt)
         self.assertIn("导入 marketplace", prompt)
         self.assertIn("dc-info-tech-design", prompt)
         self.assertIn("若当前账户无权限", prompt)
@@ -144,7 +144,7 @@ class TestPublicSiteAssets(unittest.TestCase):
         plugin = manifest["plugins"][0]
         self.assertEqual(plugin["name"], "dc-designer-core")
         self.assertEqual(plugin["source"]["source"], "url")
-        self.assertEqual(plugin["source"]["url"], "https://github.com/Cecilia-Elaina/dc-designer-core.git")
+        self.assertEqual(plugin["source"]["url"], "https://github.com/xiajiadi/dc-designer-core.git")
 
     def test_pages_workflow_publishes_site(self):
         workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
