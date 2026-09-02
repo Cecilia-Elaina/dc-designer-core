@@ -9,7 +9,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Cecilia-Elaina/dc-designer-core.git"
-      }
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
     }
   ]
 }

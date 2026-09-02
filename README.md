@@ -1,19 +1,111 @@
-# dc-designer-core
+<div align="center">
+  <img src="docs/assets/dc-designer-hero.png" alt="DC Designer product overview" width="960">
+  <h1>DC Designer</h1>
+  <p><strong>从课标到课堂，让教学设计真正可执行。</strong></p>
+  <p>Evidence-grounded Dick–Carey instructional design for China K–12 IT education.</p>
+  <p>
+    <a href="https://cecilia-elaina.github.io/dc-designer-core/">产品官网</a>
+    ·
+    <a href="docs/quickstart.md">快速开始</a>
+    ·
+    <a href="docs/source_provenance.md">来源与证据</a>
+  </p>
+  <p>
+    <a href="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/ci.yml"><img src="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
+    <a href="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/pages.yml"><img src="https://github.com/Cecilia-Elaina/dc-designer-core/actions/workflows/pages.yml/badge.svg?branch=master" alt="GitHub Pages"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1f1f1f.svg" alt="MIT License"></a>
+  </p>
+</div>
 
-面向中国 K12 信息科技/信息技术教师的 Dick–Carey 教学系统设计 Codex 插件。
+DC Designer 是一个面向中国大陆小学、初中和普通高中信息科技 / 信息技术教师的本地优先 Codex 插件。它以 Dick–Carey 教学系统设计模型为骨架，把课程标准、教学分析、学习者与环境、绩效目标、评价证据、教学策略、课堂材料和修订组织成一条可追溯的设计链。
 
-## 产品范围
+它不是替教师一键生成教案，而是帮助教师完成一次有依据、有结构、有证据、可以进入课堂的教学系统设计。
 
-当前 v1 只支持中国大陆小学、初中、普通高中信息科技/信息技术。插件提供两个设计模式：
+## Why DC Designer
 
-- `standard_fast`：课标约束快速设计。检索内置官方文件的条款候选，自动形成完整草案，再请教师确认关键决策。
-- `collaborative`：完整协同设计。从需求/绩效差距开始，按 Dick–Carey 模块逐步提问、生成候选、记录决策并复核。
+真正困难的不是写出一段教学文字，而是解释并检查这些关系：
 
-高校、职教、企业培训和其他学科在当前版本会被明确拒绝，不会套用泛化模板继续生成。
+- 教学目的为什么这样确定，依据哪一条课程标准；
+- 学习者需要哪些入门技能，目标对应哪些可观察行为；
+- 评价任务能否证明学习者已经达成目标；
+- 教学策略、教学材料和评价证据是否保持一致；
+- 教学实施后，应该根据什么证据继续修订。
 
-## Codex 入口
+DC Designer 将这些决策放回同一个教学系统中处理。
 
-官方清单是 `.codex-plugin/plugin.json`，公开三个 Skills：
+| 设计问题 | DC Designer 的处理方式 |
+| --- | --- |
+| 教学模型 | Dick–Carey 系统化设计流程 |
+| 课程标准 | 官方来源元数据、条款候选和适用范围可追溯 |
+| 教师判断 | 关键决策由教师确认、修改或补充 |
+| 教学目标 | 条件、行为和标准对应的绩效目标 |
+| 评价与策略 | 目标、评价、策略和材料的一致性检查 |
+| 教师资料 | 本机优先，标记为 `C1/teacher_private` |
+| 教学效果 | 没有真实数据时保持“待实施 / 待验证” |
+
+## Sample Artifacts
+
+下面的截面来自仓库内的匿名示例项目，用来展示输出形态，不代表教师私有资料或真实学生效果数据。
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/assets/sample-report-page.png" alt="Sample Word report page" width="280"></td>
+    <td align="center"><img src="docs/assets/sample-skill-map.png" alt="Sample skill hierarchy map" width="420"></td>
+    <td align="center"><img src="docs/assets/sample-program-flow.png" alt="Sample programming control flow" width="420"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Word 教学系统设计报告</sub></td>
+    <td align="center"><sub>从属技能与入门技能图</sub></td>
+    <td align="center"><sub>程序控制流程图</sub></td>
+  </tr>
+</table>
+
+## One Project, Many Deliverables
+
+一次设计从同一个结构化项目对象生成多种可交付结果，编号、依据和链接保持一致：
+
+- Word 完整教学系统设计报告、教师指南和学生学习单；
+- Excel 目标—评价—策略一致性矩阵；
+- JSON 项目文件、Markdown 证据和质量报告；
+- 目的操作流程图、从属技能与入门技能图；
+- 编程课题的开始、动作、决策、分支和测试 / 调试反馈图；
+- PNG 图像、可编辑 Draw.io 单页图和多页工作簿。
+
+<p align="center">
+  <img src="docs/assets/dc-designer-outputs.png" alt="DC Designer outputs overview" width="960">
+</p>
+
+## The Design Chain
+
+<p align="center">
+  <img src="docs/assets/dc-designer-workflow.png" alt="Dick–Carey instructional design workflow" width="960">
+</p>
+
+设计从评价需求和绩效差距开始，经过教学分析、学习者与环境、绩效目标、评价工具、教学策略和材料，最后通过形成性评价与修订回到前面的决策。教学目的操作流程、技能层级和编程控制流程分别表达，不混合为一张含义不清的图。
+
+## Product Architecture
+
+<p align="center">
+  <img src="docs/assets/dc-designer-architecture.png" alt="DC Designer product architecture" width="960">
+</p>
+
+插件把教学模型、来源与知识库、教师确认、技能和评价规则、质量门禁以及多种输出组织成一个项目对象。它提供分析建议，但不替教师确认教学目的，也不把候选证据伪装成最终依据。
+
+## Two Design Modes
+
+### `standard_fast`
+
+课标约束快速设计。适合已经明确课题、教材、课时和教学条件的教师。提供学段、年级、课题、教材位置、课时、设备和匿名班级共性学情后，系统检索课程标准依据，形成完整草案，再邀请教师确认关键决策。
+
+### `collaborative`
+
+完整协同设计。从评价需求和绩效差距开始，按 Dick–Carey 模型逐阶段执行：
+
+`提问 → 候选与理由 → 教师确认或修改 → 保存决策 → 下一阶段`
+
+适合课程设计、公开课、教学研究和需要完整设计证据的场景。
+
+## Three Skills
 
 ```text
 /dc-designer-core:dc-info-tech-design
@@ -21,98 +113,108 @@
 /dc-designer-core:dc-info-tech-revise
 ```
 
-Skills 使用本地 `scripts/dc_info_tech.py` 和 `mcp-server/` 核心，不要求远程服务。MCP Server 仍保留为兼容入口；明确传入 `education_scope=k12_info_technology` 或 `v1=true` 时会路由到 v1 核心。
+- **Design**：创建新的信息科技教学系统设计；
+- **Review**：检查目标、评价、策略、来源和结构一致性；
+- **Revise**：结合教师反馈和匿名形成性评价信息修订已有设计。
 
-## 知识与隐私边界
+## Real Plugin Walkthrough
 
-- 插件内置的是官方文件元数据、链接和标注为 `normalized_summary` 的条款候选，不复制商业教材全文，也不把摘要冒充逐字引文。
-- 教师上传的教材、教案、试卷和校本资料写入教师本机 `.dc-designer/knowledge/`，来源标为 `C1/teacher_private`，不能单独成为正式教学目的依据。
-- 教师长期记忆必须显式同意；系统拒绝保存学生姓名、学号、身份证号、电话和个人成绩等身份信息。
-- 条款候选必须由教师核对链接、版本、单元和适用范围后，才能进入 `teacher_confirmed` 或 `final_verified`。
+下面的三张截图来自一次真实的 Codex 桌面会话，展示从选择 Skill、提交课题，到生成教学目的候选的关键状态。由于设计流程需要等待检索并保留教师确认，公开展示采用关键截图序列，不用加速或伪造 GIF；截图中的课题为匿名演示输入，也不代表已经通过全部质量门禁。
 
-## 输出
+<table>
+  <tr>
+    <td align="center"><img src="docs/assets/dc-designer-plugin-01-skill-menu.png" alt="Codex desktop skill selection" width="360"></td>
+    <td align="center"><img src="docs/assets/dc-designer-plugin-02-started.png" alt="DC Designer required teacher inputs" width="360"></td>
+    <td align="center"><img src="docs/assets/dc-designer-plugin-03-goal-candidate.png" alt="DC Designer instructional goal candidate" width="360"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>01 · 选择 DC Designer Skill</sub></td>
+    <td align="center"><sub>02 · 插件列出必需确认项</sub></td>
+    <td align="center"><sub>03 · 生成教学目的候选</sub></td>
+  </tr>
+</table>
 
-一次设计从同一项目对象生成：
+## Quick Start
 
-- Word 完整教学系统设计报告、教师教学指南、学生学习单、AI 过程记录；
-- Excel 一致性矩阵、JSON 项目文件、Markdown 证据与质量报告；
-- 目的操作流程图、技能层级图和编程课题控制流程图的 PNG；
-- 可编辑的单页 Draw.io 图和多页 Draw.io 工作簿。
+当前版本面向 Windows 10 / 11，并需要 Python 3.10 或更高版本。完整环境检查和首次设计流程见 [Quick Start](docs/quickstart.md)。
 
-技能图严格区分目的操作流程与从属技能/入门技能层级；分支、循环课题会生成决策菱形、是/否边和测试/调试反馈回路。
-
-## 本地命令
+安装插件后，可以在 Codex 中调用：
 
 ```text
-python scripts/dc_info_tech.py design --request-file examples/v1/smoke_request.json --output-dir exports/v1_smoke
-python scripts/dc_info_tech.py review --project <project.json> --output-dir <review-dir>
-python scripts/dc_info_tech.py revise --project <project.json> --feedback-file <feedback.json> --output-dir <revise-dir>
-python scripts/dc_info_tech.py knowledge-ingest --path <teacher-file> --metadata-json '{"subject":"信息科技"}'
+/dc-designer-core:dc-info-tech-design
 ```
 
-## 产品官网
-
-官网是插件的产品介绍、安装引导和公开文档入口，不承载教学设计工作台。公开站点源码位于 `site/`，通过 GitHub Pages 发布；本地预览可以运行：
+也可以直接描述课题，例如：
 
 ```text
+为七年级信息科技《认识算法》做一次课标约束快速设计。
+```
+
+产品介绍页可以独立本地预览：
+
+```powershell
 python -m http.server 4173 --directory site
 ```
 
-浏览器打开 `http://127.0.0.1:4173/`；如果该端口已被其他本地项目占用，可改用 `python -m http.server 4174 --directory site`，然后打开 `http://127.0.0.1:4174/`。官网的“复制给 Codex”按钮会提供 GitHub marketplace 导入指令，实际安装仍受 Codex 工作区权限和管理员设置控制。
+然后打开 `http://127.0.0.1:4173/`。插件导入、教师资料导入和设计命令请参阅 [Quick Start](docs/quickstart.md)。
 
-## 环境与安装
+## Privacy & Trust
 
-- Windows 10/11；Python 3.10 或更高版本。
-- 生成 Word/Excel 需要 `requirements-core.txt`；MCP 兼容入口再安装 `requirements-mcp.txt`。
-- 视觉质量门禁推荐安装 LibreOffice；`scripts/doctor.py` 会检查 LibreOffice 和 `pdftoppm`。
-- Draw.io 文件是标准 XML，可用 diagrams.net 打开编辑；本地生成不依赖联网 Draw.io 客户端。
-- 运行 `python scripts/package_release.py` 生成不含测试导出物和用户资料的发布压缩包。
+- 内置库只保存官方文件元数据、公开链接和标注为 `normalized_summary` 的条款候选，不复制受限全文；
+- 教师上传的教材、教案、试卷和校本资料只写入本机 `.dc-designer/knowledge/`，并标记为 `C1/teacher_private`；
+- 教师必须确认教学目的、入门技能、学情、课时设备、策略和正式依据等关键决策；
+- 系统拒绝保存学生姓名、学号、身份证号、电话和个人成绩等身份信息；
+- 没有真实形成性评价数据时，输出保持“待实施 / 待验证”，不编造教学效果。
 
-## 官方来源与更新
+## Scope
 
-内置库是带快照编号的官方来源元数据和短条款候选，不复制受限全文。每条来源包含发布机构、日期、版本、链接、页码或条款定位、适用学段和用途。教师可通过插件对话获取教育部/政府官方链接；在线文件只会进入 `.dc-designer/knowledge/official/updates.json` 的待审核区，教师确认并补齐元数据后才会进入本机活动目录。
+当前版本专注于：
 
-## 隐私与产品边界
+- 中国大陆小学信息科技 / 信息技术；
+- 中国大陆初中信息科技 / 信息技术；
+- 中国大陆普通高中信息科技 / 信息技术。
 
-插件只支持中国大陆小学、初中、普通高中信息科技/信息技术；高校、职教、企业培训和其他学科会被拒绝。教师资料和项目文件默认保存在本机 `.dc-designer/`，不会被打包进插件。系统拒绝保存学生姓名、学号、身份证号、电话和个人成绩；没有真实形成性评价数据时，报告只写“待实施/待验证”，不编造效果数据。
+高校、职业教育、企业培训和其他学科不在当前 v1 范围内，系统会明确返回 `unsupported_scope`，不会套用泛化模板继续生成。
 
-## 开发验证
+## Documentation
+
+- [快速开始](docs/quickstart.md)
+- [来源与证据追溯](docs/source_provenance.md)
+- [v1 插件合同](docs/v1_plugin_contract.md)
+- [发布说明](docs/release_notes_v1.1.5.md)
+- [变更记录](CHANGELOG.md)
+- [贡献指南](CONTRIBUTING.md)
+- [安全与隐私报告](SECURITY.md)
+- [软件引用](CITATION.cff)
+
+## Project Structure
+
+```text
+.codex-plugin/       Codex 插件清单
+skills/              Design、Review、Revise 三个公开 Skill
+scripts/             本地 Skill 入口和导出工具
+mcp-server/          MCP 兼容入口与教学设计核心
+data/standards/      官方来源元数据和条款候选
+schemas/             v1 项目与技能图合同
+examples/            可复用的匿名请求与项目样例
+site/                产品官网静态页面
+docs/                用户、证据和发布文档
+tests/               核心回归与验收测试
+```
+
+<details>
+<summary>开发验证</summary>
+
+核心开发验证命令如下。页面只读改动时，优先进行本地页面预览和受影响资源检查；涉及核心插件或发布时再执行完整门禁。
 
 ```text
 python -m pytest -q
-python <Codex plugin validator>/validate_plugin.py .
 python scripts/release_check.py
-```
-
-## 目录
-
-```text
-.codex-plugin/       Codex 官方插件清单
-.agents/plugins/     Codex GitHub marketplace 清单
-skills/              三个公开 Skill
-scripts/             本地 Skill 入口
-mcp-server/core/     范围、证据、知识库、质量和路径核心
-mcp-server/tools/    教学分析、导出与兼容工具
-data/standards/      官方来源元数据和条款候选
-schemas/             v1 项目与技能图合同
-docs/                快速开始、来源追溯、插件合同和发布说明
-tests/               回归与 v1 端到端验收
-site/                产品官网静态页面
-```
-
-## 许可
-
-MIT License
-
-## 发布前验收
-
-发布包生成前建议依次执行：
-
-```text
-python scripts/doctor.py
-python scripts/acceptance_cases.py
 python scripts/package_release.py
-python scripts/clean_install_smoke.py --archive dist/dc-designer-core-v1.1.5.zip
 ```
 
-`acceptance_cases.py` 使用匿名合成请求验证初中分支、高中循环和小学算法三个场景；它不会导入或生成真实学生数据。`clean_install_smoke.py` 会将压缩包解压到临时目录，并在包外建立教师工作区，验证安装包不依赖开发者目录。
+</details>
+
+## License
+
+MIT License. See [LICENSE](LICENSE).

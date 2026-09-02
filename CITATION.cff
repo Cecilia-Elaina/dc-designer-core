@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: DC Designer
+version: 1.1.5
+type: software
+authors:
+  - name: Cecilia-Elaina
+repository-code: https://github.com/Cecilia-Elaina/dc-designer-core
+url: https://cecilia-elaina.github.io/dc-designer-core/
+license: MIT
+abstract: >-
+  Evidence-grounded Dick-Carey instructional design for China K-12
+  Information Technology education, delivered as a local-first Codex plugin.
+keywords:
+  - instructional design
+  - Dick-Carey
+  - K-12
+  - information technology education
+  - teacher tools
+  - local-first
+message: If you use DC Designer in teaching, research, or software work, please cite this repository.
