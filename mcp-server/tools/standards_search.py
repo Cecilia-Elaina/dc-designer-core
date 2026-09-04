@@ -3,7 +3,7 @@ Standards Search MCP Tools
 
 Searches local curriculum standards data stored in:
 - data/standards/source_registry.json (master registry)
-- data/standards/k12/*.json (K12 standard metadata)
+- data/standards/k12/*.json and data/standards/high_school/*.json
 - data/standards/test_fixtures/*.json (test only)
 
 All functions are pure / deterministic -- no AI calls.
@@ -41,6 +41,7 @@ SUBJECT_ALIASES = {
     "物理": "物理",
     "化学": "化学",
     "生物": "生物",
+    "生物学": "生物",
     "历史": "历史",
     "地理": "地理",
     "政治": "道德与法治",
@@ -63,17 +64,85 @@ SUBJECT_ALIASES = {
 # Stage level normalization
 STAGE_NORMALIZE = {
     "小学": "primary",
+    "小学阶段": "primary",
     "primary": "primary",
     "初中": "junior",
+    "初中阶段": "junior",
     "junior": "junior",
     "junior_high": "junior",
     "高中": "senior",
+    "普通高中": "senior",
     "senior": "senior",
     "senior_high": "senior",
     "义务教育": "compulsory",
+    "义务教育阶段": "compulsory",
     "compulsory": "compulsory",
     "k12": "k12",
+    "junior_secondary": "junior",
+    "senior_secondary": "senior",
 }
+
+
+def _normalize_stage_token(value: str) -> str:
+    """Normalize a single stage label without treating compulsory as a grade."""
+    text = str(value or "").strip()
+    return STAGE_NORMALIZE.get(text, text)
+
+
+def _stage_set(value: object, grade_values: object = None) -> set[str]:
+    """Return the concrete stages represented by a stage/grade field."""
+    values = value if isinstance(value, (list, tuple, set)) else [value]
+    stages: set[str] = set()
+    for raw in values:
+        token = _normalize_stage_token(str(raw or ""))
+        if token == "compulsory":
+            stages.update({"primary", "junior"})
+        elif token == "k12":
+            stages.update({"primary", "junior", "senior"})
+        elif token in {"primary", "junior", "senior"}:
+            stages.add(token)
+        elif raw:
+            inferred, _ = _normalize_grade(str(raw))
+            if inferred:
+                stages.add(inferred)
+
+    if grade_values:
+        grade_items = (
+            grade_values
+            if isinstance(grade_values, (list, tuple, set))
+            else [grade_values]
+        )
+        for raw in grade_items:
+            inferred, _ = _normalize_grade(str(raw or ""))
+            if inferred:
+                stages.add(inferred)
+    return stages
+
+
+def _standard_stage_set(standard: dict) -> set[str]:
+    """Resolve stage from explicit fields and applicable grade ranges."""
+    return _stage_set(
+        standard.get("stage", standard.get("stages", "")),
+        standard.get("grade_levels")
+        or standard.get("applicable_grades")
+        or standard.get("grades"),
+    )
+
+
+def _stage_matches(standard: dict, query_stage: str) -> float:
+    """Return a stage score, or zero when a requested stage is incompatible."""
+    if not query_stage:
+        return 0.0
+    query_stages = _stage_set(query_stage)
+    source_stages = _standard_stage_set(standard)
+    if not query_stages or not source_stages:
+        return 0.0
+    overlap = query_stages & source_stages
+    if not overlap:
+        return 0.0
+    if query_stages == source_stages:
+        return 1.0
+    return 0.9 if len(overlap) == len(query_stages) else 0.75
 
 
 # ===================================================================
@@ -155,10 +224,18 @@ def search_standards(query: dict) -> dict:
             "subject": std.get("subject", ""),
             "grade": std.get("grade", ""),
             "stage": std.get("stage", ""),
+            "grade_levels": std.get("grade_levels", std.get("applicable_grades", [])),
+            "version": std.get("version", std.get("source_version", "")),
+            "source_url": std.get("source_url", ""),
+            "content_sha256": std.get("content_sha256", ""),
+            "content_hash_status": std.get("content_hash_status", ""),
             "keywords": std.get("keywords", []),
             "source_level": std.get("source_level", ""),
             "source_category": std.get("source_category", ""),
             "applicable_scenes": std.get("applicable_scenes", ["k12"]),
+            "specific_clauses": std.get("specific_clauses", std.get("clauses", [])),
+            "verification_status": std.get("verification_status", ""),
+            "teacher_confirmation_required": std.get("teacher_confirmation_required", False),
             "relevance_score": round(score, 3),
             "data_file": std.get("_data_file", ""),
             "is_test_fixture": std.get("is_test_fixture", False),
@@ -253,10 +330,16 @@ def get_standard_source(source_id: str) -> dict:
                 "subject": norm.get("subject", ""),
                 "grade": norm.get("grade", ""),
                 "stage": norm.get("stage", ""),
+                "grade_levels": norm.get("grade_levels", norm.get("applicable_grades", [])),
+                "version": norm.get("version", norm.get("source_version", "")),
+                "source_url": norm.get("source_url", ""),
                 "keywords": norm.get("keywords", []),
                 "source_level": norm.get("source_level", ""),
                 "source_category": norm.get("source_category", ""),
                 "applicable_scenes": norm.get("applicable_scenes", ["k12"]),
+                "specific_clauses": norm.get("specific_clauses", norm.get("clauses", [])),
+                "verification_status": norm.get("verification_status", ""),
+                "teacher_confirmation_required": norm.get("teacher_confirmation_required", False),
                 "relevance_score": 1.0,
                 "data_file": norm.get("_data_file", ""),
                 "is_test_fixture": norm.get("is_test_fixture", False),
@@ -391,10 +474,16 @@ def build_source_record_from_standard(match: dict) -> dict:
         applicable_scenes = _category_to_scenes(source_category)
 
     # Determine copyright scope from source level and category
-    copyright_scope = _level_to_copyright(source_level, source_category)
+    copyright_scope = match.get(
+        "copyright_scope",
+        _level_to_copyright(source_level, source_category),
+    )
 
     # Determine use scope from source level and category
-    use_scope = _level_to_use_scope(source_level, source_category)
+    use_scope = match.get(
+        "use_scope",
+        _level_to_use_scope(source_level, source_category),
+    )
 
     # Build retrieval status
     retrieval_status = match.get("retrieval_status", "found")
@@ -406,12 +495,25 @@ def build_source_record_from_standard(match: dict) -> dict:
     else:
         source_id = gen_source_id()
 
+    specific_clauses = match.get("specific_clauses") or match.get("clauses") or []
     record = {
         "source_id": source_id,
         "source_level": source_level,
         "source_category": source_category,
         "source_name": match.get("source_name", match.get("title", "")),
         "source_description": match.get("description", ""),
+        "source_url": match.get("source_url", ""),
+        "source_date": match.get("source_date", match.get("publication_date", "")),
+        "source_version": match.get("source_version", match.get("version", "")),
+        "stage": match.get("stage", ""),
+        "subject": match.get("subject", ""),
+        "source_file_name": match.get("source_file_name", ""),
+        "content_sha256": match.get("content_sha256", ""),
+        "content_hash_status": match.get("content_hash_status", ""),
+        "grade_levels": match.get(
+            "grade_levels",
+            match.get("applicable_grades", []),
+        ),
         "credibility": credibility,
         "can_be_goal_basis": can_be_goal_basis,
         "retrieval_status": retrieval_status,
@@ -421,9 +523,13 @@ def build_source_record_from_standard(match: dict) -> dict:
         "is_test_fixture": is_test_fixture,
         "file_reference": match.get("data_file", ""),
         "fallback_required": not source_level.startswith(("A", "B")),
-        "specific_clauses": [],
-        "verified_by_teacher": False,
-        "notes": "",
+        "specific_clauses": specific_clauses,
+        "verified_by_teacher": bool(match.get("verified_by_teacher", False)),
+        "teacher_confirmation_required": bool(
+            match.get("teacher_confirmation_required", False)
+        ),
+        "verification_status": match.get("verification_status", ""),
+        "notes": match.get("notes", ""),
     }
 
     # Add source-specific notes
@@ -456,8 +562,9 @@ def build_source_record_from_standard(match: dict) -> dict:
 def _load_all_standards() -> list[dict]:
     """Load all standard records from local data directories.
 
-    Scans source_registry.json, k12/, and test_fixtures/ directories.
-    Merges them into a single list with metadata annotations.
+    Scans source_registry.json, both stage directories, and test fixtures.
+    Records are de-duplicated by source ID because the same official source is
+    intentionally present in the registry, snapshot, and subject pack.
     Returns an empty list if no data files exist.
     """
     all_standards = []
@@ -490,24 +597,70 @@ def _load_all_standards() -> list[dict]:
     k12_dir = os.path.join(_DATA_ROOT, "k12")
     all_standards.extend(_load_standards_from_dir(k12_dir, is_test=False))
 
-    # 3. Load test fixtures
+    # 3. Load regular senior-secondary standards
+    senior_dir = os.path.join(_DATA_ROOT, "high_school")
+    all_standards.extend(_load_standards_from_dir(senior_dir, is_test=False))
+
+    # 4. Load test fixtures
     fixture_dir = os.path.join(_DATA_ROOT, "test_fixtures")
     all_standards.extend(_load_standards_from_dir(fixture_dir, is_test=True))
 
-    return all_standards
+    return _deduplicate_standards(all_standards)
+
+
+def _deduplicate_standards(records: list[dict]) -> list[dict]:
+    """Merge duplicate source IDs while retaining the richest record."""
+    by_id: dict[str, dict] = {}
+    anonymous: list[dict] = []
+    for record in records:
+        source_id = record.get("source_id") or record.get("standard_id") or record.get("id")
+        if not source_id:
+            anonymous.append(record)
+            continue
+        if source_id not in by_id:
+            by_id[source_id] = dict(record)
+            continue
+        merged = by_id[source_id]
+        for key, value in record.items():
+            if key == "_data_file":
+                continue
+            if value not in (None, "", [], {}):
+                if key in {"keywords", "clauses", "specific_clauses"}:
+                    current = merged.get(key) or []
+                    additions = value if isinstance(value, list) else [value]
+                    seen = {
+                        json.dumps(item, ensure_ascii=False, sort_keys=True)
+                        for item in current
+                    }
+                    for item in additions:
+                        marker = json.dumps(item, ensure_ascii=False, sort_keys=True)
+                        if marker not in seen:
+                            current.append(item)
+                            seen.add(marker)
+                    merged[key] = current
+                elif key not in merged or merged.get(key) in (None, "", [], {}):
+                    merged[key] = value
+        if record.get("is_test_fixture"):
+            merged["is_test_fixture"] = True
+    return anonymous + list(by_id.values())
 
 
 def _load_standards_from_dir(directory: str, is_test: bool = False) -> list[dict]:
     """Load all JSON files from a directory, each expected to contain
-    a list of standard records (or a single record dict)."""
+    a list of standard records (or a single record dict), recursively."""
     records = []
     if not os.path.isdir(directory):
         return records
 
-    for filename in sorted(os.listdir(directory)):
-        if not filename.endswith(".json"):
+    filepaths = []
+    for root, _, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename.endswith(".json"):
+                filepaths.append(os.path.join(root, filename))
+
+    for filepath in sorted(filepaths):
+        if not filepath.lower().endswith(".json"):
             continue
-        filepath = os.path.join(directory, filename)
         try:
             with open(filepath, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -527,7 +680,8 @@ def _load_standards_from_dir(directory: str, is_test: bool = False) -> list[dict
             )
 
         for rec in file_records:
-            rec["_data_file"] = filename
+            relative_path = os.path.relpath(filepath, _DATA_ROOT).replace("\\", "/")
+            rec["_data_file"] = relative_path
             rec.setdefault("is_test_fixture", is_test)
             if is_test:
                 rec["is_test_fixture"] = True
@@ -559,6 +713,8 @@ def _normalize_standard_fields(std: dict) -> dict:
     # Normalize name
     if "source_name" not in normalized and "title" in normalized:
         normalized["source_name"] = normalized["title"]
+    if "description" not in normalized and "source_description" in normalized:
+        normalized["description"] = normalized["source_description"]
 
     # Normalize level
     if "source_level" not in normalized and "level" in normalized:
@@ -650,11 +806,17 @@ def _fuzzy_subject_match(source_subject: str, query_subject: str) -> float:
     if norm_source.lower() == norm_query.lower():
         return 1.0
 
-    # Substring containment
-    if norm_source in norm_query or norm_query in norm_source:
+    # Short known labels may contain one another; a long free-text subject
+    # query such as 古生物化石修复 must not be accepted as 生物.
+    if (
+        len(norm_source) <= 5
+        and len(norm_query) <= 5
+        and (norm_source in norm_query or norm_query in norm_source)
+    ):
         return 0.8
 
-    # Character overlap for CJK subjects (e.g., "道德与法治" vs "思想品德")
+    # Only accept meaningful CJK overlap. A single shared character must not
+    # make unrelated subjects such as 数学 and 化学 match.
     source_chars = set(norm_source)
     query_chars = set(norm_query)
     if source_chars and query_chars:
@@ -662,7 +824,7 @@ def _fuzzy_subject_match(source_subject: str, query_subject: str) -> float:
         union = source_chars | query_chars
         if union:
             jaccard = len(overlap) / len(union)
-            if jaccard > 0.3:
+            if len(overlap) >= 2 and jaccard >= 0.5:
                 return jaccard
 
     return 0.0
@@ -680,6 +842,19 @@ def _normalize_grade(grade_str: str) -> tuple:
         return ("", 0)
 
     grade_str = grade_str.strip()
+    stage_only = {
+        "小学": "primary",
+        "小学阶段": "primary",
+        "primary": "primary",
+        "初中": "junior",
+        "初中阶段": "junior",
+        "junior": "junior",
+        "高中": "senior",
+        "普通高中": "senior",
+        "senior": "senior",
+    }
+    if grade_str in stage_only:
+        return (stage_only[grade_str], 0)
 
     # Chinese grade: X年级 or 第X学段
     m = re.search(r"(\d+)", grade_str)
@@ -727,47 +902,58 @@ def _normalize_grade(grade_str: str) -> tuple:
     return ("", 0)
 
 
-def _grade_matches(source_grade: str, query_grade: str, query_stage: str = "") -> float:
+def _grade_matches(source_grade: object, query_grade: str, query_stage: str = "") -> float:
     """Check if source grade matches query grade.
 
     Returns 1.0 for exact match, 0.5 for same-stage match, 0.0 otherwise.
     """
-    if not source_grade or not query_grade:
-        # If no grade in source or query, check stage match
-        if query_stage:
-            norm_stage = STAGE_NORMALIZE.get(query_stage, query_stage)
-            source_stage = STAGE_NORMALIZE.get(query_stage, "")
-            if norm_stage and source_stage and norm_stage == source_stage:
-                return 0.3
-        return 0.2 if not query_grade else 0.0
+    if not query_grade:
+        return 0.2
+    if not source_grade:
+        return 0.0
 
-    src_stage, src_num = _normalize_grade(source_grade)
+    source_values = (
+        list(source_grade)
+        if isinstance(source_grade, (list, tuple, set))
+        else [source_grade]
+    )
     q_stage, q_num = _normalize_grade(query_grade)
+    query_stage_set = _stage_set(query_stage) if query_stage else set()
+    best = 0.0
+    for source_value in source_values:
+        source_text = str(source_value or "")
+        src_stage, src_num = _normalize_grade(source_text)
 
-    # Exact match
-    if src_num == q_num and src_stage == q_stage:
-        return 1.0
-    if source_grade == query_grade:
-        return 1.0
+        if source_text == query_grade:
+            best = max(best, 1.0)
+            continue
+        if src_num == q_num and src_stage == q_stage and q_num:
+            best = max(best, 1.0)
+            continue
+        if src_stage and q_stage and src_stage == q_stage:
+            if q_num == 0 or src_num == 0:
+                best = max(best, 0.5)
+            elif abs(src_num - q_num) <= 1:
+                best = max(best, 0.7)
+            else:
+                best = max(best, 0.4)
+            continue
+        if query_stage_set and src_stage in query_stage_set:
+            best = max(best, 0.4)
 
-    # Same stage and close grade (within 1)
-    if src_stage and q_stage and src_stage == q_stage:
-        if src_num and q_num and abs(src_num - q_num) <= 1:
-            return 0.7
-        elif src_num and q_num and src_num == q_num:
-            return 1.0
-        return 0.5
+    return best
 
-    # Stage match only
-    if src_stage and q_stage and src_stage == q_stage:
-        return 0.4
 
-    # Check query stage against source grade stage
-    norm_query_stage = STAGE_NORMALIZE.get(query_stage, query_stage) if query_stage else ""
-    if norm_query_stage and src_stage == norm_query_stage:
-        return 0.4
-
-    return 0.0
+def _source_grade_values(standard: dict) -> object:
+    """Return all grade fields so a broad standard does not match one grade only."""
+    return (
+        standard.get("grade_levels")
+        or standard.get("applicable_grades")
+        or standard.get("grades")
+        or standard.get("grade")
+        or standard.get("grade_level")
+        or []
+    )
 
 
 def _keyword_overlap(source_keywords: list, search_text: str) -> float:
@@ -821,6 +1007,15 @@ def _compute_match_score(
     score = 0.0
     has_criteria = False
 
+    # Stage is a hard boundary: a senior-secondary standard cannot satisfy a
+    # primary/junior query, and vice versa.
+    if stage:
+        stage_score = _stage_matches(standard, stage)
+        if stage_score == 0.0:
+            return 0.0
+        score += stage_score * 0.15
+        has_criteria = True
+
     # Subject match (required if provided)
     source_subject = standard.get("subject", "")
     if subject:
@@ -838,14 +1033,14 @@ def _compute_match_score(
             )
             if kw_subject == 0.0:
                 return 0.0  # Subject mismatch is hard filter
-        score += subject_score * 0.4
+        score += subject_score * 0.35
         has_criteria = True
 
     # Grade match (if provided)
-    source_grade = standard.get("grade", standard.get("grade_level", ""))
+    source_grade = _source_grade_values(standard)
     if grade:
         grade_score = _grade_matches(source_grade, grade, stage)
-        score += grade_score * 0.3
+        score += grade_score * 0.25
         has_criteria = True
 
     # Keyword / topic overlap
@@ -864,7 +1059,7 @@ def _compute_match_score(
         for word in search_text.lower().split():
             if len(word) >= 2 and word in text_fields:
                 kw_score = max(kw_score, 0.3)
-        score += kw_score * 0.3
+        score += kw_score * 0.25 if stage else kw_score * 0.3
         has_criteria = True
 
     # Bonus for higher source levels
@@ -900,7 +1095,7 @@ def _score_grade_match(match: dict, grade: str, stage: str = "") -> float:
     """Score grade match for ranking (0.0 to 1.0)."""
     if not grade and not stage:
         return 0.5
-    source_grade = match.get("grade", "")
+    source_grade = _source_grade_values(match)
     return _grade_matches(source_grade, grade, stage)
 
 

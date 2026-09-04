@@ -19,13 +19,18 @@ REQUIRED_FILES = [
     "prompts/dc-designer-core.md",
     "docs/agent-compatibility.md",
     "README.md",
+    "DESIGN.md",
+    "docs/release_notes_v3.0.0.md",
     "LICENSE",
     ".mcp.json",
     "scripts/dc_info_tech.py",
+    "scripts/dc_designer.py",
+    "schemas/v3-project.schema.json",
     "site/index.html",
     "site/styles.css",
     "site/site.js",
     "data/standards/k12/official_snapshot.json",
+    "data/standards/subject_registry_v3.json",
 ]
 REQUIRED_SKILLS = [
     "skills/dc-info-tech-design/SKILL.md",
@@ -116,7 +121,14 @@ def run_check() -> dict:
                 for key in required_clause_keys:
                     if not clause.get(key):
                         errors.append(f"source {source.get('source_id', '')} clause {clause.get('clause_id', '')} missing {key}")
-            if source.get("content_hash_status") not in {None, "", "metadata_snapshot_only", "retrieved", "not_recorded"}:
+            if source.get("content_hash_status") not in {
+                None,
+                "",
+                "metadata_snapshot_only",
+                "retrieved",
+                "not_recorded",
+                "local_original_verified_not_packaged",
+            }:
                 errors.append(f"official source {source.get('source_id', '')} has unknown content_hash_status")
     scan_files = [ROOT / "README.md", ROOT / "manifest.json", ROOT / ".codex-plugin/plugin.json", ROOT / ".claude-plugin/plugin.json", ROOT / "gemini-extension.json", ROOT / "GEMINI.md", ROOT / ".agents"]
     scan_files += [ROOT / "docs", ROOT / "skills", ROOT / "commands", ROOT / "prompts", ROOT / "qa", ROOT / "site"]

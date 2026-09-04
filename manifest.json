@@ -1,24 +1,24 @@
 {
   "name": "dc-designer-core",
-  "version": "2.0.0",
-  "description": "DC Designer：面向中国 K12 信息科技/信息技术教师的跨智能体、本地优先 Dick–Carey 教学系统设计插件",
+  "version": "3.0.0",
+  "description": "DC Designer：面向中国 K12 九学科教师的跨智能体、本地优先 Dick–Carey 教学系统设计插件",
   "type": "plugin",
   "model": "Dick & Carey Instructional Systems Design Model",
   "authors": [{"name": "DC Designer contributors", "role": "plugin developers"}],
   "license": "MIT",
-  "keywords": ["instructional-design", "dick-carey", "k12", "information-technology", "教学系统设计", "信息科技", "agent-plugin", "mcp", "codex", "claude-code", "gemini-cli"],
+  "keywords": ["instructional-design", "dick-carey", "k12", "nine-subjects", "教学系统设计", "九学科", "语文", "数学", "英语", "物理", "化学", "生物", "历史", "地理", "政治", "agent-plugin", "mcp", "codex", "claude-code", "gemini-cli"],
   "scope": {
-    "education_scope": "k12_info_technology",
+    "education_scope": "k12_nine_subjects",
     "stages": ["primary", "junior_secondary", "senior_secondary"],
-    "subjects": ["信息科技", "信息技术"],
+    "subjects": ["语文", "数学", "英语", "物理", "化学", "生物", "历史", "地理", "政治"],
     "modes": ["standard_fast", "collaborative"]
   },
   "skills": [
-    {"name": "dc-info-tech-design", "path": "skills/dc-info-tech-design/SKILL.md", "description": "课标约束快速设计或完整协同设计"},
-    {"name": "dc-info-tech-review", "path": "skills/dc-info-tech-review/SKILL.md", "description": "评审信息科技教学系统设计"},
-    {"name": "dc-info-tech-revise", "path": "skills/dc-info-tech-revise/SKILL.md", "description": "根据教师反馈和匿名数据修订设计"}
+    {"name": "dc-info-tech-design", "path": "skills/dc-info-tech-design/SKILL.md", "description": "九学科课标约束快速设计或完整协同设计（兼容旧命名）"},
+    {"name": "dc-info-tech-review", "path": "skills/dc-info-tech-review/SKILL.md", "description": "评审九学科教学系统设计（兼容旧命名）"},
+    {"name": "dc-info-tech-revise", "path": "skills/dc-info-tech-revise/SKILL.md", "description": "根据教师反馈和匿名数据修订九学科设计（兼容旧命名）"}
   ],
-  "mcp_server": {"name": "dc-designer-mcp", "path": "mcp-server/server.py", "transport": "stdio", "compatibility_only": true},
+  "mcp_server": {"name": "dc-designer-mcp", "path": "mcp-server/server.py", "transport": "stdio", "compatibility_only": false},
   "compatibility": {
     "shared_protocol": "portable-prompt-and-mcp",
     "native_hosts": [
@@ -28,7 +28,7 @@
     ],
     "fallback": "Any agent that can read project files can use prompts/dc-designer-core.md and the local scripts."
   },
-  "schemas": ["schemas/v1-project.schema.json", "schemas/v1-skill-graph.schema.json", "schemas/source.schema.json"],
+  "schemas": ["schemas/v3-project.schema.json", "schemas/v1-project.schema.json", "schemas/v1-skill-graph.schema.json", "schemas/source.schema.json"],
   "privacy_policy": {
     "local_workspace": ".dc-designer",
     "must_not_store": ["学生姓名", "学生学号", "身份证号", "电话", "学生个人成绩"],

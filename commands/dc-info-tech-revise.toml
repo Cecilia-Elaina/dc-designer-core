@@ -1,6 +1,6 @@
-description = "根据反馈修订中国 K12 信息科技教学设计"
+description = "根据反馈修订中国 K12 九学科教学设计（兼容旧命令名）"
 prompt = """
-请读取 skills/dc-info-tech-revise/SKILL.md、docs/agent-compatibility.md 和 docs/v1_plugin_contract.md，根据教师反馈或匿名形成性评价信息先做影响分析，再只修改已确认采纳的模块，并重新检查一致性、来源、隐私和图逻辑。
+请读取 DESIGN.md、skills/dc-info-tech-revise/SKILL.md 和 docs/agent-compatibility.md，根据教师反馈或匿名形成性评价信息先做影响分析，再只修改已确认采纳的模块，并重新检查一致性、来源、隐私和图逻辑。
 
 用户补充：{{args}}
 """

@@ -28,6 +28,52 @@ def _is_v1_request(args: dict) -> bool:
     )
 
 
+def _is_v3_request(args: dict) -> bool:
+    """Opt into the explicit nine-subject v3 contract."""
+    if args.get("v3") or args.get("education_scope") == "k12_nine_subjects":
+        return True
+    project = args.get("existing_design_project") or args.get("project")
+    if isinstance(project, dict) and project.get("education_scope") == "k12_nine_subjects":
+        return True
+    try:
+        from core.subject_registry import is_v3_subject
+
+        subject = args.get("subject_id") or args.get("subject")
+        # A grade such as "八年级" is not a stage label.  Passing it to the
+        # registry would raise before a valid subject can opt into v3.
+        stage = args.get("stage") or args.get("education_stage")
+        return bool(subject) and is_v3_subject(subject, stage)
+    except Exception:
+        return False
+
+
+def _normalize_v3_export_result(raw: dict) -> dict:
+    """Normalize the v3 exporter result for the MCP response contract."""
+    files = {}
+    for key, info in (raw.get("files", {}) if isinstance(raw, dict) else {}).items():
+        if not isinstance(info, dict):
+            continue
+        path = info.get("path", "")
+        exists = bool(path) and os.path.isfile(path)
+        files[key] = {
+            "path": path,
+            "exists": exists,
+            "size": info.get("size", os.path.getsize(path) if exists else 0),
+        }
+    errors = list(raw.get("errors", []) if isinstance(raw, dict) else [])
+    has_files = any(item.get("exists") and item.get("size", 0) > 0 for item in files.values())
+    status = "completed" if raw.get("status") == "success" and not errors else ("completed_with_warnings" if has_files else "failed")
+    return {
+        "status": status,
+        "export_status": "success" if status == "completed" else ("partial" if has_files else "failed"),
+        "export_index_json": files.get("export_index_json", {}).get("path", ""),
+        "warnings": errors,
+        "export_errors": errors,
+        "errors": errors,
+        "files": files,
+    }
+
+
 def _v1_file_entry(path: str) -> dict:
     exists = bool(path) and os.path.isfile(path)
     return {
@@ -127,8 +173,10 @@ TOOLS = [
                 "topic": {"type": "string", "description": "课题"},
                 "teacher_inputs": {"type": "object", "description": "教师提供的学情、媒体、设备等信息"},
                 "source_documents": {"type": "array", "items": {"type": "string"}, "description": "教师上传的课标/教材/教研资料路径"},
-                "education_scope": {"type": "string", "enum": ["k12_info_technology"], "description": "v1 范围：仅中国 K12 信息科技/信息技术"},
+                "education_scope": {"type": "string", "enum": ["k12_info_technology", "k12_nine_subjects"], "description": "教学范围：历史 v1 信息科技，或 v3 中国 K12 九学科"},
                 "v1": {"type": "boolean", "description": "使用本地 v1 信息科技核心；未提供时保留历史 MCP 兼容行为"},
+                "v3": {"type": "boolean", "description": "使用 v3 中国 K12 九学科核心；支持语文、数学、英语、物理、化学、生物、历史、地理、政治"},
+                "subject_id": {"type": "string", "description": "v3 学科 ID：chinese、mathematics、english、physics、chemistry、biology、history、geography、politics"},
                 "mode": {"type": "string", "enum": ["standard_fast", "collaborative"], "description": "课标约束快速设计或完整协同设计"},
                 "stage": {"type": "string", "description": "小学、初中或普通高中"},
                 "textbook_version": {"type": "string", "description": "教材版本，商业教材全文只在教师本机使用"},
@@ -139,7 +187,11 @@ TOOLS = [
                 "workspace": {"type": "string", "description": "教师本机私有工作区"},
                 "output_dir": {"type": "string", "description": "输出目录，默认 exports/phase8"}
             },
-            "required": ["subject", "grade_level", "topic"]
+            "required": ["grade_level", "topic"],
+            "anyOf": [
+                {"required": ["subject"]},
+                {"required": ["subject_id"]}
+            ]
         }
     },
     {
@@ -150,8 +202,9 @@ TOOLS = [
             "properties": {
                 "existing_design_project_path": {"type": "string", "description": "已有设计项目 JSON 文件路径（与 existing_design_project 二选一）"},
                 "existing_design_project": {"type": "object", "description": "已有设计项目数据对象（与 existing_design_project_path 二选一）"},
-                "education_scope": {"type": "string", "enum": ["k12_info_technology"], "description": "v1 范围：仅中国 K12 信息科技/信息技术"},
+                "education_scope": {"type": "string", "enum": ["k12_info_technology", "k12_nine_subjects"], "description": "教学范围：历史 v1 信息科技，或 v3 中国 K12 九学科"},
                 "v1": {"type": "boolean", "description": "使用本地 v1 评审核心"},
+                "v3": {"type": "boolean", "description": "使用 v3 九学科评审核心"},
                 "workspace": {"type": "string", "description": "教师本机私有工作区"},
                 "output_dir": {"type": "string", "description": "输出目录，默认 exports/phase8"}
             },
@@ -170,8 +223,9 @@ TOOLS = [
                 "existing_design_project_path": {"type": "string", "description": "已有设计项目 JSON 文件路径（与 existing_design_project 二选一）"},
                 "existing_design_project": {"type": "object", "description": "已有设计项目数据对象（与 existing_design_project_path 二选一）"},
                 "feedback_or_revision_data": {"type": "object", "description": "教师反馈或修改数据，必须包含 feedback_type 和 items"},
-                "education_scope": {"type": "string", "enum": ["k12_info_technology"], "description": "v1 范围：仅中国 K12 信息科技/信息技术"},
+                "education_scope": {"type": "string", "enum": ["k12_info_technology", "k12_nine_subjects"], "description": "教学范围：历史 v1 信息科技，或 v3 中国 K12 九学科"},
                 "v1": {"type": "boolean", "description": "使用本地 v1 修改核心"},
+                "v3": {"type": "boolean", "description": "使用 v3 九学科修改核心"},
                 "workspace": {"type": "string", "description": "教师本机私有工作区"},
                 "output_dir": {"type": "string", "description": "输出目录，默认 exports/phase8"}
             },
@@ -190,8 +244,9 @@ TOOLS = [
             "properties": {
                 "project_path": {"type": "string", "description": "项目 JSON 文件的完整路径（与 project 二选一）"},
                 "project": {"type": "object", "description": "项目数据对象（与 project_path 二选一）"},
-                "education_scope": {"type": "string", "enum": ["k12_info_technology"], "description": "v1 范围：仅中国 K12 信息科技/信息技术"},
+                "education_scope": {"type": "string", "enum": ["k12_info_technology", "k12_nine_subjects"], "description": "教学范围：历史 v1 信息科技，或 v3 中国 K12 九学科"},
                 "v1": {"type": "boolean", "description": "使用本地 v1 导出核心"},
+                "v3": {"type": "boolean", "description": "使用 v3 九学科导出核心"},
                 "workspace": {"type": "string", "description": "教师本机私有工作区"},
                 "output_dir": {"type": "string", "description": "输出目录，默认 exports/phase8"}
             },
@@ -223,6 +278,11 @@ async def call_tool(name: str, arguments: dict):
                 workspace = args.pop("workspace", None)
                 args.pop("v1", None)
                 result = run_v1_design(args, output_dir, workspace)
+            elif _is_v3_request(args):
+                from tools.v3_orchestrator import run_v3_design
+                workspace = args.pop("workspace", None)
+                args.pop("v3", None)
+                result = run_v3_design(args, output_dir, workspace)
             else:
                 from tools.agent_session import run_agent_session
                 args["mode"] = "dc-design"
@@ -236,6 +296,12 @@ async def call_tool(name: str, arguments: dict):
                 args.pop("v1", None)
                 source = args.pop("existing_design_project_path", None) or args.pop("existing_design_project", None)
                 result = run_v1_review(source, output_dir, workspace)
+            elif _is_v3_request(args):
+                from tools.v3_orchestrator import run_v3_review
+                workspace = args.pop("workspace", None)
+                args.pop("v3", None)
+                source = args.pop("existing_design_project_path", None) or args.pop("existing_design_project", None)
+                result = run_v3_review(source, output_dir, workspace)
             else:
                 from tools.agent_session import run_agent_session
                 args["mode"] = "dc-review"
@@ -250,6 +316,13 @@ async def call_tool(name: str, arguments: dict):
                 source = args.pop("existing_design_project_path", None) or args.pop("existing_design_project", None)
                 feedback = args.pop("feedback_or_revision_data", {})
                 result = run_v1_revise(source, feedback, output_dir, workspace)
+            elif _is_v3_request(args):
+                from tools.v3_orchestrator import run_v3_revise
+                workspace = args.pop("workspace", None)
+                args.pop("v3", None)
+                source = args.pop("existing_design_project_path", None) or args.pop("existing_design_project", None)
+                feedback = args.pop("feedback_or_revision_data", {})
+                result = run_v3_revise(source, feedback, output_dir, workspace)
             else:
                 from tools.agent_session import run_agent_session
                 args["mode"] = "dc-revise"
@@ -261,6 +334,7 @@ async def call_tool(name: str, arguments: dict):
             project_obj = args.get("project")
             output_dir = args.get("output_dir", "exports/phase8")
             use_v1 = _is_v1_request(args) or (isinstance(project_obj, dict) and project_obj.get("education_scope") == "k12_info_technology")
+            use_v3 = _is_v3_request(args) or (isinstance(project_obj, dict) and project_obj.get("education_scope") == "k12_nine_subjects")
 
             # Must have project_path or project
             if not project_path and not project_obj:
@@ -299,9 +373,13 @@ async def call_tool(name: str, arguments: dict):
                     else:
                         os.makedirs(output_dir, exist_ok=True)
                         use_v1 = use_v1 or (isinstance(project_obj, dict) and project_obj.get("education_scope") == "k12_info_technology")
+                        use_v3 = use_v3 or (isinstance(project_obj, dict) and project_obj.get("education_scope") == "k12_nine_subjects")
                         if use_v1:
                             from tools.v1_orchestrator import _export_v1
                             result = _normalize_v1_export_result(_export_v1(project_obj, output_dir, args.get("workspace")))
+                        elif use_v3:
+                            from tools.v3_orchestrator import _export_v3_project
+                            result = _normalize_v3_export_result(_export_v3_project(project_obj, output_dir, include_documents=True))
                         else:
                             raw = export_all(project_obj, output_dir)
                             result = _normalize_export_result(raw)
@@ -310,6 +388,9 @@ async def call_tool(name: str, arguments: dict):
                 if use_v1:
                     from tools.v1_orchestrator import _export_v1
                     result = _normalize_v1_export_result(_export_v1(project_obj, output_dir, args.get("workspace")))
+                elif use_v3:
+                    from tools.v3_orchestrator import _export_v3_project
+                    result = _normalize_v3_export_result(_export_v3_project(project_obj, output_dir, include_documents=True))
                 else:
                     raw = export_all(project_obj, output_dir)
                     result = _normalize_export_result(raw)

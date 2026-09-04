@@ -19,8 +19,9 @@ INCLUDE_FILES = [
     "GEMINI.md", "gemini-extension.json",
     "requirements-core.txt", "requirements-mcp.txt", "requirements-dev.txt",
     "requirements-qa.txt", "qa/reference_profile.json",
+    "DESIGN.md",
     "docs/quickstart.md", "docs/agent-compatibility.md", "docs/source_provenance.md", "docs/v1_plugin_contract.md",
-    "docs/release_notes.md", "docs/release_notes_v2.0.0.md",
+    "docs/release_notes.md", "docs/release_notes_v2.0.0.md", "docs/release_notes_v3.0.0.md",
 ]
 EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".test-home", ".dc-designer", "exports", "dist", "test_fixtures"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}

@@ -16,7 +16,7 @@ python scripts/doctor.py
 
 ### Codex
 
-从当前仓库的 `.codex-plugin/` 识别插件后，在新建对话中调用：
+从当前仓库的 `.codex-plugin/` 识别插件后，在新建对话中调用。命令名沿用旧入口，但会按学科和学段走 v3 适配器：
 
 ```text
 /dc-designer-core:dc-info-tech-design
@@ -47,9 +47,9 @@ gemini extensions install https://github.com/xiajiadi/dc-designer-core
 
 ### 其他智能体
 
-支持 MCP 的宿主可以接入 `.mcp.json` 中的本地 `dc-designer-mcp`；不能使用 MCP 时，直接把 [`prompts/dc-designer-core.md`](../prompts/dc-designer-core.md) 粘贴给智能体。智能体应先报告实际接入方式和权限状态，再开始设计，不得把“读到了仓库文件”描述成“插件已安装”。
+支持 MCP 的宿主可以接入 `.mcp.json` 中的本地 `dc-designer-mcp`；不能使用 MCP 时，直接把 [`prompts/dc-designer-core.md`](../prompts/dc-designer-core.md) 粘贴给智能体，或运行 `python scripts/dc_designer.py`。智能体应先报告实际接入方式和权限状态，再开始设计，不得把“读到了仓库文件”描述成“插件已安装”。
 
-可以直接描述课题，也可以明确选择两种模式：
+v3 支持语文、数学、英语、物理、化学、生物、历史、地理和政治，学段为小学、初中或普通高中。可以直接描述课题，也可以明确选择两种模式：
 
 - `standard_fast`：提供学段、年级、课题、教材版本、单元、课时、设备和匿名班级共性学情，系统检索课程标准并生成草案；
 - `collaborative`：从评价需求和绩效差距开始，逐阶段回答问题并确认候选方案。
@@ -67,10 +67,10 @@ python -m http.server 4173 --directory site
 ## 4. 导入教师资料
 
 ```text
-python scripts/dc_info_tech.py knowledge-ingest --path <文件路径> --metadata-json '{"subject":"信息科技","school_type":"普通高中"}'
+python scripts/dc_designer.py design --input-file <request.json> --output-dir <output-dir>
 ```
 
-教师资料会标记为 `C1/teacher_private`，只作为情境和策略参考，不能被伪装成国家课程标准。含学生身份信息或个人成绩的文件会被拒绝。
+请求示例至少包含 `subject`、`grade_level` 和 `topic`。教师资料会标记为 `C1/teacher_private`，只作为情境和策略参考，不能被伪装成国家课程标准。含学生身份信息或个人成绩的文件会被拒绝。历史信息科技 v1 的资料导入命令仍保留在 `scripts/dc_info_tech.py`。
 
 ## 5. 导出与验收
 

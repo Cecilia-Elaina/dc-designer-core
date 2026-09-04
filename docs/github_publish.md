@@ -26,7 +26,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish_github
 脚本会检查：
 
 - 工作区没有未提交修改；
-- `v2.0.0` 标签存在并指向当前提交；
+- `v3.0.0` 标签存在并指向当前提交；
 - `origin` 不存在，或已经指向同一个 GitHub 仓库；
 - 只推送当前分支和明确的版本标签；
 - 不保存 GitHub 密码、令牌或教师资料。
@@ -35,13 +35,13 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish_github
 
 ## 3. 创建 GitHub Release
 
-在仓库页面以 `v2.0.0` 标签创建 Release，附加：
+在仓库页面以 `v3.0.0` 标签创建 Release，附加：
 
-- `dist/dc-designer-core-v2.0.0.zip`；
-- `dist/dc-designer-core-v2.0.0.release.json`；
-- `dist/dc-designer-core-v2.0.0.zip.sha256`（如果发布包目录中已生成）。
+- `dist/dc-designer-core-v3.0.0.zip`；
+- `dist/dc-designer-core-v3.0.0.release.json`；
+- `dist/dc-designer-core-v3.0.0.zip.sha256`（如果发布包目录中已生成）。
 
-Release 说明使用 `docs/release_notes_v2.0.0.md`，并明确当前只支持中国大陆 K12 信息科技/信息技术，不支持高校、职教、企业培训和其他学科。说明中还应列出 Codex、Claude Code、Gemini CLI、MCP 和通用提示词的接入边界。
+Release 说明使用 `docs/release_notes_v3.0.0.md`，并明确 v3 支持九个中国 K12 学科，不支持高校、职教、企业培训和九学科之外的学科。说明中还应列出 Codex、Claude Code、Gemini CLI、MCP 和通用提示词的接入边界。
 
 ## 4. 智能体目录与接入边界
 

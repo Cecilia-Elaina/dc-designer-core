@@ -1,6 +1,6 @@
-description = "评审中国 K12 信息科技教学设计"
+description = "评审中国 K12 九学科教学设计（兼容旧命令名）"
 prompt = """
-请读取 skills/dc-info-tech-review/SKILL.md、docs/agent-compatibility.md 和 docs/v1_plugin_contract.md，评审当前项目或用户提供的教学设计。只输出有证据的可执行 finding，不把文件存在当作质量通过，也不要直接重写原设计。
+请读取 DESIGN.md、skills/dc-info-tech-review/SKILL.md 和 docs/agent-compatibility.md，评审当前项目或用户提供的九学科 v3 教学设计。只输出有证据的可执行 finding，不把文件存在当作质量通过，也不要直接重写原设计。
 
 用户补充：{{args}}
 """

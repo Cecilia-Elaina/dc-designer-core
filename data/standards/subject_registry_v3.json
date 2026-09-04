@@ -1,0 +1,1157 @@
+{
+  "registry_version": "3.0.0",
+  "generated_at": "2026-09-04",
+  "scope": {
+    "education": "中国 K-12",
+    "stages": [
+      "小学",
+      "初中",
+      "普通高中"
+    ],
+    "default_stage_subjects": {
+      "小学": ["chinese", "mathematics", "english", "politics"],
+      "初中": ["chinese", "mathematics", "english", "physics", "chemistry", "biology", "history", "geography", "politics"],
+      "普通高中": ["chinese", "mathematics", "english", "physics", "chemistry", "biology", "history", "geography", "politics"]
+    },
+    "subjects": [
+      "chinese",
+      "mathematics",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "politics"
+    ],
+    "excluded": [
+      "职高",
+      "中等职业教育",
+      "高等教育"
+    ]
+  },
+  "contract": [
+    "subject_id",
+    "stage_rules",
+    "official_source_ids",
+    "core_competencies",
+    "concept_and_skill_patterns",
+    "observable_verbs",
+    "common_misconceptions",
+    "assessment_evidence_patterns",
+    "strategy_patterns",
+    "material_patterns",
+    "formative_feedback_patterns",
+    "safety_or_ethics_rules",
+    "terminology_aliases",
+    "validation_rules"
+  ],
+  "subjects": [
+    {
+      "observable_verbs": [
+        "朗读",
+        "概括",
+        "解释",
+        "比较",
+        "分析",
+        "鉴赏",
+        "表达",
+        "修改",
+        "评价"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "尊重文本版权，公开材料只使用必要短片段或官方链接。",
+        "涉及个人经历和作品时避免公开学生身份信息。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "语言文字实践",
+          "summary": "在真实语境中理解、表达、交流并修改。",
+          "keywords": [
+            "阅读",
+            "写作",
+            "口语交际"
+          ]
+        },
+        {
+          "name": "文本理解与阐释",
+          "summary": "依据文本证据形成有依据的理解、判断和阐释。",
+          "keywords": [
+            "文本",
+            "证据",
+            "理解",
+            "鉴赏"
+          ]
+        },
+        {
+          "name": "文化传承与表达",
+          "summary": "在语言实践中理解文化意义并进行恰当表达。",
+          "keywords": [
+            "文化",
+            "传承",
+            "表达"
+          ]
+        }
+      ],
+      "subject_id": "chinese",
+      "display_name": "语文",
+      "terminology_aliases": [
+        "语文",
+        "中文"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "语文",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_chinese"
+        },
+        "senior_secondary": {
+          "display_name": "语文",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_chinese"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_chinese",
+        "senior_secondary": "std_senior_2017_2020_chinese"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "识别",
+        "表示",
+        "计算",
+        "估算",
+        "推理",
+        "证明",
+        "建模",
+        "解释",
+        "检验",
+        "比较",
+        "反思"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "涉及真实数据时说明来源、范围和匿名化处理。",
+        "工具输出应服务于解释，不把软件结果直接当作证明。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "概念与关系",
+          "summary": "从数量、图形或数据情境中抽象出概念并解释关系。",
+          "keywords": [
+            "概念",
+            "关系",
+            "表示"
+          ]
+        },
+        {
+          "name": "推理与论证",
+          "summary": "用定义、性质、条件和过程支持结论。",
+          "keywords": [
+            "推理",
+            "证明",
+            "条件",
+            "结论"
+          ]
+        },
+        {
+          "name": "模型与问题解决",
+          "summary": "把情境转化为数学模型，检验结果并解释边界。",
+          "keywords": [
+            "建模",
+            "问题解决",
+            "检验",
+            "解释"
+          ]
+        },
+        {
+          "name": "数据与图形表示",
+          "summary": "选择恰当的图表、表示或运算工具表达信息。",
+          "keywords": [
+            "数据",
+            "统计",
+            "图形",
+            "表示"
+          ]
+        }
+      ],
+      "subject_id": "mathematics",
+      "display_name": "数学",
+      "terminology_aliases": [
+        "数学"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "数学",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_math"
+        },
+        "senior_secondary": {
+          "display_name": "数学",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_math"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_math",
+        "senior_secondary": "std_senior_2017_2020_math"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "identify",
+        "understand",
+        "infer",
+        "summarize",
+        "compare",
+        "interact",
+        "describe",
+        "write",
+        "revise",
+        "reflect"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "音视频和文本须确认授权范围。",
+        "涉及人物、文化和身份时避免刻板化表述。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "主题与语篇",
+          "summary": "围绕主题理解语篇结构、意义和表达目的。",
+          "keywords": [
+            "主题",
+            "语篇",
+            "结构",
+            "意义"
+          ]
+        },
+        {
+          "name": "语言知识与技能",
+          "summary": "在语境中综合运用词汇、语法、语音和听说读写技能。",
+          "keywords": [
+            "词汇",
+            "语法",
+            "语音",
+            "听说读写"
+          ]
+        },
+        {
+          "name": "跨文化沟通",
+          "summary": "理解文化差异并作出得体、负责任的交流表达。",
+          "keywords": [
+            "文化",
+            "沟通",
+            "得体",
+            "差异"
+          ]
+        }
+      ],
+      "subject_id": "english",
+      "display_name": "英语",
+      "terminology_aliases": [
+        "英语",
+        "英文"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "英语",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_english"
+        },
+        "senior_secondary": {
+          "display_name": "英语",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_english"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_english",
+        "senior_secondary": "std_senior_2017_2020_english"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "观察",
+        "测量",
+        "描述",
+        "建模",
+        "预测",
+        "实验",
+        "记录",
+        "处理",
+        "解释",
+        "论证",
+        "修正"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "实验前明确器材、用电、热源和运动风险。",
+        "不得用未经审查的高风险演示替代安全实验。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "现象与规律",
+          "summary": "从可观察现象抽象出物理量、规律和适用条件。",
+          "keywords": [
+            "现象",
+            "规律",
+            "物理量",
+            "条件"
+          ]
+        },
+        {
+          "name": "模型与解释",
+          "summary": "用模型、图像或方程解释现象并说明边界。",
+          "keywords": [
+            "模型",
+            "图像",
+            "解释",
+            "边界"
+          ]
+        },
+        {
+          "name": "实验与证据",
+          "summary": "设计观察或实验，处理数据并依据证据修正结论。",
+          "keywords": [
+            "实验",
+            "变量",
+            "数据",
+            "证据"
+          ]
+        }
+      ],
+      "subject_id": "physics",
+      "display_name": "物理",
+      "terminology_aliases": [
+        "物理"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "物理",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_physics"
+        },
+        "senior_secondary": {
+          "display_name": "物理",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_physics"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_physics",
+        "senior_secondary": "std_senior_2017_2020_physics"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "辨认",
+        "表示",
+        "预测",
+        "设计",
+        "实验",
+        "观察",
+        "比较",
+        "解释",
+        "计算",
+        "评价",
+        "改进"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "实验方案必须经过教师安全审查。",
+        "不得让学生自行尝试危险反应、未知混合物或不明来源试剂。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "组成、结构与性质",
+          "summary": "联系微观结构、宏观性质和符号表示解释物质。",
+          "keywords": [
+            "组成",
+            "结构",
+            "性质",
+            "符号"
+          ]
+        },
+        {
+          "name": "变化与证据",
+          "summary": "识别化学变化，依据现象和数据解释反应及其条件。",
+          "keywords": [
+            "变化",
+            "反应",
+            "现象",
+            "证据"
+          ]
+        },
+        {
+          "name": "实验与社会责任",
+          "summary": "安全开展探究并联系资源、环境和生活问题作出判断。",
+          "keywords": [
+            "实验",
+            "安全",
+            "环境",
+            "责任"
+          ]
+        }
+      ],
+      "subject_id": "chemistry",
+      "display_name": "化学",
+      "terminology_aliases": [
+        "化学"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "化学",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_chemistry"
+        },
+        "senior_secondary": {
+          "display_name": "化学",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_chemistry"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_chemistry",
+        "senior_secondary": "std_senior_2017_2020_chemistry"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "观察",
+        "识别",
+        "描述",
+        "比较",
+        "解释",
+        "建模",
+        "探究",
+        "分析",
+        "预测",
+        "评价",
+        "提出方案"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "涉及人体、动物、微生物和野外活动时遵守学校安全与伦理要求。",
+        "不收集或公开可识别的健康和个人生物信息。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "结构与功能",
+          "summary": "联系生物体结构层次与功能解释生命现象。",
+          "keywords": [
+            "结构",
+            "功能",
+            "层次",
+            "生命"
+          ]
+        },
+        {
+          "name": "生命活动与稳态",
+          "summary": "解释生命活动、调节和健康之间的关系。",
+          "keywords": [
+            "生命活动",
+            "稳态",
+            "调节",
+            "健康"
+          ]
+        },
+        {
+          "name": "遗传、进化与多样性",
+          "summary": "用证据认识遗传变异、进化和生物多样性。",
+          "keywords": [
+            "遗传",
+            "变异",
+            "进化",
+            "多样性"
+          ]
+        },
+        {
+          "name": "生态与责任",
+          "summary": "分析生物与环境关系并提出可行的保护行动。",
+          "keywords": [
+            "生态",
+            "环境",
+            "保护",
+            "责任"
+          ]
+        }
+      ],
+      "subject_id": "biology",
+      "display_name": "生物学",
+      "terminology_aliases": [
+        "生物",
+        "生物学"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "生物学",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_biology"
+        },
+        "senior_secondary": {
+          "display_name": "生物学",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_biology"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_biology",
+        "senior_secondary": "std_senior_2017_2020_biology"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "定位",
+        "排序",
+        "辨析",
+        "提取",
+        "比较",
+        "解释",
+        "论证",
+        "评价",
+        "联系",
+        "反思"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "涉及战争、灾难、民族和身份议题时保持历史语境与尊重。",
+        "公开案例避免个人隐私与未经核实的敏感叙述。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "时空与变迁",
+          "summary": "把历史事件放入时间、空间和发展过程理解。",
+          "keywords": [
+            "时间",
+            "空间",
+            "变迁",
+            "阶段"
+          ]
+        },
+        {
+          "name": "史料与证据",
+          "summary": "辨析史料来源、内容和局限，形成有证据的判断。",
+          "keywords": [
+            "史料",
+            "证据",
+            "来源",
+            "局限"
+          ]
+        },
+        {
+          "name": "解释与比较",
+          "summary": "从多种角度解释历史现象并比较异同与影响。",
+          "keywords": [
+            "解释",
+            "比较",
+            "原因",
+            "影响"
+          ]
+        }
+      ],
+      "subject_id": "history",
+      "display_name": "历史",
+      "terminology_aliases": [
+        "历史"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "历史",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_history"
+        },
+        "senior_secondary": {
+          "display_name": "历史",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_history"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_history",
+        "senior_secondary": "std_senior_2017_2020_history"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "定位",
+        "判读",
+        "绘制",
+        "描述",
+        "比较",
+        "分析",
+        "解释",
+        "评价",
+        "调查",
+        "提出方案"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "野外或实地调查须遵守学校审批、交通和环境安全要求。",
+        "位置数据、影像和调查对象信息须脱敏。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "空间与尺度",
+          "summary": "用地图、空间位置和尺度关系表达地理现象。",
+          "keywords": [
+            "空间",
+            "地图",
+            "尺度",
+            "位置"
+          ]
+        },
+        {
+          "name": "区域与联系",
+          "summary": "在区域背景中分析自然、人文要素及其联系。",
+          "keywords": [
+            "区域",
+            "要素",
+            "联系",
+            "差异"
+          ]
+        },
+        {
+          "name": "资源环境与发展",
+          "summary": "基于数据和情境判断资源、环境与发展方案。",
+          "keywords": [
+            "资源",
+            "环境",
+            "发展",
+            "可持续"
+          ]
+        }
+      ],
+      "subject_id": "geography",
+      "display_name": "地理",
+      "terminology_aliases": [
+        "地理"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "地理",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_geography"
+        },
+        "senior_secondary": {
+          "display_name": "地理",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_geography"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_geography",
+        "senior_secondary": "std_senior_2017_2020_geography"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    },
+    {
+      "observable_verbs": [
+        "识别",
+        "说明",
+        "区分",
+        "分析",
+        "论证",
+        "判断",
+        "评价",
+        "协商",
+        "提出方案",
+        "反思"
+      ],
+      "common_misconceptions": [
+        "把知识点记忆或最终答案当成完整学习证据",
+        "把抽象的态度口号直接写成课堂绩效目标",
+        "忽视任务条件、证据边界和学习者差异"
+      ],
+      "assessment_evidence_patterns": [
+        "过程记录、口头表达、书面作品或操作结果",
+        "基于资料、数据、文本或现象的解释与论证",
+        "反馈后的二次修订及修订理由"
+      ],
+      "strategy_patterns": [
+        "从真实或适龄的学科问题情境进入",
+        "显性示范概念、方法、证据和检查过程",
+        "安排形成性任务，让证据回流到策略和目标修订"
+      ],
+      "material_patterns": [
+        "有来源说明的适龄文本、数据、图像或实验材料",
+        "任务单、过程记录单和表现评价量表",
+        "可编辑的课堂材料与教师确认记录"
+      ],
+      "formative_feedback_patterns": [
+        "指出表现、证据和目标之间的具体差距",
+        "把问题拆成概念、方法、表达和条件边界",
+        "要求用二次作品或二次表达呈现反馈后的变化"
+      ],
+      "validation_rules": [
+        "目标必须包含学科对象、可观察行为、条件和达成证据",
+        "评价证据应与目标行为对应，不能只检查记忆或表态",
+        "形成性评价结果必须能回流到教学策略、材料或目标修订"
+      ],
+      "safety_or_ethics_rules": [
+        "政治、法律和价值议题须由教师核验表述与适龄性。",
+        "不得收集或公开学生政治观点、家庭信息等敏感个人数据。"
+      ],
+      "concept_and_skill_patterns": [
+        {
+          "name": "道德与法治生活",
+          "summary": "在个人、家庭、学校和社会情境中理解规则、责任与权利。",
+          "keywords": [
+            "道德",
+            "法律",
+            "规则",
+            "责任",
+            "权利"
+          ]
+        },
+        {
+          "name": "公共问题与判断",
+          "summary": "基于事实、规则和价值边界分析公共生活问题。",
+          "keywords": [
+            "公共问题",
+            "事实",
+            "判断",
+            "价值"
+          ]
+        },
+        {
+          "name": "参与与行动",
+          "summary": "把理解和判断转化为有边界、可实施的公共参与方案。",
+          "keywords": [
+            "参与",
+            "行动",
+            "方案",
+            "责任"
+          ]
+        }
+      ],
+      "subject_id": "politics",
+      "display_name": "道德与法治 / 思想政治",
+      "terminology_aliases": [
+        "政治",
+        "思想政治",
+        "道德与法治"
+      ],
+      "stage_rules": {
+        "compulsory": {
+          "display_name": "道德与法治",
+          "labels": [
+            "小学",
+            "初中"
+          ],
+          "grade_levels": [
+            "小学1—6年级",
+            "初中7—9年级"
+          ],
+          "source_id": "std_compulsory_2022_politics"
+        },
+        "senior_secondary": {
+          "display_name": "思想政治",
+          "labels": [
+            "普通高中"
+          ],
+          "grade_levels": [
+            "高中10—12年级"
+          ],
+          "source_id": "std_senior_2017_2020_politics"
+        }
+      },
+      "official_source_ids": {
+        "compulsory": "std_compulsory_2022_politics",
+        "senior_secondary": "std_senior_2017_2020_politics"
+      },
+      "source_boundary": {
+        "national_baseline": true,
+        "local_sources_optional": true,
+        "textbook_full_text_public": false,
+        "teacher_confirmation_required": true
+      },
+      "generated_at": "2026-09-04"
+    }
+  ]
+}

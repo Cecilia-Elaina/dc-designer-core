@@ -41,7 +41,12 @@ class TestOfficialSnapshotProductContract(unittest.TestCase):
             self.assertTrue(source.get("version"))
             self.assertTrue(source.get("grade_levels"))
             self.assertTrue(source.get("retrieved_at"))
-            self.assertEqual(source.get("content_hash_status"), "metadata_snapshot_only")
+            self.assertIn(source.get("content_hash_status"), {
+                "metadata_snapshot_only",
+                "local_original_verified_not_packaged",
+            })
+            if source.get("content_hash_status") == "local_original_verified_not_packaged":
+                self.assertEqual(len(source.get("content_sha256", "")), 64)
             self.assertTrue(source.get("source_url", "").startswith("https://"))
             self.assertTrue(source.get("clauses"))
             self.assertTrue(source["clauses"][0].get("clause_id"))
@@ -52,8 +57,14 @@ class TestOfficialSnapshotProductContract(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             catalog = load_catalog(temp)
         for source in catalog["sources"]:
-            self.assertEqual(source["content_hash_status"], "metadata_snapshot_only")
-            self.assertFalse(source["content_sha256"])
+            self.assertIn(source["content_hash_status"], {
+                "metadata_snapshot_only",
+                "local_original_verified_not_packaged",
+            })
+            if source["content_hash_status"] == "local_original_verified_not_packaged":
+                self.assertEqual(len(source.get("content_sha256", "")), 64)
+            else:
+                self.assertFalse(source["content_sha256"])
             self.assertEqual(source["provenance"]["verification_status"], "candidate")
             self.assertTrue(source["provenance"]["source_record_sha256"])
             self.assertTrue(source["retrieved_at"])

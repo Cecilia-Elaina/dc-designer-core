@@ -14,9 +14,15 @@
 ## 本机更新
 
 ```text
+历史信息科技 v1 的来源更新仍使用 `scripts/dc_info_tech.py`：
+
+```text
 python scripts/dc_info_tech.py source-update --url <官方HTTPS链接>
 python scripts/dc_info_tech.py source-approve --update-id <update-id> --teacher-confirmed --source-record-file <元数据JSON>
 python scripts/dc_info_tech.py source-rebuild
+```
+
+v3 的九学科国家标准基线由 `data/standards/` 中的版本化记录提供；新增在线来源仍先进入本地待审核区，不会自动改变活动快照。
 ```
 
 第一步只保存文件和哈希到待审核区，不改变活动来源。第二步需要教师确认，并要求补齐或核对来源记录。活动来源保存在 `.dc-designer/knowledge/official/active_sources.json`，内置快照不会被覆盖。

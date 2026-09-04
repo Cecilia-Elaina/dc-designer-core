@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dc-designer-core/schemas/v3-project.schema.json",
+  "title": "dc-designer-core v3 九学科项目",
+  "description": "中国大陆小学、初中和普通高中九学科 Dick–Carey 教学系统设计项目合同。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_id",
+    "education_scope",
+    "project",
+    "mode",
+    "curriculum_context",
+    "subject_adapter",
+    "sources",
+    "goal",
+    "skill_graph",
+    "objectives",
+    "assessment_plan",
+    "instructional_strategy",
+    "instructional_materials",
+    "quality"
+  ],
+  "properties": {
+    "schema_version": {"const": "3.0.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "education_scope": {"const": "k12_nine_subjects"},
+    "project": {
+      "type": "object",
+      "required": ["title", "topic", "stage", "grade", "subject_id", "subject"],
+      "properties": {
+        "title": {"type": "string"},
+        "topic": {"type": "string"},
+        "stage": {"enum": ["primary", "junior_secondary", "senior_secondary"]},
+        "grade": {"type": "string"},
+        "subject_id": {"$ref": "#/definitions/subject_id"},
+        "subject": {"type": "string"},
+        "textbook_version": {"type": "string"},
+        "unit": {"type": "string"},
+        "periods": {"type": ["string", "number"]}
+      }
+    },
+    "mode": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": {"enum": ["standard_fast", "collaborative"]},
+        "label": {"type": "string"},
+        "interaction": {"type": "string"}
+      }
+    },
+    "curriculum_context": {"type": "object"},
+    "subject_adapter": {
+      "type": "object",
+      "required": ["subject_id", "display_name", "core_competencies"],
+      "properties": {
+        "subject_id": {"$ref": "#/definitions/subject_id"},
+        "display_name": {"type": "string"},
+        "core_competencies": {"type": "array", "items": {"type": "string"}},
+        "observable_verbs": {"type": "array", "items": {"type": "string"}},
+        "validation_rules": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "sources": {"type": "array", "items": {"$ref": "#/definitions/source_record"}},
+    "evidence_claims": {"type": "array", "items": {"type": "object"}},
+    "goal": {"$ref": "#/definitions/goal"},
+    "instructional_goal": {"$ref": "#/definitions/goal"},
+    "skill_graph": {"type": "object"},
+    "skill_graphs": {"type": "object"},
+    "context_analysis": {"type": "object"},
+    "learner_context_input": {"type": "object"},
+    "objectives": {"type": "array", "items": {"$ref": "#/definitions/objective"}},
+    "performance_objectives": {"type": "array", "items": {"$ref": "#/definitions/objective"}},
+    "assessment_plan": {"type": "object"},
+    "assessments": {"type": "object"},
+    "instructional_strategy": {"type": "object"},
+    "instructional_materials": {"type": "object"},
+    "formative_evaluation": {"type": "object"},
+    "required_confirmations": {"type": "array", "items": {"type": "object"}},
+    "revision_history": {"type": "array", "items": {"type": "object"}},
+    "quality": {"type": "object"},
+    "quality_check": {"type": "object"},
+    "alignment_report": {"type": "object"}
+  },
+  "definitions": {
+    "source_record": {
+      "type": "object",
+      "required": ["source_id", "source_level", "source_name", "credibility", "can_be_goal_basis"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_level": {"type": "string"},
+        "source_category": {"type": "string"},
+        "source_name": {"type": "string"},
+        "source_description": {"type": "string"},
+        "source_url": {"type": "string", "format": "uri"},
+        "source_version": {"type": "string"},
+        "credibility": {"type": "string"},
+        "can_be_goal_basis": {"type": "string"},
+        "stage": {"type": ["string", "array"]},
+        "subject": {"type": "string"},
+        "specific_clauses": {"type": "array", "items": {"type": "object"}},
+        "content_sha256": {"type": "string"},
+        "content_hash_status": {"type": "string"},
+        "teacher_confirmation_required": {"type": "boolean"},
+        "verified_by_teacher": {"type": "boolean"}
+      }
+    },
+    "subject_id": {
+      "enum": ["chinese", "mathematics", "english", "physics", "chemistry", "biology", "history", "geography", "politics"]
+    },
+    "goal": {
+      "type": "object",
+      "required": ["goal_id", "behavior", "teacher_confirmation_required"],
+      "properties": {
+        "goal_id": {"type": "string"},
+        "learner": {"type": "string"},
+        "behavior": {"type": "string", "minLength": 1},
+        "context": {"type": "string"},
+        "tools": {"type": "string"},
+        "verification_status": {"type": "string"},
+        "teacher_confirmation_required": {"type": "boolean"}
+      }
+    },
+    "objective": {
+      "type": "object",
+      "required": ["objective_id", "condition", "behavior", "criterion"],
+      "properties": {
+        "objective_id": {"type": "string"},
+        "related_skill_id": {"type": "string"},
+        "condition": {"type": "string", "minLength": 1},
+        "behavior": {"type": "string", "minLength": 1},
+        "criterion": {"type": "string", "minLength": 1},
+        "CN": {"type": "string"},
+        "B": {"type": "string"},
+        "CR": {"type": "string"},
+        "provenance_type": {"type": "string"},
+        "teacher_confirmation_required": {"type": "boolean"}
+      }
+    }
+  }
+}

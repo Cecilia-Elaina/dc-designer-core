@@ -1,4 +1,4 @@
-"""Versioned official-source catalog for the K12 information-technology scope.
+"""Versioned official-source catalog for the China K-12 nine-subject scope.
 
 The package ships a small, auditable metadata snapshot. Teacher-triggered online
 updates are staged locally and never become active evidence without review.
@@ -81,7 +81,7 @@ def normalize_source(source: dict, *, snapshot_id: str = "") -> dict:
     item.setdefault("use_scope", ["content_reference"])
     item.setdefault("stage", [])
     item.setdefault("grade_levels", [])
-    item.setdefault("subject", "信息科技")
+    item.setdefault("subject", "通用")
     item.setdefault("source_url", "")
     item.setdefault("retrieved_at", "")
     item.setdefault("metadata_snapshot_at", "")
@@ -340,12 +340,17 @@ def approve_update(update_id: str, workspace: str | None = None, *, teacher_conf
 
 def source_citation(source: dict) -> dict:
     """Return teacher-facing provenance without leaking internal enums."""
+    stage = source.get("stage", [])
+    if isinstance(stage, str):
+        stage_display = stage
+    else:
+        stage_display = "、".join(stage or [])
     return {
         "来源名称": source.get("title", source.get("source_name", "未命名来源")),
         "发布机构": source.get("issuer", "未提供"),
         "版本": source.get("version", source.get("source_version", "未提供")),
         "发布日期": source.get("publication_date", source.get("source_date", "未提供")),
-        "适用范围": "、".join(source.get("stage", []) or []) or "待确认",
+        "适用范围": stage_display or "待确认",
         "官方链接": source.get("source_url", "未提供"),
         "来源状态": "教师已确认" if source.get("verified_by_teacher") else "条款候选",
         "来源用途": "；".join(source.get("use_scope", []) or []) or "待确认",

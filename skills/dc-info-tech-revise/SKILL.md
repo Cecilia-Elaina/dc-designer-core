@@ -1,16 +1,16 @@
 ---
 name: dc-info-tech-revise
-description: 根据教师反馈和形成性评价数据修改中国 K12 信息科技/信息技术教学系统设计。
+description: 根据教师反馈和形成性评价数据修改中国 K12 九学科教学系统设计；名称保留以兼容既有宿主入口。
 ---
 
 # dc-info-tech-revise
 
-根据教师反馈、形成性评价方案、匿名聚合数据或教师反思修改已有中国 K12 信息科技/信息技术教学设计。
+根据教师反馈、形成性评价方案、匿名聚合数据或教师反思修改已有中国 K12 九学科教学设计。
 
 运行：
 
 ```text
-python scripts/dc_info_tech.py revise --project <project.json> --feedback-file <feedback.json> --output-dir <output-dir>
+python scripts/dc_designer.py revise --project <project.json> --input-file <feedback.json> --output-dir <output-dir>
 ```
 
 流程必须是：

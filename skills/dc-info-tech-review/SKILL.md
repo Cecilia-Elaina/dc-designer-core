@@ -1,14 +1,14 @@
 ---
 name: dc-info-tech-review
-description: 评审中国 K12 信息科技/信息技术教学系统设计的依据、完整性、图逻辑和一致性。
+description: 评审中国 K12 九学科教学系统设计的依据、完整性、图逻辑和一致性；名称保留以兼容既有宿主入口。
 ---
 
 # dc-info-tech-review
 
-评审中国 K12 信息科技/信息技术教学系统设计，不重写原设计。先确认文件或 `project.json`，再运行：
+评审中国 K12 九学科教学系统设计，不重写原设计。先确认文件或 `project.json`，再运行：
 
 ```text
-python scripts/dc_info_tech.py review --project <project.json> --output-dir <output-dir>
+python scripts/dc_designer.py review --project <project.json> --output-dir <output-dir>
 ```
 
 评审必须覆盖：
@@ -19,7 +19,7 @@ python scripts/dc_info_tech.py review --project <project.json> --output-dir <out
 - 学习者、学习环境和应用环境；
 - 每个绩效目标的 CN/B/CR 与技能节点、评价、活动、材料链接；
 - 入门测试、前测、练习、形成性检查、后测、真实性任务和量规；
-- 信息科技课题是否真的包含建模、实现、运行、测试、调试、边界情况或隐私伦理等所需证据；
+- 当前学科课题是否真的包含其所需的概念、方法、表达/实践、证据和边界条件；
 - 两张核心技能图是否为独立图，Draw.io 是否可编辑、无重复 ID、无断链、无节点重叠；
 - 课时、分值、人数/百分比等数值是否一致；
 - 是否包含学生姓名、学号、具体成绩等敏感信息。

@@ -2,7 +2,7 @@
   <img src="docs/assets/dc-designer-hero.png" alt="DC Designer product overview" width="960">
   <h1>DC Designer</h1>
   <p><strong>从课标到课堂，让教学设计真正可执行。</strong></p>
-  <p>Evidence-grounded Dick–Carey instructional design for China K–12 IT education.</p>
+  <p>Evidence-grounded Dick–Carey instructional design for nine China K–12 subjects.</p>
   <p>
     <a href="https://xiajiadi.github.io/dc-designer-core/">产品官网</a>
     ·
@@ -17,7 +17,7 @@
   </p>
 </div>
 
-DC Designer v2.0 是一个面向中国大陆小学、初中和普通高中信息科技 / 信息技术教师的跨智能体、本地优先教学系统设计插件。它以 Dick–Carey 教学系统设计模型为骨架，把课程标准、教学分析、学习者与环境、绩效目标、评价证据、教学策略、课堂材料和修订组织成一条可追溯的设计链。Codex、Claude Code、Gemini CLI、支持 MCP 的智能体，以及能够读取项目文件的其他智能体，都可以接入同一套核心能力。
+DC Designer v3.0 是一个面向中国大陆小学、初中和普通高中九学科教师的跨智能体、本地优先教学系统设计插件。支持语文、数学、英语、物理、化学、生物、历史、地理和政治。它以 Dick–Carey 教学系统设计模型为骨架，把课程标准、教学分析、学习者与环境、绩效目标、评价证据、教学策略、课堂材料和修订组织成一条可追溯的设计链。Codex、Claude Code、Gemini CLI、支持 MCP 的智能体，以及能够读取项目文件的其他智能体，都可以接入同一套核心能力。
 
 它不是替教师一键生成教案，而是帮助教师完成一次有依据、有结构、有证据、可以进入课堂的教学系统设计。
 
@@ -45,7 +45,7 @@ DC Designer 将这些决策放回同一个教学系统中处理。
 
 ## Sample Artifacts
 
-下面的截图取自《Python 分支结构教学系统设计报告》，用于展示插件生成的交付物形态；报告中的课堂情境与评价数据仅作示例，不代表真实学生效果。截图展示的是交付物，不绑定某一个智能体宿主。
+下面的截图取自《Python 分支结构教学系统设计报告》，用于展示插件生成的交付物形态；它是信息科技示例，不代表产品只支持信息科技。报告中的课堂情境与评价数据仅作示例，不代表真实学生效果。截图展示的是交付物，不绑定某一个智能体宿主。
 
 <table>
   <tr>
@@ -113,7 +113,7 @@ DC Designer 将这些决策放回同一个教学系统中处理。
 /dc-designer-core:dc-info-tech-revise
 ```
 
-- **Design**：创建新的信息科技教学系统设计；
+- **Design**：创建九学科教学系统设计；
 - **Review**：检查目标、评价、策略、来源和结构一致性；
 - **Revise**：结合教师反馈和匿名形成性评价信息修订已有设计。
 
@@ -146,9 +146,9 @@ DC Designer 将这些决策放回同一个教学系统中处理。
 
 | 智能体 | 项目级接入方式 | 开始设计 |
 | --- | --- | --- |
-| Codex | 从当前仓库的 `.codex-plugin/` 识别插件 | `/dc-designer-core:dc-info-tech-design` |
-| Claude Code | 在仓库根目录运行 `claude --plugin-dir .` | `/dc-designer-core:dc-info-tech-design` |
-| Gemini CLI | 安装仓库中的 `gemini-extension.json` | `/dc-info-tech-design` |
+| Codex | 从当前仓库的 `.codex-plugin/` 识别插件 | `/dc-designer-core:dc-info-tech-design`（兼容命令名，按学科选择 v3） |
+| Claude Code | 在仓库根目录运行 `claude --plugin-dir .` | `/dc-designer-core:dc-info-tech-design`（兼容命令名，按学科选择 v3） |
+| Gemini CLI | 安装仓库中的 `gemini-extension.json` | `/dc-info-tech-design`（兼容命令名，按学科选择 v3） |
 | 其他智能体 | 使用仓库内的 MCP、Skill 或通用提示词 | 粘贴 [`prompts/dc-designer-core.md`](prompts/dc-designer-core.md) |
 
 官网“复制给任意智能体”按钮复制的是通用启动提示词，不是假设某个宿主已经安装完成的命令。将它粘贴到目标智能体后，智能体会先判断可用接入方式，再按当前项目权限完成接入检查。
@@ -162,7 +162,7 @@ Codex 示例：
 也可以直接描述课题，例如：
 
 ```text
-为七年级信息科技《认识算法》做一次课标约束快速设计。
+为初中数学《一次函数》做一次课标约束快速设计。
 ```
 
 Claude Code 示例：
@@ -199,19 +199,20 @@ python -m http.server 4173 --directory site
 
 当前公开核心能力专注于：
 
-- 中国大陆小学信息科技 / 信息技术；
-- 中国大陆初中信息科技 / 信息技术；
-- 中国大陆普通高中信息科技 / 信息技术。
+- 中国大陆小学、初中和普通高中；
+- 语文、数学、英语、物理、化学、生物、历史、地理和政治九个学科；
+- `standard_fast` 课标约束快速设计与 `collaborative` 完整协同设计。
 
-高校、职业教育、企业培训和其他学科不在当前范围内，系统会明确返回 `unsupported_scope`，不会套用泛化模板继续生成。跨智能体支持改变的是接入方式，不改变教学范围、证据规则和教师确认边界。
+高校、职业教育、企业培训和九学科之外的学科不在当前范围内，系统会明确返回不支持，不会套用泛化模板继续生成。跨智能体支持改变的是接入方式，不改变教学范围、证据规则和教师确认边界。历史信息科技 v1 项目仍可通过 `education_scope=k12_info_technology` 继续使用。
 
 ## Documentation
 
 - [快速开始](docs/quickstart.md)
 - [跨智能体接入](docs/agent-compatibility.md)
 - [来源与证据追溯](docs/source_provenance.md)
-- [核心插件合同](docs/v1_plugin_contract.md)
-- [v2.0.0 发布说明](docs/release_notes_v2.0.0.md)
+- [v3 项目设计](DESIGN.md)
+- [v3.0.0 发布说明](docs/release_notes_v3.0.0.md)
+- [历史 v1 信息科技合同](docs/v1_plugin_contract.md)
 - [发布说明](docs/release_notes_v1.1.5.md)
 - [变更记录](CHANGELOG.md)
 - [贡献指南](CONTRIBUTING.md)
@@ -228,10 +229,10 @@ GEMINI.md            Gemini CLI 项目上下文
 commands/            Gemini CLI 命令入口
 prompts/             跨智能体通用启动提示词
 skills/              Design、Review、Revise 三个共享 Skill
-scripts/             本地 Skill 入口和导出工具
+scripts/             通用 v3 入口、历史 v1 入口和导出工具
 mcp-server/          MCP 兼容入口与教学设计核心
 data/standards/      官方来源元数据和条款候选
-schemas/             v1 项目与技能图合同
+schemas/             v3 项目与历史 v1 技能图合同
 examples/            可复用的匿名请求与项目样例
 site/                产品官网静态页面
 docs/                用户、证据和发布文档

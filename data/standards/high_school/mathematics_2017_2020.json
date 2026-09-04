@@ -1,0 +1,587 @@
+{
+  "standard_id": "std_senior_2017_2020_math",
+  "source_id": "std_senior_2017_2020_math",
+  "knowledge_base_version": "3.0.0",
+  "title": "普通高中数学课程标准（2017年版2020年修订）",
+  "source_name": "普通高中数学课程标准（2017年版2020年修订）",
+  "source_description": "普通高中数学课程标准的公开官方来源元数据和结构化设计候选。",
+  "document_type": "curriculum_standard",
+  "issuer": "中华人民共和国教育部",
+  "publisher": "教育部",
+  "authority": "中华人民共和国教育部",
+  "publication_date": "2020-06-03",
+  "effective_date": "2020-06-03",
+  "version": "2017年版2020年修订",
+  "source_version": "2017年版2020年修订",
+  "status": "current",
+  "stage": "senior_secondary",
+  "stage_labels": [
+    "普通高中"
+  ],
+  "grade_levels": [
+    "高中10—12年级"
+  ],
+  "applicable_grades": [
+    "高中10—12年级"
+  ],
+  "subject_id": "mathematics",
+  "subject": "数学",
+  "aliases": [
+    "数学"
+  ],
+  "source_level": "A1",
+  "level": "A1",
+  "source_category": "official_authority",
+  "category": "curriculum_standard",
+  "credibility": "highest",
+  "can_be_goal_basis": "yes",
+  "copyright_scope": "official_public_reference",
+  "use_scope": [
+    "goal_basis",
+    "content_reference",
+    "assessment_generation",
+    "strategy_design"
+  ],
+  "applicable_scenes": [
+    "k12"
+  ],
+  "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+  "source_file_name": "普通高中数学课程标准（2017年版2020年修订）.pdf",
+  "source_bundle_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+  "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中数学课程标准（2017年版2020年修订）.pdf",
+  "content_sha256": "cc4d3a20daa09f5185037e93fbacd58f7df1147392e3dae4bf261c3700ba4195",
+  "content_hash_status": "local_original_verified_not_packaged",
+  "retrieved_at": "2026-09-04",
+  "metadata_snapshot_at": "2026-09-04",
+  "keywords": [
+    "数学",
+    "抽象能力",
+    "推理能力",
+    "建模能力",
+    "运算能力",
+    "几何直观",
+    "空间观念",
+    "数据意识",
+    "创新意识",
+    "数与代数",
+    "图形与几何",
+    "统计与概率",
+    "综合与实践",
+    "课程标准",
+    "学业质量",
+    "形成性评价",
+    "Dick-Carey"
+  ],
+  "core_competencies": [
+    "抽象能力",
+    "推理能力",
+    "建模能力",
+    "运算能力",
+    "几何直观",
+    "空间观念",
+    "数据意识",
+    "创新意识"
+  ],
+  "content_areas": [
+    {
+      "area_id": "mathematics-01",
+      "name": "课程内容与任务",
+      "summary": "数与代数、图形与几何、统计与概率、综合与实践",
+      "keywords": [
+        "数与代数",
+        "图形与几何",
+        "统计与概率",
+        "综合与实践"
+      ],
+      "stage": "senior_secondary"
+    },
+    {
+      "area_id": "mathematics-02",
+      "name": "概念与关系",
+      "summary": "从数量、图形或数据情境中抽象出概念并解释关系。",
+      "keywords": [
+        "概念",
+        "关系",
+        "表示"
+      ],
+      "stage": "senior_secondary"
+    },
+    {
+      "area_id": "mathematics-03",
+      "name": "推理与论证",
+      "summary": "用定义、性质、条件和过程支持结论。",
+      "keywords": [
+        "推理",
+        "证明",
+        "条件",
+        "结论"
+      ],
+      "stage": "senior_secondary"
+    },
+    {
+      "area_id": "mathematics-04",
+      "name": "模型与问题解决",
+      "summary": "把情境转化为数学模型，检验结果并解释边界。",
+      "keywords": [
+        "建模",
+        "问题解决",
+        "检验",
+        "解释"
+      ],
+      "stage": "senior_secondary"
+    },
+    {
+      "area_id": "mathematics-05",
+      "name": "数据与图形表示",
+      "summary": "选择恰当的图表、表示或运算工具表达信息。",
+      "keywords": [
+        "数据",
+        "统计",
+        "图形",
+        "表示"
+      ],
+      "stage": "senior_secondary"
+    }
+  ],
+  "academic_quality_standards": [
+    "学习表现应能通过任务、作品、表达、推理、实验、证据或行动观察。",
+    "质量判断需要结合课题、学段、学情和课堂证据，不把学科标签直接当作目标。",
+    "形成性评价结果应回流到教学策略、材料和目标修订。"
+  ],
+  "observable_verbs": [
+    "识别",
+    "表示",
+    "计算",
+    "估算",
+    "推理",
+    "证明",
+    "建模",
+    "解释",
+    "检验",
+    "比较",
+    "反思"
+  ],
+  "common_misconceptions": [
+    "把知识点记忆或最终答案当成完整学习证据",
+    "把抽象的态度口号直接写成课堂绩效目标",
+    "忽视任务条件、证据边界和学习者差异"
+  ],
+  "assessment_evidence_patterns": [
+    "过程记录、口头表达、书面作品或操作结果",
+    "基于资料、数据、文本或现象的解释与论证",
+    "反馈后的二次修订及修订理由"
+  ],
+  "strategy_patterns": [
+    "从真实或适龄的学科问题情境进入",
+    "显性示范概念、方法、证据和检查过程",
+    "安排形成性任务，让证据回流到策略和目标修订"
+  ],
+  "material_patterns": [
+    "有来源说明的适龄文本、数据、图像或实验材料",
+    "任务单、过程记录单和表现评价量表",
+    "可编辑的课堂材料与教师确认记录"
+  ],
+  "formative_feedback_patterns": [
+    "指出表现、证据和目标之间的具体差距",
+    "把问题拆成概念、方法、表达和条件边界",
+    "要求用二次作品或二次表达呈现反馈后的变化"
+  ],
+  "validation_rules": [
+    "目标必须包含学科对象、可观察行为、条件和达成证据",
+    "评价证据应与目标行为对应，不能只检查记忆或表态",
+    "形成性评价结果必须能回流到教学策略、材料或目标修订"
+  ],
+  "safety_or_ethics_rules": [
+    "涉及真实数据时说明来源、范围和匿名化处理。",
+    "工具输出应服务于解释，不把软件结果直接当作证明。"
+  ],
+  "concept_and_skill_patterns": [
+    {
+      "name": "概念与关系",
+      "summary": "从数量、图形或数据情境中抽象出概念并解释关系。",
+      "keywords": [
+        "概念",
+        "关系",
+        "表示"
+      ]
+    },
+    {
+      "name": "推理与论证",
+      "summary": "用定义、性质、条件和过程支持结论。",
+      "keywords": [
+        "推理",
+        "证明",
+        "条件",
+        "结论"
+      ]
+    },
+    {
+      "name": "模型与问题解决",
+      "summary": "把情境转化为数学模型，检验结果并解释边界。",
+      "keywords": [
+        "建模",
+        "问题解决",
+        "检验",
+        "解释"
+      ]
+    },
+    {
+      "name": "数据与图形表示",
+      "summary": "选择恰当的图表、表示或运算工具表达信息。",
+      "keywords": [
+        "数据",
+        "统计",
+        "图形",
+        "表示"
+      ]
+    }
+  ],
+  "clauses": [
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_01",
+      "section_path": [
+        "课程性质与课程理念"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "课程定位",
+      "excerpt": "课程定位",
+      "normalized_summary": "明确数学课程的育人价值、课程定位和设计方向。",
+      "keywords": [
+        "课程性质",
+        "课程理念",
+        "数学"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "needs_analysis",
+        "instructional_goal",
+        "strategy_design"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_02",
+      "section_path": [
+        "课程目标与核心素养"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "目标与核心素养",
+      "excerpt": "目标与核心素养",
+      "normalized_summary": "把学科核心素养转化为可观察的学习表现候选，仍需结合课题、学情和教师确认。",
+      "keywords": [
+        "抽象能力",
+        "推理能力",
+        "建模能力",
+        "运算能力",
+        "几何直观"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_goal",
+        "instructional_analysis",
+        "assessment_generation"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_03",
+      "section_path": [
+        "课程内容与结构"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "数与代数、图形与几何、统计与概率、综合与实践",
+      "excerpt": "数与代数、图形与几何、统计与概率、综合与实践",
+      "normalized_summary": "以数与代数、图形与几何、统计与概率、综合与实践组织内容分析，并作为绩效目标、策略和材料的前置输入。",
+      "keywords": [
+        "数与代数",
+        "图形与几何",
+        "统计与概率",
+        "综合与实践"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_analysis",
+        "strategy_design",
+        "material_design"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_04",
+      "section_path": [
+        "学业质量或学习质量"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "质量表现",
+      "excerpt": "质量表现",
+      "normalized_summary": "将学习质量表述为证据要求，不直接替代单节课的教学目标。",
+      "keywords": [
+        "学业质量",
+        "学习表现",
+        "证据"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_goal",
+        "assessment_generation",
+        "formative_evaluation"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_05",
+      "section_path": [
+        "教学实施与评价建议"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "教学与评价",
+      "excerpt": "教学与评价",
+      "normalized_summary": "提示教学、评价与资源协同，形成性证据应回流到后续修订。",
+      "keywords": [
+        "教学",
+        "评价",
+        "形成性评价",
+        "反馈"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "strategy_design",
+        "material_design",
+        "formative_evaluation",
+        "revision"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_06",
+      "section_path": [
+        "学科重点校验"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "数与代数、图形与几何、统计与概率、综合与实践",
+      "excerpt": "数与代数、图形与几何、统计与概率、综合与实践",
+      "normalized_summary": "围绕数与代数、图形与几何、统计与概率、综合与实践检查课堂任务、证据和交付物是否保持学科一致性。",
+      "keywords": [
+        "数与代数",
+        "图形与几何",
+        "统计与概率",
+        "综合与实践"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_analysis",
+        "assessment_generation",
+        "quality_ethics"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    }
+  ],
+  "specific_clauses": [
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_01",
+      "section_path": [
+        "课程性质与课程理念"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "课程定位",
+      "excerpt": "课程定位",
+      "normalized_summary": "明确数学课程的育人价值、课程定位和设计方向。",
+      "keywords": [
+        "课程性质",
+        "课程理念",
+        "数学"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "needs_analysis",
+        "instructional_goal",
+        "strategy_design"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_02",
+      "section_path": [
+        "课程目标与核心素养"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "目标与核心素养",
+      "excerpt": "目标与核心素养",
+      "normalized_summary": "把学科核心素养转化为可观察的学习表现候选，仍需结合课题、学情和教师确认。",
+      "keywords": [
+        "抽象能力",
+        "推理能力",
+        "建模能力",
+        "运算能力",
+        "几何直观"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_goal",
+        "instructional_analysis",
+        "assessment_generation"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_03",
+      "section_path": [
+        "课程内容与结构"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "数与代数、图形与几何、统计与概率、综合与实践",
+      "excerpt": "数与代数、图形与几何、统计与概率、综合与实践",
+      "normalized_summary": "以数与代数、图形与几何、统计与概率、综合与实践组织内容分析，并作为绩效目标、策略和材料的前置输入。",
+      "keywords": [
+        "数与代数",
+        "图形与几何",
+        "统计与概率",
+        "综合与实践"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_analysis",
+        "strategy_design",
+        "material_design"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_04",
+      "section_path": [
+        "学业质量或学习质量"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "质量表现",
+      "excerpt": "质量表现",
+      "normalized_summary": "将学习质量表述为证据要求，不直接替代单节课的教学目标。",
+      "keywords": [
+        "学业质量",
+        "学习表现",
+        "证据"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_goal",
+        "assessment_generation",
+        "formative_evaluation"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_05",
+      "section_path": [
+        "教学实施与评价建议"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "教学与评价",
+      "excerpt": "教学与评价",
+      "normalized_summary": "提示教学、评价与资源协同，形成性证据应回流到后续修订。",
+      "keywords": [
+        "教学",
+        "评价",
+        "形成性评价",
+        "反馈"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "strategy_design",
+        "material_design",
+        "formative_evaluation",
+        "revision"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    },
+    {
+      "clause_id": "STD_SENIOR_2017_2020_MATH_06",
+      "section_path": [
+        "学科重点校验"
+      ],
+      "page_number": "PDF 前置章节（OCR核验，需打开官方原文复核）",
+      "anchor": "数与代数、图形与几何、统计与概率、综合与实践",
+      "excerpt": "数与代数、图形与几何、统计与概率、综合与实践",
+      "normalized_summary": "围绕数与代数、图形与几何、统计与概率、综合与实践检查课堂任务、证据和交付物是否保持学科一致性。",
+      "keywords": [
+        "数与代数",
+        "图形与几何",
+        "统计与概率",
+        "综合与实践"
+      ],
+      "applicable_topics": [
+        "all"
+      ],
+      "supports_modules": [
+        "instructional_analysis",
+        "assessment_generation",
+        "quality_ethics"
+      ],
+      "evidence_status": "clause_candidate",
+      "source_version": "2017年版2020年修订",
+      "source_id": "std_senior_2017_2020_math"
+    }
+  ],
+  "extraction_evidence": {
+    "method": "official_pdf_metadata_plus_intro_ocr",
+    "verified_sections": [
+      "封面与版本信息",
+      "课程性质或基本理念",
+      "课程目标与核心素养",
+      "课程结构或内容框架",
+      "学业质量或实施评价入口"
+    ],
+    "verification_status": "metadata_and_section_structure_verified",
+    "semantic_status": "clause_candidate_requires_teacher_confirmation",
+    "note": "OCR 仅用于定位前置章节；生成具体课时目标前必须打开官方原文核对。"
+  },
+  "verification_status": "official_source_candidate",
+  "verified_by_teacher": false,
+  "teacher_confirmation_required": true,
+  "is_test_fixture": false,
+  "fallback_required": false,
+  "notes": "原始 PDF 保存在本机私有知识库；公开包只发布元数据、哈希和结构化候选。",
+  "source_record_sha256": "0aaa462b4160f31b8737fec68460bafbb6e3869a9d461bb76ab386607b506684"
+}

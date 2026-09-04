@@ -1,4 +1,9 @@
-"""Frozen v1 product boundary and project initialization helpers."""
+"""Product boundaries and project initialization helpers.
+
+The original information-technology contract remains available for existing
+projects.  v3 adds a separate, explicit nine-subject contract so legacy data
+cannot be silently reinterpreted.
+"""
 
 from __future__ import annotations
 
@@ -17,6 +22,20 @@ OFFICIAL_CORE_COMPETENCIES = [
     "数字化学习与创新",
     "信息社会责任",
 ]
+
+V3_EDUCATION_SCOPE = "k12_nine_subjects"
+V3_SUPPORTED_STAGES = {"primary", "junior_secondary", "senior_secondary"}
+V3_SUPPORTED_SUBJECT_IDS = {
+    "chinese",
+    "mathematics",
+    "english",
+    "physics",
+    "chemistry",
+    "biology",
+    "history",
+    "geography",
+    "politics",
+}
 
 
 def now_iso() -> str:
@@ -171,5 +190,164 @@ def initialize_project(request: dict, *, project_id: str | None = None) -> dict:
             "scope_check": check,
             "draft_status": "draft",
             "evidence_status": "no_source",
+        },
+    }
+
+
+def validate_v3_scope(request: dict) -> dict:
+    """Validate the explicit China K-12 nine-subject v3 boundary."""
+    from core.subject_registry import (
+        SubjectRegistryError,
+        get_subject,
+        normalize_stage as normalize_v3_stage,
+    )
+
+    request = request if isinstance(request, dict) else {}
+    raw_stage = request.get("stage") or request.get("education_stage")
+    stage = normalize_stage(raw_stage, request.get("grade_level") or request.get("grade"))
+    if not stage and raw_stage:
+        try:
+            stage = normalize_v3_stage(raw_stage)
+        except SubjectRegistryError:
+            stage = ""
+
+    subject_value = request.get("subject_id") or request.get("subject")
+    subject = None
+    errors: list[str] = []
+    warnings: list[str] = []
+    try:
+        subject = get_subject(subject_value, stage)
+    except SubjectRegistryError as exc:
+        errors.append(str(exc))
+
+    if stage not in V3_SUPPORTED_STAGES:
+        errors.append("请明确学段为小学、初中或普通高中。")
+    user_type = str(request.get("user_type", "")).strip()
+    if any(token in user_type for token in ("高校", "大学", "职教", "职业", "中职", "企业")):
+        errors.append("当前 v3 仅支持中国大陆小学、初中和普通高中，不开放高校、职教或企业培训入口。")
+    if request.get("education_scope") and request.get("education_scope") != V3_EDUCATION_SCOPE:
+        errors.append(f"education_scope 必须为 {V3_EDUCATION_SCOPE}。")
+
+    mode = normalize_mode(request.get("mode") or request.get("design_mode"))
+    if request.get("mode") and mode not in SUPPORTED_MODES:
+        errors.append("设计模式只能是 standard_fast（课标约束快速设计）或 collaborative（完整协同设计）。")
+    if not request.get("textbook_version"):
+        warnings.append("尚未提供教材版本，教材对应关系只能标记为待确认。")
+    teacher_inputs = request.get("teacher_inputs", {})
+    class_profile = request.get("class_profile") or (
+        teacher_inputs.get("class_profile") if isinstance(teacher_inputs, dict) else None
+    )
+    if not class_profile:
+        warnings.append("尚未提供班级共性学情，差异化策略只能先生成待确认草案。")
+
+    return {
+        "valid": not errors,
+        "errors": errors,
+        "warnings": warnings,
+        "education_scope": V3_EDUCATION_SCOPE,
+        "stage": stage,
+        "subject_id": subject.get("subject_id", "") if subject else "",
+        "subject": subject.get("display_name", "") if subject else str(subject_value or ""),
+        "subject_adapter": subject or {},
+        "mode": mode,
+        "supported_subject_ids": sorted(V3_SUPPORTED_SUBJECT_IDS),
+    }
+
+
+def initialize_v3_project(request: dict, *, project_id: str | None = None) -> dict:
+    """Create the v3 project envelope shared by all nine subject adapters."""
+    check = validate_v3_scope(request)
+    if not check["valid"]:
+        raise ValueError("；".join(check["errors"]))
+
+    from core.ids import gen_project_id
+
+    adapter = check["subject_adapter"]
+    stage = check["stage"]
+    mode = check["mode"]
+    timestamp = now_iso()
+    project_id = project_id or gen_project_id()
+    teacher_inputs = request.get("teacher_inputs", {})
+    if not isinstance(teacher_inputs, dict):
+        teacher_inputs = {}
+    class_profile = request.get("class_profile") or teacher_inputs.get("class_profile") or {}
+    stage_rule = adapter.get("stage_rule", {})
+    display_name = adapter.get("display_name", check["subject"])
+    topic = request.get("topic", "")
+    grade = request.get("grade_level") or request.get("grade", "")
+
+    return {
+        "schema_version": "3.0.0",
+        "project_id": project_id,
+        "education_scope": V3_EDUCATION_SCOPE,
+        "project": {
+            "title": request.get("title") or topic or f"{display_name}教学系统设计",
+            "topic": topic,
+            "stage": stage,
+            "grade": grade,
+            "subject_id": adapter.get("subject_id", ""),
+            "subject": display_name,
+            "textbook_version": request.get("textbook_version", ""),
+            "unit": request.get("unit", ""),
+            "periods": request.get("periods") or request.get("period") or "",
+            "scenario": request.get("scenario", "新课设计"),
+            "created_at": timestamp,
+            "updated_at": timestamp,
+        },
+        "mode": {
+            "id": mode,
+            "label": "课标约束快速设计" if mode == "standard_fast" else "完整协同设计",
+            "interaction": "auto_with_teacher_confirmations" if mode == "standard_fast" else "stage_by_stage_confirmation",
+        },
+        "curriculum_context": {
+            "stage": stage,
+            "stage_label": {"primary": "小学", "junior_secondary": "初中", "senior_secondary": "普通高中"}[stage],
+            "subject_id": adapter.get("subject_id", ""),
+            "subject": display_name,
+            "official_source_id": stage_rule.get("source_id", ""),
+            "grade_levels": list(stage_rule.get("grade_levels", [])),
+            "core_competencies": list(adapter.get("core_competencies", [])),
+            "standard_version": "2022" if stage in {"primary", "junior_secondary"} else "2017/2020修订",
+            "standard_status": "current_candidate",
+            "teacher_confirmation_required": True,
+        },
+        "subject_adapter": {
+            "subject_id": adapter.get("subject_id", ""),
+            "display_name": display_name,
+            "core_competencies": list(adapter.get("core_competencies", [])),
+            "concept_and_skill_patterns": list(adapter.get("concept_and_skill_patterns", [])),
+            "observable_verbs": list(adapter.get("observable_verbs", [])),
+            "assessment_evidence_patterns": list(adapter.get("assessment_evidence_patterns", [])),
+            "strategy_patterns": list(adapter.get("strategy_patterns", [])),
+            "material_patterns": list(adapter.get("material_patterns", [])),
+            "formative_feedback_patterns": list(adapter.get("formative_feedback_patterns", [])),
+            "common_misconceptions": list(adapter.get("common_misconceptions", [])),
+            "safety_or_ethics_rules": list(adapter.get("safety_or_ethics_rules", [])),
+            "validation_rules": list(adapter.get("validation_rules", [])),
+        },
+        "sources": [],
+        "evidence_claims": [],
+        "needs_analysis": {},
+        "instructional_goal": {},
+        "goal_analysis": {},
+        "skill_graphs": {},
+        "learner_analysis": {"class_profile": class_profile},
+        "learning_context": request.get("learning_context") or teacher_inputs.get("learning_context") or {},
+        "performance_context": request.get("performance_context") or teacher_inputs.get("performance_context") or {},
+        "performance_objectives": [],
+        "assessments": {},
+        "instructional_sequence": [],
+        "instructional_strategy": {},
+        "instructional_materials": {},
+        "formative_evaluation": {},
+        "revision_plan": {},
+        "alignment_report": {},
+        "decision_log": [],
+        "exports": {},
+        "quality": {
+            "scope_check": check,
+            "draft_status": "draft",
+            "evidence_status": "no_source",
+            "visual_status": "unverified",
         },
     }

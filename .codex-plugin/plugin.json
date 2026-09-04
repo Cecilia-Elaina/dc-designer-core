@@ -1,7 +1,7 @@
 {
   "name": "dc-designer-core",
-  "version": "2.0.0",
-  "description": "DC Designer 是面向中国 K12 信息科技教师的跨智能体、本地优先 Dick–Carey 教学系统设计插件，把课程标准组织成可追溯、可评价、可进入课堂的设计链。",
+  "version": "3.0.0",
+  "description": "DC Designer 是面向中国 K12 九学科教师的跨智能体、本地优先 Dick–Carey 教学系统设计插件，把课程标准组织成可追溯、可评价、可进入课堂的设计链。",
   "author": {
     "name": "DC Designer contributors"
   },
@@ -10,23 +10,32 @@
     "instructional-design",
     "dick-carey",
     "k12",
-    "information-technology",
+    "nine-subjects",
     "教学系统设计",
-    "信息科技"
+    "九学科",
+    "语文",
+    "数学",
+    "英语",
+    "物理",
+    "化学",
+    "生物",
+    "历史",
+    "地理",
+    "政治"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "DC Designer",
-    "shortDescription": "从课标到课堂的跨智能体 Dick–Carey 教学系统设计",
-    "longDescription": "面向中国大陆 K12 信息科技/信息技术教师，依据课程标准、教师本机资料和教师确认的关键决策，按照 Dick–Carey 模型组织教学目的、教学分析、学习者与环境、绩效目标、评价、策略、材料和修订。Codex、Claude Code、Gemini CLI 和其他支持 MCP 或项目文件的智能体都可以接入；所有教师资料只保存在本机。",
+    "shortDescription": "从课标到课堂的跨智能体九学科 Dick–Carey 教学系统设计",
+    "longDescription": "面向中国大陆小学、初中和普通高中语文、数学、英语、物理、化学、生物、历史、地理、政治教师，依据课程标准、教师本机资料和教师确认的关键决策，按照 Dick–Carey 模型组织教学目的、教学分析、学习者与环境、绩效目标、评价、策略、材料和修订。Codex、Claude Code、Gemini CLI 和其他支持 MCP 或项目文件的智能体都可以接入；所有教师资料只保存在本机。",
     "developerName": "DC Designer contributors",
     "category": "Education",
     "capabilities": ["Interactive", "Write", "Local files", "Multi-agent", "MCP"],
     "defaultPrompt": [
-      "为七年级信息科技的‘认识算法’做课标约束快速设计",
-      "协同我完成一份 Python 分支结构教学系统设计",
-      "评审这份信息科技教学设计并列出可执行修改项"
+      "为初中数学的一次函数做课标约束快速设计",
+      "协同我完成一份高中语文现代文阅读教学系统设计",
+      "评审这份九学科教学设计并列出可执行修改项"
     ],
     "brandColor": "#4472C4"
   }

@@ -38,6 +38,27 @@ def _tokens(text: str) -> set[str]:
     return words
 
 
+def _canonical_evidence_subject(value: str) -> str:
+    """Normalize public subject names before filtering mixed-source evidence."""
+    aliases = {
+        "信息技术": "信息科技",
+        "信息科技": "信息科技",
+        "生物": "生物学",
+        "生物学": "生物学",
+        "政治": "政治",
+        "道德与法治": "政治",
+        "思想政治": "政治",
+    }
+    return aliases.get(str(value or "").strip(), str(value or "").strip())
+
+
+def _evidence_subject_matches(requested: str, actual: str) -> bool:
+    """Allow general policy sources, but never leak another subject's source."""
+    if actual == "通用":
+        return True
+    return _canonical_evidence_subject(requested) == _canonical_evidence_subject(actual)
+
+
 def _iter_clauses(source: dict) -> Iterable[dict]:
     for clause in source.get("clauses", []):
         item = dict(clause)
@@ -222,7 +243,7 @@ def search_official_evidence(query: dict, workspace: str | None = None) -> dict:
                 continue
             if stage == "senior_secondary" and "senior_secondary" not in stages:
                 continue
-            if subject and subject not in {row["subject"], "信息科技", "信息技术", "通用"}:
+            if subject and not _evidence_subject_matches(subject, row["subject"]):
                 continue
             record = json.loads(row["record_json"])
             haystack = " ".join([

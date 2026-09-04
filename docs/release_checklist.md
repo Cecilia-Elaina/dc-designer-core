@@ -6,7 +6,7 @@
 - [ ] `GEMINI.md`、`commands/`、`prompts/` 和 [跨智能体接入说明](agent-compatibility.md) 与共享 Skill 保持一致。
 - [ ] 官网复制按钮提供通用启动提示词，不把产品描述成 Codex 专属。
 - [ ] `.agents/plugins/marketplace.json` 指向正确的 GitHub 插件仓库根目录。
-- [ ] 仅支持中国大陆 K12 信息科技/信息技术，其他范围返回 `unsupported_scope`。
+- [ ] v3 支持中国大陆小学、初中和普通高中九学科；高校、职教、企业培训和九学科之外的学科明确返回不支持。
 - [ ] README、快速开始、隐私和依赖说明完整。
 
 ## 证据与隐私
@@ -28,7 +28,7 @@
 - [ ] `python scripts/doctor.py` 通过核心检查。
 - [ ] `python scripts/release_check.py` 通过。
 - [ ] `python scripts/package_release.py` 生成版本压缩包、SHA256 和清单。
-- [ ] 解压到干净目录后仍能运行 `scripts/dc_info_tech.py`；官网静态文件可独立预览。
+- [ ] 解压到干净目录后仍能运行 `scripts/dc_designer.py`；历史 `scripts/dc_info_tech.py` 兼容入口仍可运行；官网静态文件可独立预览。
 - [ ] GitHub Pages 工作流能够从 `site/` 生成公开站点。
 - [ ] `python scripts/compatibility_check.py` 通过，确认原生适配清单、MCP 路径和通用提示词一致。
 - [ ] 未把 `exports/`、参考报告、测试缓存或教师资料打入压缩包。

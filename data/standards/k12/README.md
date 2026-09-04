@@ -1,18 +1,13 @@
-# K12 课程标准元数据
+# 义务教育九学科元数据
 
-本目录包含按学科索引的义务教育（K12）课程标准结构化元数据。
+本目录包含教育部《义务教育课程方案和课程标准（2022 年版）》覆盖的九个 v3 学科记录：
 
-每个文件对应一个学科的课程标准，包含以下结构化字段：
+- 语文、数学、英语
+- 物理、化学、生物学
+- 历史、地理、道德与法治
 
-- **core_competencies** — 核心素养要求
-- **content_areas** — 内容领域及其适用年级、关键词
-- **academic_quality_standards** — 学业质量标准
+文件名使用 <subject>_compulsory_2022.json。official_snapshot.json 是内置官方来源快照，保留旧版信息科技来源以兼容 v2，并加入九学科来源记录。
 
-## 文件命名规范
+每个学科 JSON 使用统一的 subject_id、stage、core_competencies、content_areas、academic_quality_standards、clauses 和 extraction_evidence 字段。条款候选来自官方文件前置章节的元数据与 OCR 定位，生成课时级内容时必须由教师打开官方原文复核。
 
-- `sample_<subject>_<year>.json` — 示例数据文件
-- 新增学科时请遵循同一命名规范
-
-## 数据来源
-
-所有元数据均基于教育部发布的义务教育课程标准（2022年版）PDF 文件提取和整理，详见 `source_registry.json`。
+来源主索引见上级目录的 source_registry.json，九学科适配器见 subject_registry_v3.json。原始 PDF 不随仓库发布。

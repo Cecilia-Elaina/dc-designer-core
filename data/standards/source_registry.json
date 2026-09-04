@@ -1,6 +1,8 @@
 {
-  "registry_version": "1.0",
-  "last_updated": "2026-06-27",
+  "registry_version": "3.0",
+  "last_updated": "2026-09-04",
+  "scope": "中国 K-12 九学科（小学、初中、普通高中；不含职高和高等教育）",
+  "source_policy": "官方教育部来源优先；公开包不复制完整课标，教师确认前条款只作为候选。",
   "sources": [
     {
       "source_id": "std_compulsory_2022_info_tech",
@@ -10,45 +12,25 @@
       "stage": "compulsory",
       "version": "2022",
       "subject": "信息科技",
-      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.14_义务教育信息科技课程标准（2022年版）.pdf",
+      "file_path": "",
       "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582361024968.pdf",
       "publisher": "教育部",
       "description": "义务教育阶段信息科技课程标准，包含核心素养、内容要求、学业质量标准",
-      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
+      "applicable_grades": [
+        "七年级",
+        "八年级",
+        "九年级",
+        "小学"
+      ],
       "copyright_scope": "official_public",
-      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
-    },
-    {
-      "source_id": "std_compulsory_2022_math",
-      "title": "义务教育数学课程标准（2022年版）",
-      "level": "A1",
-      "category": "curriculum_standard",
-      "stage": "compulsory",
-      "version": "2022",
-      "subject": "数学",
-      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.05_义务教育数学课程标准（2022年版）.pdf",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220510531636118932.pdf",
-      "publisher": "教育部",
-      "description": "义务教育阶段数学课程标准",
-      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
-      "copyright_scope": "official_public",
-      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
-    },
-    {
-      "source_id": "std_compulsory_2022_chinese",
-      "title": "义务教育语文课程标准（2022年版）",
-      "level": "A1",
-      "category": "curriculum_standard",
-      "stage": "compulsory",
-      "version": "2022",
-      "subject": "语文",
-      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.03_义务教育语文课程标准（2022年版）.pdf",
-      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582344386456.pdf",
-      "publisher": "教育部",
-      "description": "义务教育阶段语文课程标准",
-      "applicable_grades": ["七年级", "八年级", "九年级", "小学"],
-      "copyright_scope": "official_public",
-      "use_scope": ["goal_basis", "content_reference", "assessment_generation", "strategy_design"]
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "source_status": "remote_metadata_only",
+      "is_test_fixture": false
     },
     {
       "source_id": "std_compulsory_plan_2022",
@@ -58,13 +40,536 @@
       "stage": "compulsory",
       "version": "2022",
       "subject": "通用",
-      "file_path": "D:/Download/教学系统设计/政策导向知识库层/01_课程标准_义务教育2022/01.01_义务教育课程方案（2022年版）.pdf",
+      "file_path": "",
       "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582343217634.pdf",
       "publisher": "教育部",
       "description": "义务教育阶段课程方案，规定各学段课程设置和课时比例",
-      "applicable_grades": ["小学", "七年级", "八年级", "九年级"],
+      "applicable_grades": [
+        "小学",
+        "七年级",
+        "八年级",
+        "九年级"
+      ],
       "copyright_scope": "official_public",
-      "use_scope": ["goal_basis", "content_reference"]
+      "use_scope": [
+        "goal_basis",
+        "content_reference"
+      ],
+      "source_status": "remote_metadata_only",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_chinese",
+      "title": "义务教育语文课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "语文",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/chinese_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582344386456.pdf",
+      "publisher": "教育部",
+      "description": "义务教育语文课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "3ef0ec8a30b5a950211202658df07d99f5427f750f8ba0c3cfda12736b7bd71a",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_math",
+      "title": "义务教育数学课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "数学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/mathematics_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220510531636118932.pdf",
+      "publisher": "教育部",
+      "description": "义务教育数学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "1183b95c58a65eaac4c456f2d2b329bbe42f65a6482993edb537e3eaf8baa144",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_english",
+      "title": "义务教育英语课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "英语",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/english_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582349487953.pdf",
+      "publisher": "教育部",
+      "description": "义务教育英语课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "59ec3971e0dbd6ca487c4e4972cbc80effaf2fd62418d07e5f62c6698fa222fb",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_physics",
+      "title": "义务教育物理课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "物理",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/physics_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582357585169.pdf",
+      "publisher": "教育部",
+      "description": "义务教育物理课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "884069da6c924acb27b966ea20b9c7a4d8f0d6dfc828c80cd252aa72bf990340",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_chemistry",
+      "title": "义务教育化学课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "化学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/chemistry_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020230605524874315398.pdf",
+      "publisher": "教育部",
+      "description": "义务教育化学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "1ecd0cc391376ce76fb61a705f90ef804f746426c99f4813cc8367c0496851c6",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_biology",
+      "title": "义务教育生物学课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "生物学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/biology_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582359998122.pdf",
+      "publisher": "教育部",
+      "description": "义务教育生物学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "95993bea87c30104631fa10f2f20f11b98d0718d69c4aeeac46c53a387f43c00",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_history",
+      "title": "义务教育历史课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "历史",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/history_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582345700037.pdf",
+      "publisher": "教育部",
+      "description": "义务教育历史课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "c807b9162d7f7a652c9acedc187c39b28d29b73edfa9e6964045f9a8672a90ef",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_geography",
+      "title": "义务教育地理课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "地理",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/geography_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582354066450.pdf",
+      "publisher": "教育部",
+      "description": "义务教育地理课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "5aade5cb5cfa103c48277c8ff663783df69cafb0fec2411f4aad1924d75c67b8",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_compulsory_2022_politics",
+      "title": "义务教育道德与法治课程标准（2022年版）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "compulsory",
+      "version": "2022",
+      "subject": "道德与法治",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/politics_compulsory_2022.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582343475848.pdf",
+      "publisher": "教育部",
+      "description": "义务教育道德与法治课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "小学1—6年级",
+        "初中7—9年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "16c0a291b522ce5b0afe3b1a28e696d8cca0d4d63cc01ff552a1d6ce06506cf0",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_chinese",
+      "title": "普通高中语文课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "语文",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中语文课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中语文课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "7a187079f1fffe8ae834fdeff25bac9dd0e7de6b979db40fd875786dc0365977",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_math",
+      "title": "普通高中数学课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "数学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中数学课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中数学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "cc4d3a20daa09f5185037e93fbacd58f7df1147392e3dae4bf261c3700ba4195",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_english",
+      "title": "普通高中英语课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "英语",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中英语课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中英语课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "8ebd6bb12e9eb1c58e422ee01b540a4a71d2e681a4c4a764a36ee3a34b21c1be",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_physics",
+      "title": "普通高中物理课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "物理",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中物理课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中物理课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "a64204bc3b5532b44fbc82b560945d3df3c0bb081aa1d69df028a7591bb983f5",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_chemistry",
+      "title": "普通高中化学课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "化学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中化学课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中化学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "589b296ef47fb3b221a08e616dcb8f19546ed9cf770bd5b5b991ba1d2008274f",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_biology",
+      "title": "普通高中生物学课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "生物学",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中生物学课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中生物学课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "8408986334a8826e6c7e1486c1ef1430cf47ad9e10174fd08f65d590f4d302a4",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_history",
+      "title": "普通高中历史课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "历史",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中历史课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中历史课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "5906e55a4758c4446640db126564f535c845ba76df170714e739d97db6f36b97",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_geography",
+      "title": "普通高中地理课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "地理",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中地理课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中地理课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "32ea1c9f794109cd729351fdba387c63f812f4f6131182a2370a0f5958fe7a3b",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
+    },
+    {
+      "source_id": "std_senior_2017_2020_politics",
+      "title": "普通高中思想政治课程标准（2017年版2020年修订）",
+      "level": "A1",
+      "category": "curriculum_standard",
+      "stage": "senior_secondary",
+      "version": "2017年版2020年修订",
+      "subject": "思想政治",
+      "file_path": "",
+      "private_snapshot_reference": "private://official/v3/sources/senior_secondary_2017_2020_bundle.zip#普通高中思想政治课程标准（2017年版2020年修订）.pdf",
+      "source_url": "https://www.moe.gov.cn/srcsite/A26/s8001/202006/W020200603315372317586.zip",
+      "publisher": "教育部",
+      "description": "普通高中思想政治课程标准的公开官方来源元数据和结构化设计候选。",
+      "applicable_grades": [
+        "高中10—12年级"
+      ],
+      "copyright_scope": "official_public_reference",
+      "use_scope": [
+        "goal_basis",
+        "content_reference",
+        "assessment_generation",
+        "strategy_design"
+      ],
+      "content_sha256": "28533adf1e2193c9b5de3056a6a031598209c2bfca00e65ff89458ecc4481f7b",
+      "content_hash_status": "local_original_verified_not_packaged",
+      "retrieved_at": "2026-09-04",
+      "is_test_fixture": false
     }
   ]
 }

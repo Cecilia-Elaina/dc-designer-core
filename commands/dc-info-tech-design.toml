@@ -1,6 +1,6 @@
-description = "创建中国 K12 信息科技教学系统设计"
+description = "创建中国 K12 九学科教学系统设计（兼容旧命令名）"
 prompt = """
-请读取 skills/dc-info-tech-design/SKILL.md、docs/agent-compatibility.md 和 docs/v1_plugin_contract.md，按其中的范围、来源、隐私和教师确认规则，协助完成中国 K12 信息科技/信息技术教学系统设计。
+请读取 DESIGN.md、skills/dc-info-tech-design/SKILL.md 和 docs/agent-compatibility.md，按其中的范围、来源、隐私和教师确认规则，协助完成中国 K12 九学科教学系统设计。根据用户提供的学科和学段选择 v3 适配器；信息科技仅作为历史 v1 兼容入口。
 
 用户补充：{{args}}
 

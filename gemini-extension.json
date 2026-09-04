@@ -1,7 +1,7 @@
 {
   "name": "dc-designer-core",
-  "version": "2.0.0",
-  "description": "面向中国 K12 信息科技教师的跨智能体 Dick–Carey 教学系统设计扩展。",
+  "version": "3.0.0",
+  "description": "面向中国 K12 九学科教师的跨智能体 Dick–Carey 教学系统设计扩展。",
   "mcpServers": {
     "dc-designer-mcp": {
       "command": "python",

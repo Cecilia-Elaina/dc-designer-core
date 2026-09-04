@@ -61,6 +61,19 @@ def run_check() -> dict:
     if gemini.get("contextFileName") != "GEMINI.md":
         errors.append("Gemini CLI 入口必须加载 GEMINI.md")
 
+    if core.get("version") != "3.0.0":
+        errors.append("manifest.json 当前应为 v3.0.0")
+    scope = core.get("scope", {})
+    if scope.get("education_scope") != "k12_nine_subjects":
+        errors.append("manifest.json 未声明 k12_nine_subjects v3 范围")
+    expected_subjects = {"语文", "数学", "英语", "物理", "化学", "生物", "历史", "地理", "政治"}
+    if set(scope.get("subjects", [])) != expected_subjects:
+        errors.append("manifest.json 的九学科列表不完整")
+    if not (ROOT / "scripts/dc_designer.py").is_file():
+        errors.append("缺少九学科 v3 通用本地入口 scripts/dc_designer.py")
+    if not (ROOT / "schemas/v3-project.schema.json").is_file():
+        errors.append("缺少九学科 v3 项目合同 schemas/v3-project.schema.json")
+
     skill_dirs = {
         path.name
         for path in (ROOT / "skills").iterdir()
